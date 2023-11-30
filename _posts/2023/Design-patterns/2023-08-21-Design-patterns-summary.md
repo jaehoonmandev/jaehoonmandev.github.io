@@ -1,5 +1,5 @@
 ---
-layout: single
+#layout: single
 title:	"[Design patterns] 소프트웨어 디자인패턴의 기본 개념"
 date:	2023-08-21 12:00:00
 categories:
@@ -13,7 +13,7 @@ tags:
 소프트웨어를 개발중에 발생할 수 있는 공통적인 문제를 해결하기 위해 제안된 솔루션이다.
 
 또한 빠른 개발을 위해 템플릿으로 사용되기도한다.   
-<br>  
+  
 여기서 문제라함은
 
 - 클래스를 생성 했을 때 너무 많은 클래스가 생성됨(유지보수의 어려움)
@@ -21,10 +21,10 @@ tags:
 - 간단한 기능만을 가진 클래스를 사용하기위해 매번 인스턴스를 생성(비효율적)
 
 등등.. 비효율적이거나, 적절하지 않은 개발을 진행하는 “문제”를 얘기한다.  
-<br>
+
 
 1977년 Christopher Alexander는 구조를 가지는 아키텍쳐 컨셉의 개념을 제시하였고, 1987년 Kend Beck과 Ward Cunningham은 이를 프로그래밍에 접목시키는 Pattern to programming의 개념을 제시하였다.  
-<br>  
+  
 이후 1994년 GoF(Gang of Four)의 등장으로 Pattern to programming 즉, Design patterns은 인기를 얻게되었다.
 
 ##### Gang of Four
@@ -34,14 +34,14 @@ tags:
 - Ralph Johnson
 - john Vissides
 
-<br>
+
 GoF에 의해 대표적으로 소개된 패턴은 크게 3가지 패턴으로 분류된다.
 - Creation patterns - 생성 패턴
 - Structural patterns - 구조 패턴
 - Behavioral patterns - 행동 패턴
 
 3가지 패턴은 내부에서 또한 상세하게 나눠진다.  
-<br>
+
 
 ## Creation patterns - 생성 패턴
 

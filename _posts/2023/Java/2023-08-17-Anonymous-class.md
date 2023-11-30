@@ -1,5 +1,5 @@
 ---
-layout: single
+#layout: single
 title:	"[Java] Anonymous Class - 익명 클래스"
 date:	2023-08-17 12:00:00
 categories:

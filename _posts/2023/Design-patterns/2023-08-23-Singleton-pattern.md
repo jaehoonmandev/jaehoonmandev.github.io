@@ -1,5 +1,5 @@
 ---
-layout: single
+#layout: single
 title:	"[Design patterns] Creation pattrens - Singleton pattern"
 date:	2023-08-23 12:00:00
 categories:
@@ -22,7 +22,7 @@ tags:
 ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Design_Patterns/Singleton_classDiagram.png)  
 Singleton pattern의 class diagram [https://en.wikipedia.org/wiki/Singleton_pattern](https://en.wikipedia.org/wiki/Singleton_pattern)
 
-<br>
+
 
 # 일반적인 사용
 
@@ -33,7 +33,7 @@ Singleton pattern의 class diagram [https://en.wikipedia.org/wiki/Singleton_patt
 - 싱글톤 패턴은 추상 팩토리, 팩토리 메소드, 빌더, 프로토타입 등의 패턴에서도 하나의 facade 객체가 필요할 때 기반으로도 활용된다.
 - 모든 객체에서 공통적으로 사용될 정해진 형식으로 로그를 구현할 때 사용한다.
 
-<br>
+
 
 # 구현
 
@@ -46,7 +46,7 @@ Singleton pattern의 class diagram [https://en.wikipedia.org/wiki/Singleton_patt
 - 다른 객체에 의해서 새롭게 인스턴스화 되지 않도록 객체는 private로 이루어져야한다.
 - 외부에서 인스턴스를 참조할 수 있는 메서드는 static 으로 지정한다.
 
-<br>
+
 싱글톤 패턴을 구현하는 대표적인 방법으론
 
 - Eager Initialization
@@ -58,7 +58,7 @@ Singleton pattern의 class diagram [https://en.wikipedia.org/wiki/Singleton_patt
 
 가 있으며 하나씩알아보도록하자.
 
-<br>
+
 
 ### Eager Initialization
 
@@ -91,7 +91,7 @@ public class Singleton_Eager {
 - 초기화가 무조건 일어나다 보니 CPU 타임 또한 손실이있다.
 - 예외 처리가 불가능하다.
 
-<br>
+
 
 ### Using static block
 
@@ -120,7 +120,7 @@ public class Static_block {
 - static block 안에서 예외처리가 가능하다.
 - Eager initialization 과 같이 메모리 낭비의 우려가 있다.
 
-<br>
+
 
 ### Lazy initialization
 
@@ -158,7 +158,7 @@ public class Lazy {
 - 생성된 인스턴스는 직접 접근이 불가능하다.
 - 멀티쓰레드 환경에 적합하지 않다.
 
-<br>
+
 
 ## Thread Safe Singleton
 
@@ -184,7 +184,7 @@ synchronized public static Lazy getInstance_sync(){
 - Thread Safe
 - synchronized 로 수행되기 때문에 여러 쓰레드가 동시에 액세스 할 수 없어 성능 저하의 원인이 된다.
 
-<br>
+
 
 ## Lazy initialization with Double check locking
 
@@ -219,7 +219,7 @@ Thread safe singleton 에서 발생할 수 있는 동기 처리로 인한 성능
 - synchronized 속성으로 인한 성능 저하 개선.
 - 최초 인스턴스 생성 시에만 성능에 영향을 미친다.
 
-<br>
+
 
 #### Volatile
 
@@ -231,7 +231,7 @@ volatile을 사용하지 않을경우 쓰레드는 메인 메모리에서 가져
 private static volatile Lazy instance_volatile= new Lazy();
 ```
 
-<br>
+
 
 ## Bill Pugh Singleton Implementation
 
@@ -258,7 +258,7 @@ public class Bill_Pugh {
 
 getInstance() 가 호출 될때만 생성되기 때문에 Lazy initialization을 구현하며, 성능저하에 영향을 주는 synchronized 또한 사용하지 않는다.
 
-<br>
+
 
 Ref.
 
