@@ -30,6 +30,7 @@ masthead_title           : # overrides the website title displayed in the masthe
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 170
 date_format              : "%Y년 %-m월 %-d일 " # 날짜 형식 커스텀
+future                   : true
 
 # 댓글 기능
 comments:
