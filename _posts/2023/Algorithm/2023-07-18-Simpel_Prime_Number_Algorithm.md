@@ -1,5 +1,5 @@
 ---
-layout: single
+#layout: single
 title:	"[Algorithm] 간단한 소수(Prime Number) 판별 알고리즘 "
 date:	2023-07-18 12:00:00
 categories:
