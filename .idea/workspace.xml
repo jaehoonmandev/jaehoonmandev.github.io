@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="깃헙 페이지 반영 테스트">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="네비게이션 permalink 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_pages/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/_pages/blog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,29 +48,47 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/jaehoonpark/Desktop/project/dev-jaehoonman.github.io/_pages/test",
+    "last_opened_file_path": "/Users/jaehoonpark/Desktop/project/dev-jaehoonman.github.io/_posts/2023",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_posts/2023" />
       <recent name="$PROJECT_DIR$/_pages/test" />
       <recent name="$PROJECT_DIR$/_pages" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/_site" />
-      <recent name="$PROJECT_DIR$/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/_pages/test" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/_pages" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="wido1593.github.io" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="wido1593.github.io" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -82,7 +99,8 @@
       <option name="presentableId" value="Default" />
       <updated>1701249916780</updated>
       <workItem from="1701249918262" duration="233000" />
-      <workItem from="1701250198643" duration="15010000" />
+      <workItem from="1701250198643" duration="16368000" />
+      <workItem from="1701416447897" duration="663000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -124,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701352155776</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="네비게이션 permalink 수정">
+      <option name="closed" value="true" />
+      <created>1701352716389</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701352716389</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +175,7 @@
     <MESSAGE value="블로그 레이아웃 수정." />
     <MESSAGE value="포스트 날짜 표시 및 형식 변경." />
     <MESSAGE value="깃헙 페이지 반영 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="깃헙 페이지 반영 테스트" />
+    <MESSAGE value="네비게이션 permalink 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="네비게이션 permalink 수정" />
   </component>
 </project>
