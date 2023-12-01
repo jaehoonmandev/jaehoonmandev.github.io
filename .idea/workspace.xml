@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="수정 테스트">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-01-guest-book-sketch.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-01-guest-book-sketch.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,9 +91,6 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration>$USER_HOME$/.subversion</configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="" />
@@ -105,7 +102,7 @@
       <workItem from="1701250198643" duration="16368000" />
       <workItem from="1701416447897" duration="2437000" />
       <workItem from="1701447044453" duration="483000" />
-      <workItem from="1701447558297" duration="2532000" />
+      <workItem from="1701447558297" duration="1487000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
