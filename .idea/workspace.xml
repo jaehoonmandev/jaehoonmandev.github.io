@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="네비게이션 permalink 수정">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="토이프로젝트 개발 기록 템플릿">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +101,7 @@
       <updated>1701249916780</updated>
       <workItem from="1701249918262" duration="233000" />
       <workItem from="1701250198643" duration="16368000" />
-      <workItem from="1701416447897" duration="663000" />
+      <workItem from="1701416447897" duration="1781000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -150,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701352716389</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="토이프로젝트 개발 기록 템플릿">
+      <option name="closed" value="true" />
+      <created>1701417297177</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701417297177</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +185,7 @@
     <MESSAGE value="포스트 날짜 표시 및 형식 변경." />
     <MESSAGE value="깃헙 페이지 반영 테스트" />
     <MESSAGE value="네비게이션 permalink 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="네비게이션 permalink 수정" />
+    <MESSAGE value="토이프로젝트 개발 기록 템플릿" />
+    <option name="LAST_COMMIT_MESSAGE" value="토이프로젝트 개발 기록 템플릿" />
   </component>
 </project>
