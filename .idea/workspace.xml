@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="수정 테스트">
-      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-01-guest-book-sketch.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-01-guest-book-sketch.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +21,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="b1a2bd01-2378-477d-bcce-859a867ac58f" />
+    <option name="defaultAccountId" value="d68b8972-0398-4de8-9c78-08dd7eb4010c" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -91,6 +91,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="" />
@@ -102,7 +105,7 @@
       <workItem from="1701250198643" duration="16368000" />
       <workItem from="1701416447897" duration="2437000" />
       <workItem from="1701447044453" duration="483000" />
-      <workItem from="1701447558297" duration="1627000" />
+      <workItem from="1701447558297" duration="2532000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -192,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701449053353</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="수정 테스트">
+      <option name="closed" value="true" />
+      <created>1701449192960</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701449192960</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
