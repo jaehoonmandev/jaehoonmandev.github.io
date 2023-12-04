@@ -11,9 +11,9 @@ published: false # 비공개
 ---
 
 # 프로젝트 기획서
+![기획서]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_planning.png)
 
-
- # 와이어프레임
+# 와이어프레임
 
 # 페이지 구성
 
