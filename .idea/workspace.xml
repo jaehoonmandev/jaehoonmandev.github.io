@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="방명록 토이프로젝트 기획서 사진 추가.(비공개)">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="방명록 토이프로젝트 개발여정 part.1 작성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-01-guest-book-sketch.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-01-guest-book-sketch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest_book_planning.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +109,7 @@
       <workItem from="1701447044453" duration="483000" />
       <workItem from="1701447558297" duration="1487000" />
       <workItem from="1701450777511" duration="2989000" />
-      <workItem from="1701776104791" duration="830000" />
+      <workItem from="1701776104791" duration="1572000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -240,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701689207668</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="방명록 토이프로젝트 개발여정 part.1 작성">
+      <option name="closed" value="true" />
+      <created>1701776958266</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701776958266</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +290,7 @@
     <MESSAGE value="수정 테스트" />
     <MESSAGE value="수정 테스트123" />
     <MESSAGE value="방명록 토이프로젝트 기획서 사진 추가.(비공개)" />
-    <option name="LAST_COMMIT_MESSAGE" value="방명록 토이프로젝트 기획서 사진 추가.(비공개)" />
+    <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 작성" />
+    <option name="LAST_COMMIT_MESSAGE" value="방명록 토이프로젝트 개발여정 part.1 작성" />
   </component>
 </project>
