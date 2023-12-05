@@ -1,22 +1,47 @@
 ---
 #layout: single
-title:	"[Personal Project] 방명록 토이프로젝트 개발기."
+title:	"[Personal Project] 방명록 토이프로젝트 개발여정.(part.1)"
 date:	2023-12-01 12:00:00
 categories:
   - blog
 tags:
   - Software
 conmment: true
-published: false # 비공개
+#published: true 
 ---
+풀스택 웹 애플리케이션을 연습하기 위해 간단한 토이 프로젝트들을 구상하고있다.
+
+첫 번째 토이 프로젝트는 방명록을 남길 수 있는 간단한 웹 애플리케이션을 만들 예정이다.
 
 # 프로젝트 기획서
-![기획서]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_planning.png)
+![방명록 기획서]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_planning.png)
+
+풀스택 구조를 설명하자면
+- Java / Spring Boot 를 기반으로한 Backend API.
+  - Spring Framework 를 이용하여 애플리케이션을 구성한 경험은 있었지만 Spring Boot의 security, Actuator, batch 등의 기술을 상세하게 다뤄보진 못하여
+    이번 기회에 심화 단계로 파고들 예정이다.
+  
+- Next.js(React.js), TypeScript 를 기반으로한 Frontend SPA.
+  - Front를 구성했던 경험은 Vanilla JS, jQuery 밖에 없었기에 
+  React.js, Next.js, TypeScript를 이용해 SPA 을 구성해보고 싶었다.
+
+- MongoDB NoSQL
+  - RDBMS 만을 사용해왔지만 수평적 확장에 용이한 NoSQL을 경험해보고 싶어 MongoDB로 DB를 구축할 계획이다.
+  
+- AWS와 Vercel을 이용한 백엔드/프론트엔드 클라우드 구성
+  - AWS의 기능을 제대로 활용해보지 못한 것 같아 학습겸 AWS 클라우드를 활용할 예정이며, 
+  Next.js의 개발사이기도한 Vercel의 Git Repository 연동 배포 사이트를 활용할 예정이다.
+
+- Docker Container 활용
+  - 레거시한 Monolithic 개발 환경에서 벗어날 필요성을 느끼며 MSA, 공통된 개발 환경 구성 등을 경험해보고 싶었다.
 
 # 와이어프레임
+![방명록 와이어프레임]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_wireframe.png)
 
 # 페이지 구성
+간단한 토이 프로젝트이기에 페이지 구성은 메인 페이지 한 곳에서 모든 액션을 취할 예정이다.
 
-- 메인 페이지 :
+- 메인 페이지 : 방명록 카드 노출, 생성, 수정, 삭제, 검색의 기능을 수행.
 
-수정 테스트 
+
+\[작성중]
