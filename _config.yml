@@ -28,7 +28,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 logo                     : "/assets/images/jaehoonmanIcon.JPG" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 170
+words_per_minute         : 130
 date_format              : "%Y년 %-m월 %-d일 " # 날짜 형식 커스텀
 future                   : true
 
