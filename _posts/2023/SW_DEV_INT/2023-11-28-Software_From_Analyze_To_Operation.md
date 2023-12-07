@@ -6,7 +6,7 @@ categories:
   - blog
 tags:
   - Software
-conmment: true
+comment: true
 
 ---
 
