@@ -6,7 +6,7 @@ categories:
   - blog
 tags:
   - Personal Project
-conmment: true
+comment: true
 #published: true 
 ---
 풀스택 웹 애플리케이션을 연습하기 위해 간단한 토이 프로젝트들을 구상하고있다.

@@ -46,6 +46,16 @@ layout: default
             </nav>
           </aside>
         {% endif %}
+
+        <!--게시물 태그에 따라 헤드 이미지 변경 -->
+        {% if page.tags contains 'Docker' %}
+        <div>
+          <img src="{{ site.baseurl }}/assets/images/banner/docker.svg" alt="Docker">
+          <cite>https://www.docker.com/company/newsroom/media-resources/</cite>
+        </div>
+        <br>
+        {% endif %}
+
         {{ content }}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
