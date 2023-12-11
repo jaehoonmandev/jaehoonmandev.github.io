@@ -44,7 +44,23 @@ comment: true
 # 와이어프레임
 ![방명록 와이어프레임]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_wireframe.png)
 
-# 페이지 구성
-간단한 토이 프로젝트이기에 페이지 구성은 메인 페이지 한 곳에서 모든 액션을 취할 예정이다.
+# 레이아웃 구성
+- 메인 페이지
+  - 방명록 카드 노출, 생성, 수정, 삭제, 검색의 기능을 트리거.
+  ![방명록 메인페이지 레이아웃]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_layout_mainpage.png)
+- 방명록 카드
 
-- 메인 페이지 : 방명록 카드 노출, 생성, 수정, 삭제, 검색의 기능을 수행.
+  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_layout_cards.png)
+
+- 방명록 카드 추가/수정 Modal
+  - 노출시킬 방명록 컨텐츠를 등록/수정할 수 있는 UI.
+  - 방명록 카드 추가 UI
+    - 제목, 내용, 작성자, 인증 코드, 카드 색상 설정을 할 수 있다.
+  - 빙명록 카드 내용 변경 Modal
+    - 등록한 컨텐츠 내용을 수정 할 수 있다.
+    - 작성자와 인증 코드는 변경이 불가능하다.  
+
+  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_layout_modal.png)
+
+- 등록/삭제/수정 시 confirm 확인창과 수정/삭제 시 인증코드 입력창
+  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_layout_confirms.png)
