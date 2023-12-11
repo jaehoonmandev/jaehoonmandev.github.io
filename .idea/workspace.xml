@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="Docker Overview 포스트 작성">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="github 링크 수정.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch-part1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/jaehoonpark/Desktop/project/jaehoonmandev.github.io/_posts",
+    "last_opened_file_path": "/Users/jaehoonpark/Desktop/project/jaehoonmandev.github.io/_posts/2023/Personal_Project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,17 +59,17 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_posts/2023/Personal_Project" />
+      <recent name="$PROJECT_DIR$/assets/css" />
       <recent name="$PROJECT_DIR$/_layouts/custom" />
       <recent name="$PROJECT_DIR$/_posts/2023/Docker" />
       <recent name="$PROJECT_DIR$/_posts/2023" />
-      <recent name="$PROJECT_DIR$/_pages/test" />
-      <recent name="$PROJECT_DIR$/_pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/images/template" />
@@ -113,7 +114,7 @@
       <workItem from="1701776104791" duration="2440000" />
       <workItem from="1701778579048" duration="674000" />
       <workItem from="1701836419906" duration="495000" />
-      <workItem from="1701850482490" duration="4309000" />
+      <workItem from="1701850482490" duration="9413000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -283,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701929920311</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="github 링크 수정.">
+      <option name="closed" value="true" />
+      <created>1701930209588</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1701930209588</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +339,11 @@
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 수정" />
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 태그 수정" />
     <MESSAGE value="Docker Overview 포스트 작성" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker Overview 포스트 작성" />
+    <MESSAGE value="github 링크 수정." />
+    <option name="LAST_COMMIT_MESSAGE" value="github 링크 수정." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

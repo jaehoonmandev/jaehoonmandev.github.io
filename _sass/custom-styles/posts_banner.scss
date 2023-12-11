@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+//배너 스타일을 위한 스타
+cite {
+  font-size: 0.7em;
+  display: block;
+  text-align: center;
+  &:before{
+    content: "Source ";
+  }
+}
+
