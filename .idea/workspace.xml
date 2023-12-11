@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="github 링크 수정.">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 이미지 출처 표시 스타일 변경.&#10;2. 방명록 토이프로젝트 part 2 임시 업로드.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch-part1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch-part1.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch-part1.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +71,10 @@
       <recent name="$PROJECT_DIR$/_posts/2023" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project" />
       <recent name="$PROJECT_DIR$/assets/images/template" />
       <recent name="$PROJECT_DIR$/_layouts" />
       <recent name="$PROJECT_DIR$/assets/images/posts/2023/Docker" />
-      <recent name="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project" />
       <recent name="$PROJECT_DIR$/_pages/test" />
     </key>
   </component>
@@ -114,7 +113,7 @@
       <workItem from="1701776104791" duration="2440000" />
       <workItem from="1701778579048" duration="674000" />
       <workItem from="1701836419906" duration="495000" />
-      <workItem from="1701850482490" duration="9413000" />
+      <workItem from="1701850482490" duration="10894000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -292,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701930209588</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="1. 이미지 출처 표시 스타일 변경.&#10;2. 방명록 토이프로젝트 part 2 임시 업로드.">
+      <option name="closed" value="true" />
+      <created>1702257166705</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1702257166705</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +347,8 @@
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 태그 수정" />
     <MESSAGE value="Docker Overview 포스트 작성" />
     <MESSAGE value="github 링크 수정." />
-    <option name="LAST_COMMIT_MESSAGE" value="github 링크 수정." />
+    <MESSAGE value="1. 이미지 출처 표시 스타일 변경.&#10;2. 방명록 토이프로젝트 part 2 임시 업로드." />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 이미지 출처 표시 스타일 변경.&#10;2. 방명록 토이프로젝트 part 2 임시 업로드." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
