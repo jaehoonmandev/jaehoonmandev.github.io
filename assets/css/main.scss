@@ -5,5 +5,7 @@ search: false
 
 @charset "utf-8";
 
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import "custom-styles/posts_banner.scss"; // 포스트 배너 스타일

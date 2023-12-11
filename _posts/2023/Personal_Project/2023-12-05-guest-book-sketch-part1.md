@@ -39,7 +39,7 @@ comment: true
   Next.js의 개발사이기도한 Vercel의 Git Repository 연동 배포 사이트를 활용할 예정이다.
 
 - Docker Container 활용
-  - 레거시한 Monolithic 개발 환경에서 벗어날 필요성을 느끼며 MSA, 공통된 개발 환경 구성 등을 경험해보고 싶었다.
+  - 레거시한 Monolithic 개발  환경에서 벗어날 필요성을 느끼며 MSA, 공통된 개발 환경 구성 등을 경험해보고 싶었다.
 
 # 와이어프레임
 ![방명록 와이어프레임]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_wireframe.png)
