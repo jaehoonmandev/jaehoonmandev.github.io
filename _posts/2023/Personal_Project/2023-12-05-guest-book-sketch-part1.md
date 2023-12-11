@@ -46,8 +46,10 @@ comment: true
 
 # 레이아웃 구성
 - 메인 페이지
-  - 방명록 카드 노출, 생성, 수정, 삭제, 검색의 기능을 트리거.
+  - 방명록 카드 노출, 생성, 수정, 삭제, 검색의 기능을 트리거.  
+  
   ![방명록 메인페이지 레이아웃]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_layout_mainpage.png)
+
 - 방명록 카드
 
   ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_layout_cards.png)
