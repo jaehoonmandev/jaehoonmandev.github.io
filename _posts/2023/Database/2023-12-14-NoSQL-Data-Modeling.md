@@ -1,6 +1,6 @@
 ---
 #layout: single
-title:	"[Database] NoSQL 데이터 모델 서론 및 모델링 절차."
+title:	"[Database] NoSQL 데이터 모델링 서론 및 절차."
 date:	2023-12-14 12:00:00
 categories:
 - blog

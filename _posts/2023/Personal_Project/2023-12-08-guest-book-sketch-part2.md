@@ -45,8 +45,8 @@ comment: true
 
 ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Database/NoSQL_Data_Modeling/query_result_combine.png)
 
-모듈 따위로 뺴낼 수 있을 정도로 단순한 프로젝트다보니 별거 없다.  
-오죽하면 너무 단순하니 일부러 테이블을 분리하는 식의 구조로 설계했다.
+모듈 따위로 뺄 수 있을 정도로 단순한 프로젝트다보니 별거 없다.  
+오죽하면 너무 단순해 일부러 테이블을 분리하는 구조로 설계했다.
 
 가뜩이나 NoSQL로 설계해보는 것은 처음이라 이게 맞는지도 모르겠다...
 

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 토이프로젝트 &#10; &gt; part.1 변경.&#10; &gt; part.2 임시 업로드.">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 토이프로젝트 &#10; &gt; part.2 내용추가&#10; &#10;2. NoSQL 데이터 모델 설계 포스트.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Database/2023-12-14-NoSQL-Data-Modeling.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Database/2023-12-14-NoSQL-Data-Modeling.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-08-guest-book-sketch-part2.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-08-guest-book-sketch-part2.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +117,7 @@
       <workItem from="1701850482490" duration="15207000" />
       <workItem from="1702469594616" duration="402000" />
       <workItem from="1702470254002" duration="61000" />
-      <workItem from="1702543728508" duration="2234000" />
+      <workItem from="1702543728508" duration="2553000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -318,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702265545291</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="1. 방명록 토이프로젝트 &#10; &gt; part.2 내용추가&#10; &#10;2. NoSQL 데이터 모델 설계 포스트.">
+      <option name="closed" value="true" />
+      <created>1702546004043</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702546004043</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +378,8 @@
     <MESSAGE value="1. 이미지 출처 표시 스타일 변경.&#10;2. 방명록 토이프로젝트 part 2 임시 업로드." />
     <MESSAGE value="1. 방명록 토이프로젝트 part.1 내용 변경." />
     <MESSAGE value="1. 방명록 토이프로젝트 &#10; &gt; part.1 변경.&#10; &gt; part.2 임시 업로드." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 토이프로젝트 &#10; &gt; part.1 변경.&#10; &gt; part.2 임시 업로드." />
+    <MESSAGE value="1. 방명록 토이프로젝트 &#10; &gt; part.2 내용추가&#10; &#10;2. NoSQL 데이터 모델 설계 포스트." />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 토이프로젝트 &#10; &gt; part.2 내용추가&#10; &#10;2. NoSQL 데이터 모델 설계 포스트." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
