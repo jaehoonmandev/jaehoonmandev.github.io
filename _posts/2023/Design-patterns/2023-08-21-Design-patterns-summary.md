@@ -62,6 +62,8 @@ GoF에 의해 대표적으로 소개된 패턴은 크게 3가지 패턴으로 �
 
   부모 클래스에서 미리 지정한 틀(인터페이스)를 자식 클래스에서 원하는 대로 재구성하여 사용할 수 있는 패턴.
 
+- [Factory method pattern 소스]({{ site.gitRepository }}/DesignPatterns/tree/master/creationPatterns/Factory)
+
 ##### Prototype pattern
 
   객체를 생성하기 위해 호출한 클래스에 의존하지 않고 이를 복사하여 사용자가 자유롭게 구성할 수 있는 패턴.
@@ -70,9 +72,8 @@ GoF에 의해 대표적으로 소개된 패턴은 크게 3가지 패턴으로 �
 
   전체적인 시스템에서 공통적으로 수행해야하는 동작을 위한 객체를 생성할 수 있는 패턴.
 
-- [Singletom pattern 블로그 포스트](https://wido1593.github.io/blog/Singleton-pattern/)  
-- [Singletom pattern 소스](https://github.com/wido1593/DesignPatterns/tree/master/creationPatterns/Singleton)
-
+- [Singleton pattern 블로그 포스트]({% link _posts/2023/Design-patterns/2023-08-23-Singleton-pattern.md%})  
+- [Singleton pattern 소스]({{ site.gitRepository }}/DesignPatterns/tree/master/creationPatterns/Singleton)
 
 ## Structural patters - 구조 패턴
 
@@ -201,7 +202,6 @@ GoF에 의해 대표적으로 소개된 패턴은 크게 3가지 패턴으로 �
 ---
 
 Ref.
+[https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html](https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html)
 
-https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html
-
-https://www.baeldung.com/java-anonymous-classes
+[https://www.baeldung.com/java-anonymous-classes](https://www.baeldung.com/java-anonymous-classes)
