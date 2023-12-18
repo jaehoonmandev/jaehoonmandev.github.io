@@ -38,8 +38,13 @@ comment: true
   - AWS의 기능을 제대로 활용해보지 못한 것 같아 학습겸 AWS 클라우드를 활용할 예정이며, 
   Next.js의 개발사이기도한 Vercel의 Git Repository 연동 배포 사이트를 활용할 예정이다.
 
-- Docker Container 활용
+- Nginx Web Server
+  - 정적 리소스를 제공함으로써 WAS의 부하를 줄여줄 수 있고, 엑세스 제한, SSL/TLS 암호화 등 보안 강화 등
+  여러 이점을 가져오기 위해 Nginx 웹 서버를 통해 포워딩할 예정이다.   
+
+- Docker Container / Docker Compose 활용
   - 레거시한 Monolithic 개발  환경에서 벗어날 필요성을 느끼며 MSA, 공통된 개발 환경 구성 등을 경험해보고 싶었다.
+  또한 간단하고 안정적이게 통합 개발 환경을 구축할 수 있는 Docker Compose를 사용할 예정이다.
 
 # 와이어프레임
 ![방명록 와이어프레임]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest_book_wireframe.png)
