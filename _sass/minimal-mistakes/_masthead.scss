@@ -81,7 +81,7 @@
   }
 }
 
-.masthead__menu-item {
+.masthead__menu-item{
   display: block;
   list-style-type: none;
   white-space: nowrap;
@@ -91,3 +91,57 @@
     font-weight: 700;
   }
 }
+
+/* 포스트 Nav 메뉴 Hover 시 스타일. */
+.masthead__post{
+  display: block;
+  list-style-type: none;
+  white-space: nowrap;
+
+  &--lg {
+    padding-right: 2em;
+    font-weight: 700;
+  }
+
+  &__item {
+    display: none;
+    position: absolute;
+    //top: 100%;
+    //left: 0;
+    //margin-top: 15px;
+    //padding: 5px;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background: $background-color;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(#000, 0.16),
+    0 2px 10px 0 rgba(#000, 0.12);
+    box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+
+
+    //
+
+
+  }
+
+  &:hover > &__item{
+
+    display: block; // hover 시에 ul을 보이도록 변경
+    //position: absolute;
+    //top: 100%; // ul이 부모 요소 아래에 위치하도록 조정
+    //left: 0%;
+    //background-color: #fff; // 배경색을 원하는 대로 설정
+    //border: 1px solid #ccc; // 테두리 설정
+    //box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); // 그림자 설정
+    //z-index: 3; // 다른 요소 위에 표시되도록 z-index 설정
+
+
+    //display: block;
+    //color: $masthead-link-color-hover;
+    //background: $navicon-link-color-hover;
+  }
+
+
+
+}
+
+
