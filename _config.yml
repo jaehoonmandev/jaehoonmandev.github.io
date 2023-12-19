@@ -182,6 +182,7 @@ exclude:
   - assets/js/plugins
   - assets/js/_main.js
   - assets/js/vendor
+  - assets/js/custom # 커스텀 JS 포함
   - Capfile
   - CHANGELOG
   - config

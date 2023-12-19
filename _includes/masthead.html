@@ -13,9 +13,25 @@
         </a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
-            <li class="masthead__menu-item">
-              <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
-            </li>
+            <!-- 상단 포스트 Nav 메뉴 Hover down 기능 분기            -->
+            {% if link.url != "/posts-year/" %}
+              <li class="masthead__menu-item">
+                <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
+              </li>
+            {% else %}
+              <li class="masthead__post">
+                <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
+                <ul class="masthead__post__item">
+                  {%- for link2 in site.data.navigation.post_sub -%}
+                     <li>
+                       <a href="{{ link2.url | relative_url }}"{% if link2.description %} title="{{ link2.description }}"{% endif %}>{{ link2.title }}</a>
+                     </li>
+                  {%- endfor -%}
+                </ul>
+
+              </li>
+            {% endif %}
+
           {%- endfor -%}
         </ul>
         {% if site.search == true %}
