@@ -3,10 +3,10 @@
 title:	"[Database] NoSQL 데이터 모델링 서론 및 절차."
 date:	2023-12-14 12:00:00
 categories:
-- blog
-tags:
 - Database
+tags:
 - NoSQL
+- Data Modeling
 ---
 
 

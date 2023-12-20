@@ -2,9 +2,10 @@
 title:	"[Docker] Docker Compose - 개요, 주요 기능, 사용 사례 "
 date:	2023-12-19 12:00:00
 categories:
-  - blog
+  - Docker
 tags:
   - Docker
+  - Docker Compose
 comment: true
 #published: true 
 ---

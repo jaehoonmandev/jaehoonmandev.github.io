@@ -3,9 +3,10 @@
 title:	"[Software Dev] 기초적인 소프트웨어 개발 분석부터 운영까지"
 date:	2023-11-28 12:00:00
 categories:
-  - blog
+  - Software
 tags:
   - Software
+  - Development
 comment: true
 
 ---

@@ -3,9 +3,10 @@
 title:	"[Network] SSL/TLS & HTTPS"
 date:	2023-09-17 12:00:00
 categories:
-- blog
+  - Network
 tags:
-- Network
+  - SSL/TLS
+  - HTTPS
 ---
 
 ---
