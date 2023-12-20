@@ -3,9 +3,11 @@
 title:	"[Personal Project] 방명록 토이프로젝트 개발여정. (part.1)"
 date:	2023-12-05 12:00:00
 categories:
-  - blog
+  - 개인프로젝트
 tags:
-  - Personal Project
+  - 프로젝트
+  - 토이프로젝트
+  - 방명록
 comment: true
 #published: true 
 ---

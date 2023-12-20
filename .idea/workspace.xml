@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 상단 Nav 포스트 메뉴 수정.">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 상단 Nav 포스트 메뉴 테스트">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_data/navigation.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/navigation.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/plugins/jquery.greedy-navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/plugins/jquery.greedy-navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Database/2023-09-13-DB-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Database/2023-09-13-DB-index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Database/2023-12-14-NoSQL-Data-Modeling.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Database/2023-12-14-NoSQL-Data-Modeling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Design-patterns/2023-08-21-Design-patterns-summary.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Design-patterns/2023-08-21-Design-patterns-summary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Design-patterns/2023-08-23-Singleton-pattern.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Design-patterns/2023-08-23-Singleton-pattern.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Docker/2023-12-19-docker-compose-overview.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Docker/2023-12-19-docker-compose-overview.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Docker/2023-12-7-docker-overview.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Docker/2023-12-7-docker-overview.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Java/2023-08-17-Anonymous-class.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Java/2023-08-17-Anonymous-class.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Network/2023-09-17-SSL_TLS&amp;HTTPS.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Network/2023-09-17-SSL_TLS&amp;HTTPS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch-part1.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-05-guest-book-sketch-part1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-08-guest-book-sketch-part2.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/2023-12-08-guest-book-sketch-part2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/SW_DEV_INT/2023-11-28-Software_From_Analyze_To_Operation.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/SW_DEV_INT/2023-11-28-Software_From_Analyze_To_Operation.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +136,8 @@
       <workItem from="1702686253321" duration="13822000" />
       <workItem from="1702978689528" duration="184000" />
       <workItem from="1702978881675" duration="21000" />
-      <workItem from="1702978941487" duration="2161000" />
+      <workItem from="1702978941487" duration="2456000" />
+      <workItem from="1703066970623" duration="327000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -392,7 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702979746680</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="1. 상단 Nav 포스트 메뉴 테스트">
+      <option name="closed" value="true" />
+      <created>1703066825754</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1703066825754</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +444,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="블로그 레이아웃 수정." />
     <MESSAGE value="포스트 날짜 표시 및 형식 변경." />
     <MESSAGE value="깃헙 페이지 반영 테스트" />
     <MESSAGE value="네비게이션 permalink 수정" />
@@ -450,7 +468,8 @@
     <MESSAGE value="1. Docker Compose 개요 포스 수정" />
     <MESSAGE value="1. 상단 Nav 포스트 메뉴 hover 시 년도별/태그별 블로그 분류 추가" />
     <MESSAGE value="1. 상단 Nav 포스트 메뉴 수정." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 상단 Nav 포스트 메뉴 수정." />
+    <MESSAGE value="1. 상단 Nav 포스트 메뉴 테스트" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 상단 Nav 포스트 메뉴 테스트" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

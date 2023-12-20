@@ -3,7 +3,7 @@
 title:	"[Design patterns] 소프트웨어 디자인패턴의 기본 개념"
 date:	2023-08-21 12:00:00
 categories:
-- blog
+- Design patterns
 tags:
 - Design patterns
 ---
