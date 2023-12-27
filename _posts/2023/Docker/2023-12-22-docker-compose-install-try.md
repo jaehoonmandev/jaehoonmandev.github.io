@@ -22,6 +22,8 @@ Docker Compose를 사용하기 위해서는
 
 Docker Compose 사용 환경을 구성하기 위한 간단한 방법인 Docker Desktop을 설치 하도록 하자.
 
+<br>
+
 # 설치
 Docker Compose는 기본적으로 Docker Desktop을 설치하면 함께 따라오는 플러그인이다.
 
@@ -255,6 +257,6 @@ $ docker compose ps
 `docker compose down --volumes`로 생성한 컨테이너를 모두 정지시키고 삭제하자.
 
 
-Ref.
+Ref.  
 [https://docs.docker.com/compose/](https://docs.docker.com/compose/)  
 [https://docs.docker.com/compose/gettingstarted/](https://docs.docker.com/compose/gettingstarted/)
