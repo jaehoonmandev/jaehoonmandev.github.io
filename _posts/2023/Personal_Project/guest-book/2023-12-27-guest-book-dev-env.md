@@ -25,5 +25,5 @@ Front 배포를 위해 Vercel을 택했는데, 서버리스 플랫폼이기에 N
 Back 배포는 AWS의 클라우드를 이용할 예정인데 Nginx로 웹 서버를 두고 컨테이너화한 Spring Boot 웹서버 및 웹 애플리케이션을, DB로는 Mongo DB를 구축할 것이다.
 
 개발을 위해서 먼저 Front 환경 구성했는데, 이는  
-[Vercel을 통해 간단한 배포.]({% link _posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md%})  
+[Vercel을 통해 간단한 웹 호스팅 배포.]({% link _posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md%})  
 를 통해 확인할 수 있다.

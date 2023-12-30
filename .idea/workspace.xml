@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 개발 이미지 경로 변경.&#10;2. 방명록 개발 여정 - 개발 환경 포스팅.">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-config-front.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/config-next-js.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/config-next-js.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/create-next-js.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/create-next-js.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/run-next-js.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/run-next-js.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/vercel-config.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/vercel-config.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/vercel-dashboard.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/vercel-dashboard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/vercel-import-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/vercel-import-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/vercel-import.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/vercel-import.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/vercel-result.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel/vercel-result.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +131,7 @@
       <workItem from="1703066970623" duration="1071000" />
       <workItem from="1703145511188" duration="7398000" />
       <workItem from="1703673298311" duration="2151000" />
-      <workItem from="1703742138719" duration="1236000" />
+      <workItem from="1703742138719" duration="2409000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -436,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703674897557</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리.">
+      <option name="closed" value="true" />
+      <created>1703743437928</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1703743437928</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +470,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="토이프로젝트 개발 기록 템플릿" />
     <MESSAGE value="ignore" />
     <MESSAGE value="수정 테스트" />
     <MESSAGE value="수정 테스트123" />
@@ -494,7 +494,8 @@
     <MESSAGE value="1. 포스트 카테고리 / 태그 분류" />
     <MESSAGE value="1. 포스트 상단 이미지 배너 페이지 분리.&#10;2. Docker Compose 설치 및 사용 포스트 업로드." />
     <MESSAGE value="1. 방명록 개발 이미지 경로 변경.&#10;2. 방명록 개발 여정 - 개발 환경 포스팅." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 개발 이미지 경로 변경.&#10;2. 방명록 개발 여정 - 개발 환경 포스팅." />
+    <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리." />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

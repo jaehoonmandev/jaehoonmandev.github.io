@@ -1,6 +1,6 @@
 ---
 #layout: single
-title:	"[Next.js] Vercel을 통한 간단한 배포."
+title:	"[Next.js] Vercel을 통한 간단한 웹 호스팅 배포."
 date:	2023-12-27 12:00:00
 categories:
   - React
