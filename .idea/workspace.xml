@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리.">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 개발 여정 - 개발 환경 일부 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,7 @@
       <workItem from="1703066970623" duration="1071000" />
       <workItem from="1703145511188" duration="7398000" />
       <workItem from="1703673298311" duration="2151000" />
-      <workItem from="1703742138719" duration="2409000" />
+      <workItem from="1703742138719" duration="4951000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -437,7 +436,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703743437928</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="1. 방명록 개발 여정 - 개발 환경 일부 수정">
+      <option name="closed" value="true" />
+      <created>1703911083186</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1703911083186</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +477,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="ignore" />
     <MESSAGE value="수정 테스트" />
     <MESSAGE value="수정 테스트123" />
     <MESSAGE value="방명록 토이프로젝트 기획서 사진 추가.(비공개)" />
@@ -495,7 +501,8 @@
     <MESSAGE value="1. 포스트 상단 이미지 배너 페이지 분리.&#10;2. Docker Compose 설치 및 사용 포스트 업로드." />
     <MESSAGE value="1. 방명록 개발 이미지 경로 변경.&#10;2. 방명록 개발 여정 - 개발 환경 포스팅." />
     <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리." />
+    <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 일부 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 개발 여정 - 개발 환경 일부 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
