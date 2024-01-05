@@ -9,7 +9,7 @@ tags:
   - 토이프로젝트
   - 방명록
 comment: true
-#published: false 
+published: false 
 ---
 방명록 프로젝트는 대략적으로 아래의 구조를 가지고 있다.
 
