@@ -27,3 +27,9 @@ Back 배포는 AWS의 클라우드를 이용할 예정인데 Nginx로 웹 서버
 개발을 위해서 먼저 Front 환경 구성했는데, 이는  
 [Vercel을 통해 간단한 웹 호스팅 배포.]({% link _posts/2023/React/Next-js/2023-12-27-next-js-vercel-deploy.md%})  
 를 통해 확인할 수 있다.
+
+Spring Boot + MongoDB 백엔드는 Docker Compose를 통해 설정하였다.
+Spring Boot + MongoDB 프로젝트 생성부터 구동 확인은 여기 에서
+Spring Boot + MongoDB 프로젝트 연동 및 Docker Compose Container화는 여기 서
+확인해보자.
+
