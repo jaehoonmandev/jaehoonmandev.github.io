@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 개발 여정 - 개발 환경 일부 수정">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. 방명록 개발 여정 - 개발 환경 비공개">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_includes/custom/posts-upper-banner.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/custom/posts-upper-banner.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,38 +51,39 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortKey" value="BY_TIME_DESCENDING" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/jaehoonpark/Desktop/project/jaehoonmandev.github.io/_posts/2023/React/Next-js",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jaehoonpark/Desktop/project/jaehoonmandev.github.io/_posts/2024/personal_project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_posts/2024/personal_project" />
       <recent name="$PROJECT_DIR$/_posts/2023/React/Next-js" />
       <recent name="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book" />
       <recent name="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book" />
       <recent name="$PROJECT_DIR$/assets/images/posts/2023/Docker" />
-      <recent name="$PROJECT_DIR$/_includes/custom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/images/posts/2024/composed_setting" />
       <recent name="$PROJECT_DIR$/assets/images/posts/2023/React/Next-js/Vercel" />
       <recent name="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book" />
       <recent name="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book" />
       <recent name="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project" />
-      <recent name="$PROJECT_DIR$/assets/images/template" />
     </key>
   </component>
   <component name="RunManager">
@@ -130,7 +132,10 @@
       <workItem from="1703066970623" duration="1071000" />
       <workItem from="1703145511188" duration="7398000" />
       <workItem from="1703673298311" duration="2151000" />
-      <workItem from="1703742138719" duration="4951000" />
+      <workItem from="1703742138719" duration="4998000" />
+      <workItem from="1704713645516" duration="93000" />
+      <workItem from="1704797402540" duration="1941000" />
+      <workItem from="1704799352643" duration="1207000" />
     </task>
     <task id="LOCAL-00001" summary="블로그 이전">
       <option name="closed" value="true" />
@@ -444,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703911083186</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="1. 방명록 개발 여정 - 개발 환경 비공개">
+      <option name="closed" value="true" />
+      <created>1704436705891</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1704436705891</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +490,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="수정 테스트" />
     <MESSAGE value="수정 테스트123" />
     <MESSAGE value="방명록 토이프로젝트 기획서 사진 추가.(비공개)" />
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 작성" />
@@ -502,7 +514,8 @@
     <MESSAGE value="1. 방명록 개발 이미지 경로 변경.&#10;2. 방명록 개발 여정 - 개발 환경 포스팅." />
     <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 에서 Vercel 부분 포스트 분리." />
     <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 일부 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 개발 여정 - 개발 환경 일부 수정" />
+    <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 비공개" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 방명록 개발 여정 - 개발 환경 비공개" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
