@@ -27,22 +27,21 @@ Docker Compose로 Spring Boot + MongoDB를 연동하여 REST API 백엔드를 �
 ![생성]({{ site.baseurl }}/assets/images/posts/2024/composed_settings/create-boot-project.png)
 ![의존성]({{ site.baseurl }}/assets/images/posts/2024/composed_settings/boot-dependendies.png)
 
-MongoDB와 이를 연동하기 위한 JPA, Model 작성 시 편리를 위한 Lombok을 Dependencies로 추가하였다.
+MongoDB, Model 작성 시 편리를 위한 Lombok을 Dependencies로 추가하였다.
 
 <br>
 # Hello World 애플리케이션
 
 먼저 Docker로 실행하는 방법을 알아보기 위해 'Hello world'가 출력되는 애플리케이션을 만들어보자.
 
-JPA와 MongoDB의 기능은 당장 필요하지 않으니 비활성화 시키자.
-``` yml
+MongoDB의 기능은 당장 필요하지 않으니 비활성화 시키자.
+``` yaml
 dependencies {  
     implementation 'org.springframework.boot:spring-boot-starter'  
     implementation 'org.springframework.boot:spring-boot-starter-web'  
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:'  
-  
-//    implementation 'org.mongodb:mongodb-driver-sync:4.10.2'  
-//    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'  
+      
+    //implementation 'org.mongodb:mongodb-driver-sync:4.10.2'  
+    //implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'  
   
     compileOnly 'org.projectlombok:lombok'  
     annotationProcessor 'org.projectlombok:lombok'  
@@ -100,10 +99,10 @@ Root 디렉터리/build/libs에 jar 파일이 생성된다.
 FROM openjdk:17
 
 # 작성자, 관리자 등의 정보를 나타낼 수 있다.  
-LABEL writer='wido1593@gmail.com'  
+LABEL maintainer='wido1593@gmail.com'  
   
 # JAR 파일 경로 변수로 지정.  
-ARG JAR_FILE=/build/libs/guest-book-spring-boot-0.0.1-SNAPSHOT.jar  
+ARG JAR_FILE=build/libs/guest-book-spring-boot-0.0.1-SNAPSHOT.jar  
   
 # JAR 파일을 app.jar 라는 이름으로 사용하기 위해 복사.  
 COPY ${JAR_FILE} app.jar  
@@ -151,6 +150,7 @@ Spring Boot 컨테이너 이미지 생성이 완료되었다.
 
 로컬에 MongoDB를 설치하지 않고 Docker Hub에 있는 MongoDB 이미지를 pull 해옴으로써 간단하게 MongoDB를 사용할 수 있다.
 
+(docker hub에 접근하기 위해 docker login을 수행해야 한다.)
 ```
 $ docker pull mongo
 ```
