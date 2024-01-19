@@ -325,9 +325,6 @@ docker compose up
 
 이전과 같은 동작 테스트를 통해 정상 여부를 판단할 수 있다.
 
-<br>
-다음 포스트에서는 Docker Repository에 컨테이너를 올리고 이것을 AWS에서 실행 해보자.
-
 
 <br>
 
