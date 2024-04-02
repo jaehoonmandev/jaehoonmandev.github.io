@@ -1,19 +1,18 @@
 ---
 #layout: single
-title:	"[Personal Project] 방명록 토이프로젝트 개발여정 - 기획"
+title:	"[Side Project] 방명록 프로젝트 개발여정 - 기획"
 date:	2023-12-05 12:00:00
 categories:
-  - 개인프로젝트
+  - Side Project
 tags:
   - 프로젝트
-  - 토이프로젝트
   - 방명록
 comment: true
 #published: true 
 ---
-풀스택 웹 애플리케이션을 연습하기 위해 간단한 토이 프로젝트들을 구상하고있다.
+풀스택 웹 애플리케이션을 연습하기 위해 간단한 사이드 프로젝트들을 구상하고있다.
 
-첫 번째 토이 프로젝트는 방명록을 남길 수 있는 간단한 웹 애플리케이션을 만들 예정이다.
+첫 번째 사이드 프로젝트는 방명록을 남길 수 있는 간단한 웹 애플리케이션을 만들 예정이다.
 
 높은 퍼포먼스를 낼 수 있는 개발자로 성장하는데 프로그래밍 역량뿐만 아닌 기획에서부터 유지보수까지,
 소프트웨어 개발의 모든 단계를 스스로 경험하여 역량 강화를 해보고 싶었다.
@@ -22,7 +21,7 @@ comment: true
 
 
 # 프로젝트 기획서
-![방명록 기획서]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_planning.png)
+![방명록 기획서]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_planning.png)
 
 풀스택 구조를 설명하자면
 - Java / Spring Boot 를 기반으로한 Backend API.
@@ -49,17 +48,17 @@ comment: true
   또한 간단하고 안정적이게 통합 개발 환경을 구축할 수 있는 Docker Compose를 사용할 예정이다.
 
 # 와이어프레임
-![방명록 와이어프레임]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_wireframe.png)
+![방명록 와이어프레임]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_wireframe.png)
 
 # 레이아웃 구성
 - 메인 페이지
   - 방명록 카드 노출, 생성, 수정, 삭제, 검색의 기능을 트리거.  
   
-  ![방명록 메인페이지 레이아웃]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_mainpage.png)
+  ![방명록 메인페이지 레이아웃]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_layout_mainpage.png)
 
 - 방명록 카드
 
-  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_cards.png)
+  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_layout_cards.png)
 
 - 방명록 카드 추가/수정 Modal
   - 노출시킬 방명록 컨텐츠를 등록/수정할 수 있는 UI.
@@ -69,7 +68,7 @@ comment: true
     - 등록한 컨텐츠 내용을 수정 할 수 있다.
     - 작성자와 인증 코드는 변경이 불가능하다.  
 
-  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_modal.png)
+  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_layout_modal.png)
 
 - 등록/삭제/수정 시 confirm 확인창과 수정/삭제 시 인증코드 입력창
-  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_confirms.png)
+  ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_layout_confirms.png)
