@@ -1,12 +1,11 @@
 ---
 #layout: single
-title:	"[Personal Project] 방명록 토이프로젝트 개발여정 - 설계"
+title:	"[Side Project] 방명록 프로젝트 개발여정 - 설계"
 date:	2023-12-08 12:00:00
 categories:
-  - 개인프로젝트
+  - Side Project
 tags:
   - 프로젝트
-  - 토이프로젝트
   - 방명록
 comment: true
 #published: false 
@@ -16,7 +15,7 @@ comment: true
 이번에는 기획 단계를 마무리하기 위한 기능 명세서, 유스케이스, ERD를 작성해보겠다.
 
 # 기능 명세서
-![guest_book_functions.png]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/guest_book_functions.png)
+![guest_book_functions.png]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/guest_book_functions.png)
 
 기능은 간단하게
 - 컨텐츠 노출
@@ -26,7 +25,7 @@ comment: true
 의 3단계로 분류할 수 있을 것 같다.
 
 # 유스케이스
-![guest_book_functions.png]({{ site.baseurl }}/assets/images/posts/2023/Personal_Project/guest-book/방명록유스케이스.png)
+![guest_book_functions.png]({{ site.baseurl }}/assets/images/posts/2023/side-project/guest-book/방명록유스케이스.png)
 
 액터는 방문자와 시스템으로 구분하였다.  
 방문자는 방명록 조회와 관리를 할 수 있다.  

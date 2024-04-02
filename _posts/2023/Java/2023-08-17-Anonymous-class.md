@@ -6,7 +6,6 @@ categories:
   - Java
 tags:
   - Java
-  - Anonymous Class
 ---
 
 # Anonymous Class - 익명 클래스

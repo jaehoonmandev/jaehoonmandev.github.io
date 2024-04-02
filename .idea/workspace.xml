@@ -4,11 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="1. Docker Compose로 Spring Boot + MongoDB 구성 포스트 수정">
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="cached">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2024/composed_settings/2024-01-09-spring-boot-mongoDB-docker-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2024/composed_settings/2024-01-17-spring-boot-mongoDB-docker-2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2024/composed_settings/connected-db-intellij.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2024/composed_settings/connected-db-intellij.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/posts/2024/composed_settings/create-boot-project1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2024/composed_settings/create-boot-project1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Database/2023-12-14-NoSQL-Data-Modeling.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Database/2023-12-14-NoSQL-Data-Modeling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Java/2023-08-17-Anonymous-class.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/Java/2023-08-17-Anonymous-class.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-05-guest-book-sketch-part1.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/side-project/guest-book/2023-12-05-guest-book-sketch-part1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-08-guest-book-sketch-part2.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2023/side-project/guest-book/2023-12-08-guest-book-sketch-part2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book/2023-12-27-guest-book-dev-env.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/_forms.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/_mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/breakpoint/_helpers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/breakpoint/_helpers.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/breakpoint/parsers/resolution/_resolution.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/breakpoint/parsers/resolution/_resolution.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/magnific-popup/_magnific-popup.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/magnific-popup/_magnific-popup.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/magnific-popup/_settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/magnific-popup/_settings.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/susy/plugins/svg-grid/_svg-grid-math.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/susy/plugins/svg-grid/_svg-grid-math.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/susy/plugins/svg-grid/_svg-utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/susy/plugins/svg-grid/_svg-utilities.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/susy/susy/_su-math.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/minimal-mistakes/vendor/susy/susy/_su-math.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_functions.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_functions.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_cards.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_layout_cards.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_confirms.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_layout_confirms.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_mainpage.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_layout_mainpage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_layout_modal.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_layout_modal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_planning.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_planning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/guest_book_wireframe.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/guest_book_wireframe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/structure.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/structure.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book/방명록유스케이스.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/posts/2023/side-project/guest-book/방명록유스케이스.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,32 +73,32 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortKey" value="BY_TIME_DESCENDING" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jaehoonpark/Desktop/project/jaehoonmandev.github.io/_posts/2024/composed_settings&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jaehoonman/Desktop/project/jaehoonmandev.github.io/assets/images/posts/2024/side-project/guest-book",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/images/posts/2024/side-project/guest-book" />
+      <recent name="$PROJECT_DIR$/_posts/2024/side-project/guest-book" />
+      <recent name="$PROJECT_DIR$/_posts/2024" />
       <recent name="$PROJECT_DIR$/_posts/2024/composed_settings" />
       <recent name="$PROJECT_DIR$/_posts/2024/personal_project" />
-      <recent name="$PROJECT_DIR$/_posts/2023/React/Next-js" />
-      <recent name="$PROJECT_DIR$/assets/images/posts/2023/Personal_Project/guest-book" />
-      <recent name="$PROJECT_DIR$/_posts/2023/Personal_Project/guest-book" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/images/posts/2024/composed_settings" />
@@ -480,7 +501,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705456861637</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="cached">
+      <option name="closed" value="true" />
+      <created>1712060373436</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1712060373436</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +542,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="방명록 토이프로젝트 기획서 사진 추가.(비공개)" />
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 작성" />
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 수정" />
     <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 태그 수정" />
@@ -538,7 +566,8 @@
     <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 일부 수정" />
     <MESSAGE value="1. 방명록 개발 여정 - 개발 환경 비공개" />
     <MESSAGE value="1. Docker Compose로 Spring Boot + MongoDB 구성 포스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Docker Compose로 Spring Boot + MongoDB 구성 포스트" />
+    <MESSAGE value="cached" />
+    <option name="LAST_COMMIT_MESSAGE" value="cached" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
