@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="&gt; jekyll 테마 업데이트&#10;&gt; 방명록 회고 포스트 업로드 (임시)&#10;&gt; Personal_Project 디렉터리명 side-project로 변경">
-      <change beforePath="$PROJECT_DIR$/_posts/2024/side-project/guest-book/2024-04-02-방명록-회고.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2024/side-project/guest-book/2024-04-02-방명록-회고.md" afterDir="false" />
+    <list default="true" id="27dbebff-649d-4d94-a27d-f59174487c69" name="Changes" comment="main.scss 에러..">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="b2fa05566cb14826caaeaccceeb73b90df11d471" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -501,15 +502,72 @@
       <option name="project" value="LOCAL" />
       <updated>1712074664079</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="1. Docker Compose로 Spring Boot + MongoDB 구성 포스트 수정">
+      <option name="closed" value="true" />
+      <created>1712109977735</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1712109977735</updated>
+    </task>
+    <task id="LOCAL-00047" summary="main.scss 에러..">
+      <option name="closed" value="true" />
+      <created>1712110296050</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1712110296050</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="0b37d9c9-99b8-4a61-a733-09d391aa2c36" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="0b37d9c9-99b8-4a61-a733-09d391aa2c36">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -518,7 +576,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="layout" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -534,8 +592,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 수정" />
-    <MESSAGE value="방명록 토이프로젝트 개발여정 part.1 태그 수정" />
     <MESSAGE value="Docker Overview 포스트 작성" />
     <MESSAGE value="github 링크 수정." />
     <MESSAGE value="1. 이미지 출처 표시 스타일 변경.&#10;2. 방명록 토이프로젝트 part 2 임시 업로드." />
@@ -559,7 +615,9 @@
     <MESSAGE value="1. Docker Compose로 Spring Boot + MongoDB 구성 포스트" />
     <MESSAGE value="cached" />
     <MESSAGE value="&gt; jekyll 테마 업데이트&#10;&gt; 방명록 회고 포스트 업로드 (임시)&#10;&gt; Personal_Project 디렉터리명 side-project로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="&gt; jekyll 테마 업데이트&#10;&gt; 방명록 회고 포스트 업로드 (임시)&#10;&gt; Personal_Project 디렉터리명 side-project로 변경" />
+    <MESSAGE value="1. Docker Compose로 Spring Boot + MongoDB 구성 포스트 수정" />
+    <MESSAGE value="main.scss 에러.." />
+    <option name="LAST_COMMIT_MESSAGE" value="main.scss 에러.." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
