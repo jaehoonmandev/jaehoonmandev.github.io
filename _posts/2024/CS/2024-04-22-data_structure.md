@@ -1,6 +1,6 @@
 ---
 #layout: single
-title:	"[CS] 자료 구조(Data structure)의 기본 개념과 종류"
+title:	"자료 구조(Data structure)의 기본 개념과 종류"
 date:	2024-04-22 12:00:00
 categories:
   - Computer Science
