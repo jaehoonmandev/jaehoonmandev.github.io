@@ -38,7 +38,7 @@ tags:
 주어진 n이 소수인지 확인하는 소스는 아래와 같이 될 것이다.
 
 ```java
-private static boolean Prime(int n){
+private static boolean isPrime(int n){
         for(int i = 2; i<n; i++){
             if( n % i == 0 ){
                 return false;
@@ -62,14 +62,14 @@ private static boolean Prime(int n){
 
 이로 인하여 중간 약수까지만 비교를 진행하면된다.
 
-구현은 비교하는 n을 절반으로 나누는 방법과, 루트(XX√) 사용하여 계산하는 방법이 있다.XX
+구현은 비교하는 n을 절반으로 나누는 방법과, 루트(√) 사용하여 계산하는 방법이 있다.
 
 루트를 이용하여 계산하는건 절반으로 나눈 n의 원리를 응용한 것이니 루트로 진행하겠다.
 
 Java에서 루트 값을 계산하기 위해서 사용하는 기본 라이브러리 java.lang.Math.sqrt 를 활용하자.
 
 ```java
-private static boolean Prime(int n){        
+private static boolean isPrime(int n){        
             for(int i = 2; i<=(int)Math.sqrt(n); i++){
                 if( n % i == 0 ){
                     return false;
