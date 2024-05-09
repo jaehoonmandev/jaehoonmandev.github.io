@@ -137,8 +137,9 @@ public static void main(String[] args) {
       
     numbers.stream()  
             //람다식을 사용.  
-            //.sorted((a, b) -> a.compareTo(b))            //메서드 참조  
-            .sorted(Integer::compareTo)  
+            //.sorted((a, b) -> a.compareTo(b))            
+            //메서드 참조  
+            .sorted(Integer::compareTo)  a
             .forEach(System.out::println);  
 }
 
