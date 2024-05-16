@@ -92,6 +92,9 @@ Sprint Boot에서는 내부 메모리를 사용하는 내부 브로커와 DB와 
 
 우리는 내부 브로커로 웹 소켓의 개념을 채팅 시스템을 구현하며 알아보자.
 
+샘플 코드는 [웹 소켓 채팅 샘플](https://github.com/jaehoonmandev/WSChatDemo) 에 올려두었다.
+
+
 ## Spring Dependencies
 
 ``` java
