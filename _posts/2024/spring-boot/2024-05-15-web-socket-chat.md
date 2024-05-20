@@ -3,8 +3,9 @@
 title:	"[Spring Boot] Web Socket을 통한 채팅 시스템"
 date:	2024-05-15 12:00:00
 categories:
-  - Java
+  - Spring Boot
 tags:
+  - Java
   - Lambda
   - Method Reference Operator
   - Anonymous Class
