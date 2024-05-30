@@ -3,7 +3,7 @@
 title:	"[DB] Transaction, ACID, Isolation level"
 date:	2024-05-29 12:00:00
 categories:
-  - DB
+  - Database
 tags:
   - Transaction
   - ACID
