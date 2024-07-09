@@ -14,7 +14,7 @@ comment: true
 ---
 Spring Boot를 통해 Web Socket을 이용한 채팅 시스템을 구축해보겠다
 
-여기서 왜 채팅 시스템은 유독 Web Socket을 이용하여 구현하는지 궁금할 수 도 있다.
+여기서 왜 채팅 시스템은 유독 Web Socket을 이용하여 구현하는지 궁금할 수도 있다.
 
 ## 왜 Web Socket 사용?
 
@@ -418,7 +418,7 @@ ws.send("/app/chat/sendMessage"...)
 
 메시지를 보내게되면 `StompChatController`의
 ```java
-@MessageMapping("/chat/sendMessage") public void sendMessage(ChatMessage message) {
+@MessageMapping("/chat/sendMessage") public void sendMessage(ChatMessage message)
 ```
 
 에 mapping 될 것이다.
