@@ -40,7 +40,7 @@ comment: true
 - 링크
   - [Frontend GitHub Repository](https://github.com/jaehoonmandev/guest-book-nextjs)
   - [Backend GitHub Repository](https://github.com/jaehoonmandev/guest-book-spring-boot)
-  - [사이드 프로젝트 링크](https://guestbook.jaehoonman.site/)
+  - ~~[사이드 프로젝트 링크](https://guestbook.jaehoonman.site/)((비활성화)~~
   - [사이드 프로젝트 관련 포스트](/posts-category/#side-project)
 
 
