@@ -1,12 +1,14 @@
 ---
 #layout: single
-title:	"[CS] Thread, Sync, Async -Thread, Process, Scheduling-"
-date:	2024-08-27 12:00:00
+title:	"[CS] Thread, Process, Multi-, Scheduling"
+date:	2024-09-9 12:00:00
 categories:
   - CS
 tags:
   - Thread
   - Process
+  - Multiprocessing
+  - Multiprogramming
   - Scheduling
 comment: true
 #published: false 
@@ -28,29 +30,44 @@ OS의 일부인 Scheduler에 의해 독립적으로 관리되는 프로그램의
 
 ## Thread의 종류
 
+![User/Kernel Level Threads]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/user-kernel-threads.png)
+
 스레드를 지원하는 주체에 따라 크게 2가지로 구분된다.
 
 ### Kernel Threads
 
-커널 스레드는 하드웨어와 프로그램 간의 인터페이스 역할을 수행하는 운영체제 커널에서 관리되는 스케줄링 단위이다.
+heavyweight 라고도 불리우는 커널 스레드는 하드웨어와 프로그램 간의 인터페이스 역할을 수행하는 운영체제 커널에서 관리되는 스케줄링 단위이다.
 
-#### 자원 공유
-각 프로세스에는 최소 하나의 커널 스레드가 존재하며, 여러 커널 스레드가 동일한 프로세스 내에 존재할 경우, 이들은 동일한 메모리와 파일 리소스를 공유할 수 있다.
+#### 특징
 
-#### 선점 스케줄링
-커널 스레드는 선점 스케줄러에 의해 관리되며, CPU가 다른 스레드로 전환될 때 시스템 콜이나 인터럽트를 통해 문맥 전환이 이루어진다.
+##### 자원 공유
+각 프로세스에는 최소 하나의 커널 스레드가 존재한다.
 
-#### 블로킹 처리
-커널 스레드는 블로킹이 발생하더라도 다른 스레드가 계속 실행될 수 있으며, 커널이 각 CPU 코어에 스레드를 할당하여 효율적으로 멀티코어 프로세서를 구현할 수 있다.
+여러 커널 스레드가 동일한 프로세스 내에 존재할 경우, 이들은 동일한 메모리와 파일 리소스를 공유할 수 있다.
 
-#### 경량 스케줄링 단위
+##### 선점 스케줄링
+커널 스레드는 선점 스케줄러에 의해 관리된다.
+
+CPU가 다른 스레드로 전환될 때 시스템 콜이나 인터럽트를 통해 문맥 전환이 이루어진다.
+
+##### 블로킹 처리
+커널 스레드는 블로킹이 발생하더라도 다른 스레드가 계속 실행될 수 있다.
+
+커널이 각 CPU 코어에 스레드를 할당하여 효율적으로 멀티코어 프로세서를 구현할 수 있다.
+
+##### 경량 스케줄링 단위
 커널 스레드는 스택, 프로그램 카운터를 포함한 레지스터 복사본, 스레드-로컬 저장소만을 소유하며, 자원을 적게 사용해 생성 및 소멸이 상대적으로 저렴하다.
 
-#### 문맥 전환 효율성
+##### 문맥 전환 효율성
 커널 스레드는 문맥 전환 시 가상 메모리 변경 없이 레지스터와 스택 포인터만 저장 및 복원하므로 캐시 친화적이다.
 
-#### 오버헤드
+##### 오버헤드
 커널 스레드는 유저 스레드보다 문맥 전환과 같은 Swap 시간이 길고, 생성 및 소멸 시 약간 더 높은 오버헤드를 가진다.
+
+#### 종류
+- **Windows Kernel Threads:** Window OS 커널 수준의 스레드를 관리한다. / `ETHREAD`와 같은 구조로 표현된다.
+- **Linux Kernel Threads**: Linux OS의 커널 수준의 스레드를 관리한다. / `task_struct`와 같은 구조로 표현된다.
+- **Solaris Threads:** Solaris 멀티 스레딩 모델의 일부로 커널 수준의 스레드를 관리한다. / Solaris 스레드 라이브러리는 개발자가 스레드를 관리할 수 있는 인터페이스를 제공한다.
 
 #### 활용
 커널 스레드는 시스템 자원 관리와 멀티코어 프로세싱에서 중요한 역할을 하며, 실시간 작업과 하드웨어 제어를 효율적으로 처리할 수 있다.
@@ -61,23 +78,32 @@ CPU, 메모리, 네트워크 리소스 등 자원 관리, 멀티코어 프로세
 
 ### User Threads
 
-유저 스레드는 유저 공간 라이브러리에서 구현되며, 커널이 인식하지 않는 스레드를 의미한다.
+유저 스레드는 OS와 분리된 유저 공간 라이브러리에서 구현되며, 커널이 인식하지 않는 스레드를 의미한다.
 
-#### 커널과 독립적
+흔히 lightweight, green threads라고도 불린다.
+
+#### 특징
+
+##### 커널과 독립적
 유저 스레드는 유저 공간에서 관리되고 스케줄링되며, 커널과의 상호작용 없이 실행된다.
 
-#### 빠른 스레드 관리
+##### 빠른 스레드 관리
 유저 스레드는 동일한 프로세스 내의 문맥 전환이 커널의 개입 없이 로컬에서 이루어지기 때문에 문맥 전환이 매우 효율적이다.
 
 이로인해 스레드의 생성, 소멸, 동기화 등은 물론 문맥 전환도 커널 스레드에 비해 동작이 빠르다.
 
-#### M:N 모델
+##### M:N 모델
 일부 구현에서는 유저 스레드를 여러 커널 스레드에 매핑하여 멀티프로세서 환경에서의 이점을 활용한다.
 
-#### 블로킹 문제
+##### 블로킹 문제
 유저 스레드는 시스템 호출이 블로킹될 경우, 해당 스레드뿐만 아니라 전체 프로세스가 블로킹되어 다른 유저 스레드의 실행을 방해할 수 있다.
 
 이 문제를 해결하기 위해, 비동기 I/O나 논블로킹 I/O를 사용하거나, 특정 라이브러리에서는 비동기 호출 중 다른 유저 스레드를 실행하는 방식을 사용한다.
+
+#### 종류
+- **Java Threads** : `java.lang.Thread` 클래스는 OS와 분리되어 독립적으로 스레드를 관리할 수 있다.
+- **POSIX Threads (Pthreads)** : UNIX 계열에서 스레드를 동작하는 표준 집합으로 C, C++ 등의 언어로 사용할 수 있다.
+- **Windows Thread API** : Windows OS에서 스레드를 생성하고 관리하기 위한 API다.
 
 #### 활용
 유저 스레드는 주로 경량 작업이나 빠른 문맥 전환이 필요한 애플리케이션에서 사용된다.
@@ -85,7 +111,10 @@ CPU, 메모리, 네트워크 리소스 등 자원 관리, 멀티코어 프로세
 예를 들어, 고성능 서버 애플리케이션이나 실시간 시스템에서 유저 스레드는 응답 시간을 최소화하고, 커널 스레드의 오버헤드를 줄이기 위해 활용될 수 있다.
 
 
-## Multi Thread
+## Multithreading
+
+![Multithreading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multithreading.png)
+*https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
 
 프로세스가 실행될 때 내부에서 둘 이상의 스레드를 동시에 실행될 수 있으며, 이를 Multi Thread라고 표현한다.
 
@@ -123,7 +152,7 @@ CPU, 메모리, 네트워크 리소스 등 자원 관리, 멀티코어 프로세
 
 프로세스는 하나 이상의 스레드를 실행시키는 컴퓨터 프로그램의 인스턴스를 의미한다.
 
-동작을 수행시키기 위한 코드로 이루어진 프로그램을 실행하면, 프로세스는 이 코드를 메모리에 로드하여 실행시키는 작업 단위로 해석할 수 있다.
+Processor는 Process를 실행시키는 주체로 프로세서가 동작을 수행시키기 위한 코드로 이루어진 프로그램을 실행하면, 프로세스는 이 코드를 메모리에 로드하여 실행시키는 작업 단위로 해석할 수 있다.
 
 ## 구성 요소
 
@@ -221,16 +250,94 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 # Thread VS Process
 
-| **구분**       | **프로세스**                                              | **스레드**                          |
-| ------------ | ----------------------------------------------------- | -------------------------------- |
-| **독립성**      | 독립적으로 실행됨, 서로 다른 주소 공간을 가짐                            | 프로세스의 하위 집합, 주소 공간과 자원을 공유       |
-| **상태 정보**    | 더 많은 상태 정보를 가지고 있음                                    | 프로세스의 상태 정보 및 자원을 공유함            |
-| **주소 공간**    | 각각의 프로세스는 별도의 주소 공간을 가짐                               | 동일한 주소 공간을 공유함                   |
-| **통신**       | 시스템 제공 IPC(Inter-process Communicaion) 메커니즘을 통해 상호 작용 | 공유된 데이터, 코드, 파일을 통해 간단하게 통신 가능   |
-| **문맥 전환 속도** | 느림 (주소 공간 전환 비용이 큼)                                   | 같은 프로세스 내에서 빠르게 문맥 전환 가능         |
-| **자원 소비**    | 큼                                                     | 적음                               |
-| **충돌 영향**    | 프로세스 간 독립성으로 인해 한 프로세스의 충돌이 다른 프로세스에 영향 없음            | 하나의 스레드 충돌이 전체 프로세스에 영향을 미칠 수 있음 |
+필요 이상의 정보를 많이 나열한 것 같은데 간단하게
+- **프로세스** : 실행 중인 프로그램의 인스턴스.
+- **스레드** : 프로세스 내에서 실행되는 작업 단위.
 
+의 포괄적인 의미를 파악해두자.
+
+| **구분**       | **프로세스**                                               | **스레드**                           |
+| ------------ | ------------------------------------------------------ | --------------------------------- |
+| **독립성**      | 독립적으로 실행됨, 서로 다른 주소 공간을 가짐.                            | 프로세스의 하위 집합, 주소 공간과 자원을 공유.       |
+| **상태 정보**    | 더 많은 상태 정보를 가지고 있음.                                    | 프로세스의 상태 정보 및 자원을 공유함.            |
+| 할당           | 자신을 실행할 프로세서, 메모리 공간, 데이터 등.                           | 프로세스 안에서의 주소, 데이터 등.              |
+| **주소 공간**    | 각각의 프로세스는 별도의 주소 공간을 가짐.                               | 동일한 주소 공간을 공유함.                   |
+| **통신**       | 시스템 제공 IPC(Inter-process Communicaion) 메커니즘을 통해 상호 작용. | 공유된 데이터, 코드, 파일을 통해 간단하게 통신 가능.   |
+| **문맥 전환 속도** | 느림. (주소 공간 전환 비용이 큼)                                   | 같은 프로세스 내에서 빠르게 문맥 전환 가능.         |
+| **자원 소비**    | 큼.                                                     | 적음.                               |
+| **충돌 영향**    | 프로세스 간 독립성으로 인해 한 프로세스의 충돌이 다른 프로세스에 영향 없음.            | 하나의 스레드 충돌이 전체 프로세스에 영향을 미칠 수 있음. |
+
+# Multi
+
+위에서 멀티 스레드, 멀티 태스킹에 대해 살짝 알아보았지만 Multi 가 붙는 Multi Processing, Multi Programming 의 개념 또한 있기에 간단하게 어떤 특징을 가지고 있는지 알아보자.
+
+## Multi-Processing
+
+여러 CPU나 코어를 사용해 다수의 프로세서가 동시에 여러 프로세스를 실행하는 방식이다.
+
+![Multi-Processing]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-processing.png)
+*https://doorbw.tistory.com/26*
+
+- 각각의 프로세서는 하나의 Task만 처리하지 않고 다른 프로세서의 도움도 받는다.
+- 여러 개의 프로세스가 동일한 데이터를 사용한다면 해당 데이터를 공유하며 비용을 줄일 수 있다.
+- 하나의 Task에 여러개의 프로세서가 작업 중이라면 작업 중인 하나의 프로세서가 하나의 프로세서가 고장나도 동작은 계속 수행될 수 있다.
+- 병렬 처리가 가능해 성능을 크게 향상시킬 수 있다.
+
+## Multi-Programming
+
+여러 프로그램이 동시에 메모리에 올라와 있고, CPU가 이들을 빠르게 전환하면서 실행하는 방식이다.
+
+![Multi-Programming]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-programming.png)
+*https://www.geeksforgeeks.org/multiprogramming-in-operating-system/*
+
+- 하나의 프로세스가 작업을 처리하고 있을 때 이를 계속해서 기다리지 않고 Switching하며 전체 작업을 수행한다.
+- 프로그램 간의 교대 실행으로 자원 활용을 최적화한다.
+
+## Multi-Tasking
+
+하나의 CPU에서 여러 작업을 빠르게 전환하면서 동시에 수행하는 것처럼 보이게 하는 기법이다.
+
+![Multi-Tasking]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-tasking.png)
+*https://www.geeksforgeeks.org/multitasking-operating-system/*
+
+- 스케줄링에 의해 정해진 시간동안만 각각의 Task를 수행한다.
+- 현대 운영체제에서 흔히 사용된다.
+
+## Multi-Threading
+
+![Multi-Threading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multithreading.png)
+*https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
+
+하나의 프로세스 내에서 여러 스레드를 동시에 실행하는 방식이다.
+
+- 스레드 간 자원을 공유하며 병렬 처리를 수행한다.
+- 각 스레드는 독립적으로 실행되지만 메모리와 파일을 공유하기에 응답성과 효율성이 높아진다.
+
+## Multiprocessing vs Multithreading
+
+![Multiprocessing vs Multithreading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multiprocessing_multithreading.png)
+*https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
+
+- **멀티프로세싱**은 여러 CPU 또는 코어를 사용하여 **여러 프로세스**를 동시에 실행하는 방식이다.
+- 각 프로세스는 독립적인 메모리와 자원을 가지고 실행된다.
+
+- **멀티스레딩**은 하나의 프로세스 내에서 **여러 스레드**를 병렬로 실행하는 방식이다.
+- 같은 메모리와 자원을 공유합니다.
+
+즉, 멀티프로세싱은 여러 프로세스가 병렬로 실행되며, 멀티스레딩은 하나의 프로세스 내에서 여러 작업이 동시에 수행된다.
+
+## Multiprogramming vs Multitasking
+
+![Multiprogramming vs Multitasking]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multiprogramming_multitasking.png)
+*https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
+
+- **멀티프로그래밍**은 여러 프로그램이 메모리에 적재되어 있지만, CPU는 한 번에 하나의 프로그램만 실행하며 작업을 교체하면서 실행하는 방식이다.
+- 핵심은 CPU가 **효율적**으로 여러 프로그램을 순차적으로 실행하는 것이다.
+
+- **멀티태스킹**은 여러 프로그램이 동시에 실행되는 것처럼 보이게 하려고 CPU가 빠르게 전환하는 방식이다.
+- 주로 사용자 상호작용이 중요한 환경에서 응답성을 높이는 데 사용된다.
+
+즉, 멀티프로그래밍은 CPU **유휴 시간**을 줄이는 데 초점을 맞추고, 멀티태스킹은 사용자가 여러 작업을 동시에 수행하는 것처럼 느끼도록 **응답성**을 높이는 데 초점을 둔다.
 
 # Scheduling
 
@@ -291,7 +398,7 @@ CPU 자원을 프로세스나 스레드에 할당하는 방식으로 크게 선�
 반응 속도가 빨라지는 장점이 있지만 Time Quantum이 커지면 FCFS와 같아지고, 작아지면 Context Switch로 인해 오버헤드가 증가하니 적절한 Time Quantum을 설정해줘야한다.
 
 ##### Shortest Remaining Time First(SRTF)
-![Process]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/process.png)
+![SRTF]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/SRTF.png)
 
 *https://en.wikipedia.org/wiki/Shortest_remaining_time*
 
@@ -348,4 +455,7 @@ Ref.
 
 [https://ko.wikipedia.org/wiki/%EC%8A%A4%EB%A0%88%EB%93%9C_(%EC%BB%B4%ED%93%A8%ED%8C%85)](https://ko.wikipedia.org/wiki/%EC%8A%A4%EB%A0%88%EB%93%9C_(%EC%BB%B4%ED%93%A8%ED%8C%85))
 
+[https://www.educba.com/user-level-threads-and-kernel-level-threads/](https://www.educba.com/user-level-threads-and-kernel-level-threads/)
+
+[https://doorbw.tistory.com/26](https://doorbw.tistory.com/26)
 [https://velog.io/@jeongopo/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98](https://velog.io/@jeongopo/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
