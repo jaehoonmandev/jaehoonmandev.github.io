@@ -1,7 +1,7 @@
 ---
 #layout: single
 title:	"[CS] Thread, Process, Multi-, Scheduling"
-date:	2024-09-9 12:00:00
+date:	2024-09-09 12:00:00
 categories:
   - CS
 tags:
