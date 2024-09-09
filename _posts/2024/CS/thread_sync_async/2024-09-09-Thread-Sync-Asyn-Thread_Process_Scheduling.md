@@ -32,6 +32,8 @@ OS의 일부인 Scheduler에 의해 독립적으로 관리되는 프로그램의
 
 ![User/Kernel Level Threads]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/user-kernel-threads.png)
 
+*https://www.educba.com/user-level-threads-and-kernel-level-threads/*
+
 스레드를 지원하는 주체에 따라 크게 2가지로 구분된다.
 
 ### Kernel Threads
@@ -113,7 +115,7 @@ CPU, 메모리, 네트워크 리소스 등 자원 관리, 멀티코어 프로세
 
 ## Multithreading
 
-![Multithreading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multithreading.png)
+![Multithreading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multithreading.png)  
 *https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
 
 프로세스가 실행될 때 내부에서 둘 이상의 스레드를 동시에 실행될 수 있으며, 이를 Multi Thread라고 표현한다.
@@ -144,8 +146,7 @@ CPU, 메모리, 네트워크 리소스 등 자원 관리, 멀티코어 프로세
 여러 작업들이 서로 혼선되어 발생할 수 있는 병목 현상이라던가, 자원 유실, 성능 저하 등 멀티 스레드에서는 스레드 관리와 최적화가 중요하다.
 
 # Process
-![Process]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/process.png)
-
+![Process]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/process.png)  
 *https://en.wikipedia.org/wiki/Thread_(computing)*
 
 위의 그림은 두 개의 Thread가 하나의 Process에서 실행되는 것을 표현한 것이다.
@@ -182,8 +183,7 @@ Processor는 Process를 실행시키는 주체로 프로세서가 동작을 수�
 PCB에는 프로세스 상태, 프로그램 카운터, CPU 레지스터, 메모리 관리 정보, 입출력 상태 정보, 프로세스 식별자(PID) 등이 포함된다.
 
 ## 상태
-![Process Status]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/process_status.png)
-
+![Process Status]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/process_status.png)  
 *https://en.wikipedia.org/wiki/Process_(computing)*
 
 ### 생성(Created)
@@ -275,7 +275,7 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 여러 CPU나 코어를 사용해 다수의 프로세서가 동시에 여러 프로세스를 실행하는 방식이다.
 
-![Multi-Processing]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-processing.png)
+![Multi-Processing]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-processing.png)  
 *https://doorbw.tistory.com/26*
 
 - 각각의 프로세서는 하나의 Task만 처리하지 않고 다른 프로세서의 도움도 받는다.
@@ -287,7 +287,7 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 여러 프로그램이 동시에 메모리에 올라와 있고, CPU가 이들을 빠르게 전환하면서 실행하는 방식이다.
 
-![Multi-Programming]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-programming.png)
+![Multi-Programming]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-programming.png)  
 *https://www.geeksforgeeks.org/multiprogramming-in-operating-system/*
 
 - 하나의 프로세스가 작업을 처리하고 있을 때 이를 계속해서 기다리지 않고 Switching하며 전체 작업을 수행한다.
@@ -297,7 +297,7 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 하나의 CPU에서 여러 작업을 빠르게 전환하면서 동시에 수행하는 것처럼 보이게 하는 기법이다.
 
-![Multi-Tasking]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-tasking.png)
+![Multi-Tasking]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multi-tasking.png)  
 *https://www.geeksforgeeks.org/multitasking-operating-system/*
 
 - 스케줄링에 의해 정해진 시간동안만 각각의 Task를 수행한다.
@@ -305,7 +305,7 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 ## Multi-Threading
 
-![Multi-Threading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multithreading.png)
+![Multi-Threading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multithreading.png)  
 *https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
 
 하나의 프로세스 내에서 여러 스레드를 동시에 실행하는 방식이다.
@@ -315,7 +315,7 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 ## Multiprocessing vs Multithreading
 
-![Multiprocessing vs Multithreading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multiprocessing_multithreading.png)
+![Multiprocessing vs Multithreading]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multiprocessing_multithreading.png)  
 *https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
 
 - **멀티프로세싱**은 여러 CPU 또는 코어를 사용하여 **여러 프로세스**를 동시에 실행하는 방식이다.
@@ -328,7 +328,7 @@ CPU와 같은 운영체제의 자원을 여러 프로세스가 효율적으로 �
 
 ## Multiprogramming vs Multitasking
 
-![Multiprogramming vs Multitasking]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multiprogramming_multitasking.png)
+![Multiprogramming vs Multitasking]({{ site.baseurl }}/assets/images/posts/2024/CS/thread_sync_async/1/multiprogramming_multitasking.png)  
 *https://medium.com/@amitvsolutions/java-concurrency-part1-05b1e4c280eb*
 
 - **멀티프로그래밍**은 여러 프로그램이 메모리에 적재되어 있지만, CPU는 한 번에 하나의 프로그램만 실행하며 작업을 교체하면서 실행하는 방식이다.
