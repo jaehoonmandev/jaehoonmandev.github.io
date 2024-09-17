@@ -3,10 +3,11 @@
 title:	"Docker Compose로 Spring Boot + MongoDB 구성(part.1)"
 date:	2024-01-09 12:00:00
 categories:
+  - Settings
+tags:
   - Spring Boot
   - MongoDB
   - Docker Compose
-tags:
   - REST API
   - Container
 comment: true

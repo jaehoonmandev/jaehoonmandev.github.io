@@ -3,10 +3,11 @@
 title:	"Docker Compose로 Spring Boot + MongoDB 구성(part.2)"
 date:	2024-01-17 12:00:00
 categories:
+  - Settings
+tags:
   - Spring Boot
   - MongoDB
   - Docker Compose
-tags:
   - REST API
   - Container
 comment: true
@@ -271,7 +272,7 @@ curl -d '{"title":"안녕", "writer":"재훈맨", "contents":"하세요"}' -H "C
 `docker-compose.yml` 파일은 `Dockerfile`과 같은 application Root 위치에 생성한다.
 
 ``` yaml
-version: "3" # Docker compose의 버전 선택  
+version: "3" # Docker compose의 버전 선택 
 services: # 컨테이너의 이름, 이미지, 포트 등을 정의하여 컨테이너 생성 및 관리  
   app:  
     image: guest-book:0.0.1 # 기반이 되는 이미지 지정  
