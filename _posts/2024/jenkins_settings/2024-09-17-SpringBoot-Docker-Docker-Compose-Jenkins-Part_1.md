@@ -303,7 +303,7 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 `Dockerfile`을 빌드하는 시점에 JAR 파일이 있어야하니
 
 ``` bash
-./geadlew clean bootJar
+./gradlew clean bootJar
 ```
 
 를 통해 bootJar를 생성하자.
