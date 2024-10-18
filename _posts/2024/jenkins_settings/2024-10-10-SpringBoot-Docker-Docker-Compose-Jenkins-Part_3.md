@@ -396,7 +396,7 @@ ngrok http 18080
 
 다시 돌아와 GitHub의 Add webhook을 설정해주자.
 
-- Payload URL : `https://[ngrok으로 실행중인 URL]/github-webhook/`(`/github-webhook` 뒤에 `/` 팔수)
+- Payload URL : `https://[ngrok으로 실행중인 URL]/github-webhook/`(`/github-webhook` 뒤에 `/` 필수)
 - Content type : application/json
 - Which event would... : Just the push event.
 
