@@ -774,10 +774,12 @@ spring:
 기본 명령어는
 
 ``` sh
-docker-compose up --build
+docker compose up --build
 ```
 
 와 같다.
+
+참고로 하이픈이 포함된 `docker-compose`는 Docker가 docker compose의 기능을 통합하는 2.x 이전의 초기 버전으로 가급적 `docker compose`로 실행이 되는 최신 버전 사용을 권고한다. 
 
 해당 커맨드를 입력하면 `docker-compose.yml`에서 작성한 내용을 토대로 Docker compose 프로젝트가 생성되고 곧바로 실행될 것이다.
 
@@ -788,7 +790,7 @@ docker-compose up --build
 백그라운드에서 실행하고 싶으면
 
 ``` sh
-docker-compose up -d
+docker compose up -d
 ```
 의 명령어를 입력하자.
 
@@ -797,11 +799,11 @@ docker-compose up -d
 실행한 프로젝트가 정상적으로 실행되는지 확인하기 위해서 ps 명령어를 입력할 수 있다.
 
 ``` sh
-docker-compose ps
+docker compose ps
 ```
 
 ``` sh
-jaehoonman@jaehoonman-2 new_structure % docker-compose ps
+jaehoonman@jaehoonman-2 new_structure % docker compose ps
 NAME                  IMAGE                COMMAND                  SERVICE   CREATED          STATUS          PORTS
 jaehoonman_jenkins    jaehoonman_jenkins   "java -jar /app.jar"     app       19 minutes ago   Up 19 minutes   0.0.0.0:8080->8080/tcp
 jaehoonman_postgres   postgres:14          "docker-entrypoint.s…"   db        19 minutes ago   Up 19 minutes   0.0.0.0:5432->5432/tcp
@@ -809,12 +811,12 @@ jaehoonman_postgres   postgres:14          "docker-entrypoint.s…"   db        
 
 이후 실행중인 인스턴스를 이전에 HTTP Test 했던 것 처럼 테스트하면 동일한 데이터를 얻을 수 있을 것이다.
 
-서비스를 정지하고 싶다면 실행중인 터미널에서 `control + c` 혹은 `docker-compose stop`의 커맨드를 입력하자.
+서비스를 정지하고 싶다면 실행중인 터미널에서 `control + c` 혹은 `docker compose stop`의 커맨드를 입력하자.
 
 ### down
 
 ``` sh
-docker-compose down
+docker compose down
 ```
 
 실행중인 서비스를 정지하고 해당 서비스와 관련된 컨테이너를 삭제한다.
@@ -825,31 +827,31 @@ docker-compose down
 
 관련된 볼륨도 함께 삭제하려면
 ``` sh
-docker-compose down -v
+docker compose down -v
 ```
 의 `-v` 옵션을 통해 함께 삭제할 수 있다.
 
 ### Project name
 
-각각의 서비스를 컨테이너로 구성하여 Docker Compose를 생성할 때 Docker Compose 이름은 `docker-compose.yml` 파일이 위치한 경로의 프로젝트 이름으로 자동 생성된다.
+각각의 서비스를 컨테이너로 구성하여 Docker Compose를 생성할 때 Docker Compose 이름은 `docker compose.yml` 파일이 위치한 경로의 프로젝트 이름으로 자동 생성된다.
 
 생성되는 프로젝트의 이름을 직접 지정하고 싶다면
 
 ``` sh 
-docker-compose -p [생성될 프로젝트명] up
+docker compose -p [생성될 프로젝트명] up
 ```
 
 의 커맨드를 사용하면된다.
 
 ### ETC
-- `docker-compose stop` : 정지
-- `docker-compose restart` : 재시작
-- `docker-compose build` : 빌드
-  - `docker-compose build --no-cache` : 캐시를 사용하지 않고 빌드.
-- `docker-compose logs` : 실행 중인 서비스의 로그 확인.
-  - `docker-compose logs <service_name>` : 특정 서비스의 로그 확인.
-  - `docker-compose logs -f` : 실시간 로그 확인.
-- `docker-compose config` : Docker compose 환경 변수 확인.
+- `docker compose stop` : 정지
+- `docker compose restart` : 재시작
+- `docker compose build` : 빌드
+  - `docker compose build --no-cache` : 캐시를 사용하지 않고 빌드.
+- `docker compose logs` : 실행 중인 서비스의 로그 확인.
+  - `docker compose logs <service_name>` : 특정 서비스의 로그 확인.
+  - `docker compose logs -f` : 실시간 로그 확인.
+- `docker compose config` : Docker compose 환경 변수 확인.
 
 Spring Boot + PostgreSQL + JPA + Docker + Docker Compose 까지 진도를 내봤다.
 
