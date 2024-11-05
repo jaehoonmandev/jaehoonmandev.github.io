@@ -8,44 +8,38 @@ tags:
 - Design patterns
 - Singleton
 --- 
+
 # Singleton pattern
 
 클래스의 인스턴스를 단일 인스턴스로 제한하여  전체적인 시스템에서 공통적으로 수행해야하는 동작을 위한 객체를 생성하는데 사용된다.
 
-즉, 글로벌 변수로 활용할 객체의 인스턴스를 1개 생성하여 사용하는 식으로 활용되는 객체이다.
+즉, 글로벌 변수로 활용할 객체의 인스턴스를 한 개만 생성하여 사용하는 식으로 활용되는 객체이다.
 
-싱글톤 패턴을 사용하게되면 아래와 같은 객체를 생성할 수 있게된다.
+싱글톤 패턴을 사용하게되면 아래와 같은 특징을 가지게 된다.
 
 - 하나의 인스턴스를 가지도록 보장해준다.
 - 인스턴스에 접근하기 쉬워진다.
-- 인스턴스를 제어할 수 있다.
 
 ![Untitled]({{ site.baseurl }}/assets/images/posts/2023/Design_Patterns/Singleton_classDiagram.png)  
-Singleton pattern의 class diagram [https://en.wikipedia.org/wiki/Singleton_pattern](https://en.wikipedia.org/wiki/Singleton_pattern)
 
+*Singleton pattern의 class diagram [https://en.wikipedia.org/wiki/Singleton_pattern](https://en.wikipedia.org/wiki/Singleton_pattern)*
 
 
 # 일반적인 사용
 
----
-
 - 단일한 이름의 글로벌 객체로 사용한다.
 - lazy allocation과 초기화에 사용한다.
-- 싱글톤 패턴은 추상 팩토리, 팩토리 메소드, 빌더, 프로토타입 등의 패턴에서도 하나의 facade 객체가 필요할 때 기반으로도 활용된다.
-- 모든 객체에서 공통적으로 사용될 정해진 형식으로 로그를 구현할 때 사용한다.
-
-
+- 싱글톤 패턴은 추상 팩토리, 팩토리 메소드, 빌더, 프로토타입 등의 패턴에서도 하나의 facade 객체가 필요할 때 기반 객체로도 활용된다.
+- 모든 객체에서 정형화된 로그를 구현할 때 사용한다.
 
 # 구현
 
----
-
-### 구현 조건
+## 구현 조건
 
 이전에 존재하지 않는 단일한 글로벌 액세스를 위한 인스턴스를 만들기 위해서는
 
 - 다른 객체에 의해서 새롭게 인스턴스화 되지 않도록 객체는 private로 이루어져야한다.
-- 외부에서 인스턴스를 참조할 수 있는 메서드는 static 으로 지정한다.
+- 어느 위치에서든 인스턴스를 참조할 수 있도록 메서드 접근 제한자는 static 으로 지정한다.
 
 
 싱글톤 패턴을 구현하는 대표적인 방법으론
@@ -73,13 +67,13 @@ public class Singleton_Eager {
 
     //어디서 사용하더라도 동일한 인스턴스를 넘겨주기 위해 private static final 로 메모리에 상주시킨다.
     private static final Singleton_Eager instance = new Singleton_Eager();
-    
-		//Private 생성자.
+
+    //Private 생성자.
     private Singleton_Eager(){}
 
     //단일 인스턴스를 호출하기 위해 public static 으로 외부에서 참조할 수 있도록한다.
     public static Singleton_Eager getInstance(){
-        return instance;
+        return instance; // 클래스 자체에서 접근하기에 this 는 붙지 않는다.
     }
 
 }
@@ -88,7 +82,7 @@ public class Singleton_Eager {
 #### 특징
 
 - 간단한 구현 방법.
-- 필요하든, 필요하지 않든, 항상 메모리에 상주되어있어 자원 손실 가능성이있다.
+- 필요하든, 필요하지 않든 항상 메모리에 상주 되어있어 자원 손실 가능성이 있다.
 - 초기화가 무조건 일어나다 보니 CPU 타임 또한 손실이있다.
 - 예외 처리가 불가능하다.
 
@@ -170,12 +164,22 @@ public class Lazy {
 인스턴스를 참조할 수 있게 하는 getInstance() 메서드에 synchronized 속성을 부여하면된다.
 
 ```java
-//멀티쓰레드 환경에서 Race condition 이 발생하는 것을 방지하기 위해 synchronized 처리.
-synchronized public static Lazy getInstance_sync(){
-    if(instance == null){
-        instance = new Lazy();
+public class SingletonThreadSafe {
+
+    // 싱글턴 인스턴스
+    private static SingletonThreadSafe instance;
+    
+    // 인스턴스 생성을 방지하기 위해 private 접근 제어자
+    private SingletonThreadSafe() {}
+    
+    //멀티쓰레드 환경에서 Race condition 이 발생하는 것을 방지하기 위해 synchronized 처리.
+    public static synchronized SingletonThreadSafe getInstance() {
+      if (instance == null) {
+        instance = new SingletonThreadSafe();
+      }
+      return instance;
     }
-    return instance;
+
 }
 ```
 
@@ -196,21 +200,27 @@ Thread safe singleton 에서 발생할 수 있는 동기 처리로 인한 성능
 이로인해 최초 인스턴스 생성 때에만 **synchronized** 처리를 하게된다.
 
 ```java
-//메서드 자체가 아닌 인스턴스 생성시기에만 synchronized 속성을 부여해 동기처리로 인한 성능 저하 개선. 
-    public static Lazy getInstance_Double_Check_locking(){
-        //생성된 인스턴스가 없을 때만
-        if(instance == null){
-            //클래스에 synchronized 속성 부여
-            synchronized (Lazy.class){
-                //내부에서 한 번 더 null check
-                if (instance == null){
-                    instance = new Lazy();
-                }
-
-            }
+public class Singleton_Lazy {
+    // volatile 키워드를 사용하여 멀티스레드 환경에서 인스턴스의 변경 사항이 즉시 반영되도록 설정
+    private static volatile Singleton_Lazy instance = null;
+    
+    // private 생성자로 외부에서의 인스턴스 생성을 방지
+    private Singleton_Lazy() {}
+    
+    // Double-Check Locking 방식으로 getInstance() 메서드 구현
+    // 메서드 자체가 아닌 인스턴스 생성시기에만 synchronized 속성을 부여해 동기처리로 인한 성능 저하 개선.
+    public static Singleton_Lazy getInstance() {
+      if (instance == null) { // 첫 번째 체크
+        //클래스에 synchronized 속성 부여
+        synchronized (Singleton_Lazy.class) {
+          if (instance == null) { // 두 번째 체크
+            instance = new Singleton_Lazy();
+          }
         }
-        return instance;
+      }
+      return instance;
     }
+}
 ```
 
 #### 특징
@@ -226,10 +236,10 @@ Thread safe singleton 에서 발생할 수 있는 동기 처리로 인한 성능
 
 추가로 객체 선언 시 “volatile” 이라는 속성을 부여할 수 있는데, 이는 모든 쓰레드에서 해당 객체를 메인 메모리에서만 로드할 수 있도록 강제하는 것을 의미한다.
 
-volatile을 사용하지 않을경우 쓰레드는 메인 메모리에서 가져온 객체를 CPU 캐시에 저장하는데, CPU 캐시는 쓰레드마다 부여가 되기에 서로 불일치할 가능성이 있기에 이를 메인 메모리에서만 읽어 오도록 강제하여 위와 같은 위험성을 회피할 수 있다.
+volatile을 사용하지 않을경우 쓰레드는 메인 메모리에서 가져온 객체를 CPU 캐시에 저장하는데, CPU 캐시는 쓰레드마다 부여가 되기에 서로 불일치할 가능성이 있기에 이를 메인 메모리에서만 즉시 읽어 오도록 강제하여 위와 같은 위험성을 회피할 수 있다.
 
 ```java
-private static volatile Lazy instance_volatile= new Lazy();
+private static volatile Singleton_Lazy instance = new Lazy();
 ```
 
 

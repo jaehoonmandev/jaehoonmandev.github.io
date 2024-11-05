@@ -835,7 +835,7 @@ docker compose down -v
 
 각각의 서비스를 컨테이너로 구성하여 Docker Compose를 생성할 때 Docker Compose 이름은 `docker compose.yml` 파일이 위치한 경로의 프로젝트 이름으로 자동 생성된다.
 
-생성되는 프로젝트의 이름을 직접 지정하고 싶다면
+생성되는 프로젝트의 이름을 직접 지정하고 싶다면
 
 ``` sh 
 docker compose -p [생성될 프로젝트명] up
