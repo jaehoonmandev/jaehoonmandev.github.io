@@ -167,8 +167,6 @@ SELECT * FROM 근무자;
 
 Row Limit 해제 시 Full Scan에
 
-![[Pasted image 20241207010616.png]]
-
 ![select_time]({{ site.baseurl }}/assets/images/posts/2024/Database/apply/1/select_time.png)
 
 의 시간이 소모됐다.
