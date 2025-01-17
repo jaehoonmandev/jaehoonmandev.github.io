@@ -529,4 +529,4 @@ DB 조회 성능을 향상 시키기 위한 Index 기법들을 살펴 보았다.
 Ref.
 
 [https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/](https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/)
-https://stackoverflow.com/questions/3645746/what-is-a-fulltext-index-and-when-should-i-use-it
+[https://stackoverflow.com/questions/3645746/what-is-a-fulltext-index-and-when-should-i-use-it](https://stackoverflow.com/questions/3645746/what-is-a-fulltext-index-and-when-should-i-use-it)
