@@ -384,6 +384,8 @@ WHERE 제목 LIKE '%튜닝%';
 |   Rows Removed by Filter: 40000 |
 | Planning Time: 0.129 ms |
 | Execution Time: 14.686 ms |
+
+
 ## Full-Text Index 생성
 
 ### CREATE TABLE
@@ -412,10 +414,10 @@ postgreSQL 에서 `GENERATED ALWAYS AS ... STORED`는 Computed(Generated) Column
 
 - **검색_vector** : 생성된 컬럼, 데이터 삽입, 갱신 시 자동으로 계산.
 - **GENERATED ALWAYS AS** : 생성된 컬럼으로 직접 값을 삽입하거나 업데이트 할 수 없다.
-- **to_tsvector('english', 제목 || ' ' || 내용)**
+- **`to_tsvector('english', 제목 || ' ' || 내용)`**
   - **to_tsvector**: 텍스트 필드를 분석하여 Full-Text Search에 사용되는 tsvector 형태로 변환.
   - **'english'**: 텍스트 분석 언어를 영어로 지정한다. / 한국어로 설정하기 위해서는 tsvector 대신 pgroonga 등과 같은 분석기를 추가로 설치하여 설정해줘야한다.
-  - **제목 || ' ' || 내용**: 제목과 내용 컬럼을 결합하여 하나의 텍스트로 처리.
+  - **`제목 || ' ' || 내용`**: 제목과 내용 컬럼을 결합하여 하나의 텍스트로 처리.
 - **STORED** : 계산된 결과를 테이블에 실제 값으로 저장하도록 지원해준다.
 
 ### ALTER TABLE / UPDATE
