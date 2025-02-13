@@ -549,14 +549,14 @@ Ref.
 
 [https://pyoungt.tistory.com/67](https://pyoungt.tistory.com/67)
 
-https://escapefromcoding.tistory.com/777
+[https://escapefromcoding.tistory.com/777](https://escapefromcoding.tistory.com/777)
 
-[https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/(https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/)
+[https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/](https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/)
 
 [https://vipulvyas.medium.com/understanding-database-internals-how-tables-and-indexes-are-stored-on-disk-and-queried-7cf09a6a48a4](https://vipulvyas.medium.com/understanding-database-internals-how-tables-and-indexes-are-stored-on-disk-and-queried-7cf09a6a48a4)
 
 [https://www.linkedin.com/pulse/how-data-organized-disk-database-systems-manish-pokhriyal-2rpwc](https://www.linkedin.com/pulse/how-data-organized-disk-database-systems-manish-pokhriyal-2rpwc)
 
-https://sqlsunday.com/2013/02/19/indexing-basics/
+[https://sqlsunday.com/2013/02/19/indexing-basics/](https://sqlsunday.com/2013/02/19/indexing-basics/)
 
 
