@@ -51,17 +51,11 @@ tags:
 ![database-storage]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-storage.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
 
-#### Data File
+#### Database File
 - 실제 데이터를 저장하는 파일(`.dbf`, `.mdf`, `.ibd`, `.dat`...)
 - **데이터베이스의 가장 상위 저장 단위.**
 - 테이블, 인덱스, 트랜잭션 로그 등 다양한 데이터를 포함.
 - ex) PostgreSQL -> base/...
-
-#### Block
-- 디스크의 **물리적 최소 저장 단위.**
-- OS에서 데이터를 관리하는 단위.
-- 일반적으로 512B~8KB의 용량을 가진다.
-- 즉, **하나의 Page는 여러 개의 Block**에 걸쳐 저장될 수 있다.
 
 #### Page
 
@@ -76,7 +70,13 @@ tags:
 - **Header** : page metadata(size, transaction...)
 - **Item Pointers** : Row의 위치 정보
 - **Tuple(Row Data)** : 실제 저장된 데이터
-- **Free Space** : 새로운 데이터 삽일을 위한 여유 공간
+- **Free Space** : 새로운 데이터 삽입을 위한 여유 공간
+
+#### Block
+- 디스크의 **물리적 최소 저장 단위.**
+- OS에서 데이터를 관리하는 단위.
+- 일반적으로 512B~8KB의 용량을 가진다.
+- 즉, **하나의 Page는 여러 개의 Block**에 걸쳐 저장될 수 있다.
 
 으로 구성되어 있다.
 #### Row (Record, Tuple)
@@ -127,7 +127,7 @@ Heap Table을 사용하면 **주로 WHERE 조건이 없는 대량 삽입, 임시
 #### 특징 
 - **Primary Key를 기준으로 데이터가 정렬된 상태로 저장**하는 방식.
 - 데이터 자체가 B+Tree 구조의 **리프 노드(Leaf Node)에 저장.**
-- 인덱스를 검색하면 **데이터를 빠르게 찾을 수 있음.
+- 인덱스를 검색하면 **데이터를 빠르게 찾을 수 있음.**
 - **MySQL InnoDB, SQL Server의 기본 저장 방식**
 
 #### 장점
@@ -136,7 +136,7 @@ Heap Table을 사용하면 **주로 WHERE 조건이 없는 대량 삽입, 임시
 - **ORDER BY, GROUP BY** 최적화 가능.
 
 #### 단점
-- **삽입/삭제 시 성능 저하** 가능 (**정렬 유지** 필요)
+- **삽입/삭제 시 성능 저하** 가능성 (**정렬 유지** 필요)
 - 한 테이블에 **하나의 Clustered Index만 생성** 가능.
 
 Clustered Index를 사용하면 **WHERE 조건이 Primary Key 또는 범위 조회인 경우 성능이 향상**된다.
@@ -245,12 +245,11 @@ Parallel Scan은 **테이블을 여러 개의 블록(스트라이드)로 나누�
 
 하지만 Parallel Scan이 항상 빠른 것은 아니기에 별도 튜닝이 필요할 수 있다.
 
-자세히는 알아보지 않고 이런 게 있다~ 정도만 소개하겠다.
+자세히는 알아보지 않고 이런 게 있다~
 
 # Index Scan
 
-*Index 자료구조의 하나인 B-Tree*
-
+*Index 자료구조의 하나인 B-Tree*  
 ![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/index-scan.png)  
 *https://sqlsunday.com/2013/02/19/indexing-basics/*
 
@@ -493,15 +492,15 @@ Oracle, MySQL 등의 일부 DBMS에서 지원하는 기능으로 복합 인덱�
 ``` sql
 CREATE INDEX idx_직원_부서_이름 ON 직원 (부서, 이름);
 
-SELECT * FROM 직원 WHERE name = '마케팅팀2';
+SELECT * FROM 직원 WHERE 이름 = '마케팅팀2';
 ```
 
 #### 탐색 과정
 
 ```
-	        [개발팀, 마케팅팀, 인사팀, 재무팀]  <- Root Node
-            /       |           |        \
-        /           |           |         \
+	     [ 개발팀,         마케팅팀,           인사팀,          재무팀]  <- Root Node
+                /               |                |               \
+              /                 |                |                 \
  [개발팀1, 개발팀2, 개발팀3] [마케팅팀1, 마케팅팀2] [인사팀1, 인사팀2] [재무팀1, 재무팀2, 재무팀3]  <- Leaf Nodes
 ```
 
