@@ -1,6 +1,6 @@
 ---
 #layout: single
-title:	"[Database] 데이터의 탐색 기법과 구조 - part.1"
+title:	"[Database] 데이터의 기본 탐색 기법과 구조"
 date:	2025-02-13 12:00:00
 categories:
 - Database
@@ -39,7 +39,7 @@ tags:
 
 의 저장 과정을 거치면
 
-![database-store-structure]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-store-structure.png)  
+![database-store-structure]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/database-store-structure.png)  
 *https://www.linkedin.com/pulse/how-data-organized-disk-database-systems-manish-pokhriyal-2rpwc*
 
 와 같이 여러 개의 요소로 나뉘어져 관리된다.
@@ -48,7 +48,7 @@ tags:
 
 저장 되는 데이터를 효율적으로 관리하기 위해 **File -> Page -> Block -> Row(Record) 의 계층적인 저장 단위**를 사용한다.
 
-![database-storage]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-storage.png)  
+![database-storage]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/database-storage.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
 
 #### Database File
@@ -59,7 +59,7 @@ tags:
 
 #### Page
 
-![page-layout]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/page-layout.png)  
+![page-layout]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/page-layout.png)  
 *https://medium.com/@hnasr/database-pages-a-deep-dive-38cdb2c79eb5*
 
 - DBMS의 **논리적 저장 단위.**
@@ -99,7 +99,7 @@ DBMS마다 차이점이 있을 수 있지만 보통은 Heap Table, Clustered Ind
 
 ### Heap Table(Storage)
 
-![heap-table]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/heap-table.png)  
+![heap-table]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/heap-table.png)  
 *https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/*
 
 
@@ -120,7 +120,7 @@ Heap Table을 사용하면 **주로 WHERE 조건이 없는 대량 삽입, 임시
 
 ### Clustered Index Table
 
-![clustered-index]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/clustered-index.png)  
+![clustered-index]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/clustered-index.png)  
 *https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/*
 
 
@@ -156,7 +156,7 @@ Clustered Index를 사용하면 **WHERE 조건이 Primary Key 또는 범위 조�
 
 # Full Table Scan
 
-![full-table-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/full-table-scan.png)
+![full-table-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/full-table-scan.png)
 *https://www.cybertec-postgresql.com/en/postgresql-indexing-index-scan-vs-bitmap-scan-vs-sequential-scan-basics/*
 
 ## Sequential Search, 순차 탐색
@@ -250,7 +250,7 @@ Parallel Scan은 **테이블을 여러 개의 블록(스트라이드)로 나누�
 # Index Scan
 
 *Index 자료구조의 하나인 B-Tree*  
-![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/index-scan.png)  
+![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/index-scan.png)  
 *https://sqlsunday.com/2013/02/19/indexing-basics/*
 
 **Index를 활용하여 검색 범위를 좁히고, 더 빠르게 데이터를 조회하는 방식**이다.
@@ -263,7 +263,7 @@ Index Scan을 수행하는 자료구조로는 B-Tree / B+Tree, Hash, Bitmap 등�
 
 Index Scan이 빠른 이유는 대부분의 RDBMS에서 **B-Tree(B+Tree) 인덱스 구조**를 사용하기 때문이다.
 
-B-Tree 등과 같은 자세한 인덱스 종류에 대해서는 다음에 알아보겠다.
+B-Tree 등과 같은 자세한 인덱스 종류에 대해서는 해당 포스트에서 다루진 않겠다..
 
 ## Full table scan이 수행될 수 있는 경우와 개선
 
@@ -354,7 +354,7 @@ SELECT * FROM 직원 WHERE NOT EXISTS (
 
 최적화를 위해서는 실행 계획을 참고하는 습관을 들이고 필요 시 인덱스 재설계를 고려하는 것이 좋을 것이다.
 
-참고로 PostgreSQL을 기준으로는 주기적으로 ANALYZE, AutoVaccum 등이 실행되면서 자동으로 인덱스를 적용시키는 경우도 있다.
+참고로 PostgreSQL을 기준으로는 주기적으로 ANALYZE, AutoVacuum 등이 실행되면서 자동으로 인덱스를 적용시키는 경우도 있다.
 
 ### Full table scan 방지 요약
 
@@ -371,11 +371,11 @@ SELECT * FROM 직원 WHERE NOT EXISTS (
 
 인덱스가 적용된 자료구조에서 **데이터를 검색하는 방법은 검색 조건, 인덱스 구조, 최적화 방식 등에 따라 여러가지**가 있다.
 
-스캔의 예시로 B-Tree(B+Tree) 의 구조를 작성할 것인데 자세한 사항은 다음 포스트에서 작성하겠다.
+B-Tree의 구조를 통해 간단하게 스캔의 예시를 들어보겠다.
 
 일단은 B-Tree 라는 것은 Balanced Binary Tree의 한 종류로 트리 구조를 가지지만 **트리의 균형을 유지하도록 설계된 탐색 트리** 라는 정도만 알아두자.
 
-![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/index-scan.png)  
+![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/index-scan.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
 
 의 이미지를 한 번 더 참고하자.
@@ -536,9 +536,7 @@ MySQL, Oracle 등과 같은 일부 DBMS에서 지원하는 방법으로, 인덱�
 
 여기까지 데이터 저장 구조, Scan 방식 등 데이터베이스 성능을 개선하기 위해서 필요한 지식의 일부를 어렴풋이라도 알아봤다.
 
-DBMS 마다 차이점이 존재하기 때문에 올바른 내용을 작성하지 못했을 수도 있지만... 일단은... 하하
-
-다음 파트에서는 B-Tree(B+Tree), Hash, Bitmap 등의  인덱스 구조에 대해 살펴보자.
+DBMS 마다 차이점이 존재하기 때문에 올바른 내용을 작성하지 못했을 수도 있지만 데이터베이스의 데이터 조회 방법에 대해 알아봤다.
 
 <br> 
 
