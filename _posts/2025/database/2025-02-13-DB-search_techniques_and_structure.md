@@ -39,7 +39,7 @@ tags:
 
 의 저장 과정을 거치면
 
-![database-store-structure]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/database-store-structure.png)  
+![database-store-structure]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-store-structure.png)  
 *https://www.linkedin.com/pulse/how-data-organized-disk-database-systems-manish-pokhriyal-2rpwc*
 
 와 같이 여러 개의 요소로 나뉘어져 관리된다.
@@ -48,7 +48,7 @@ tags:
 
 저장 되는 데이터를 효율적으로 관리하기 위해 **File -> Page -> Block -> Row(Record) 의 계층적인 저장 단위**를 사용한다.
 
-![database-storage]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/database-storage.png)  
+![database-storage]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-storage.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
 
 #### Database File
@@ -59,7 +59,7 @@ tags:
 
 #### Page
 
-![page-layout]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/page-layout.png)  
+![page-layout]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/page-layout.png)  
 *https://medium.com/@hnasr/database-pages-a-deep-dive-38cdb2c79eb5*
 
 - DBMS의 **논리적 저장 단위.**
@@ -99,7 +99,7 @@ DBMS마다 차이점이 있을 수 있지만 보통은 Heap Table, Clustered Ind
 
 ### Heap Table(Storage)
 
-![heap-table]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/heap-table.png)  
+![heap-table]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/heap-table.png)  
 *https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/*
 
 
@@ -120,7 +120,7 @@ Heap Table을 사용하면 **주로 WHERE 조건이 없는 대량 삽입, 임시
 
 ### Clustered Index Table
 
-![clustered-index]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/clustered-index.png)  
+![clustered-index]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/clustered-index.png)  
 *https://www.pragimtech.com/blog/sql-optimization/what-is-heap-table/*
 
 
@@ -156,7 +156,7 @@ Clustered Index를 사용하면 **WHERE 조건이 Primary Key 또는 범위 조�
 
 # Full Table Scan
 
-![full-table-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/full-table-scan.png)
+![full-table-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/full-table-scan.png)
 *https://www.cybertec-postgresql.com/en/postgresql-indexing-index-scan-vs-bitmap-scan-vs-sequential-scan-basics/*
 
 ## Sequential Search, 순차 탐색
@@ -250,7 +250,7 @@ Parallel Scan은 **테이블을 여러 개의 블록(스트라이드)로 나누�
 # Index Scan
 
 *Index 자료구조의 하나인 B-Tree*  
-![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/index-scan.png)  
+![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/index-scan.png)  
 *https://sqlsunday.com/2013/02/19/indexing-basics/*
 
 **Index를 활용하여 검색 범위를 좁히고, 더 빠르게 데이터를 조회하는 방식**이다.
@@ -375,7 +375,7 @@ B-Tree의 구조를 통해 간단하게 스캔의 예시를 들어보겠다.
 
 일단은 B-Tree 라는 것은 Balanced Binary Tree의 한 종류로 트리 구조를 가지지만 **트리의 균형을 유지하도록 설계된 탐색 트리** 라는 정도만 알아두자.
 
-![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/index-scan.png)  
+![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/index-scan.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
 
 의 이미지를 한 번 더 참고하자.
