@@ -28,9 +28,9 @@ JPA를 이용하여 Spring Boot와 Docker로 생성한 PostgreSQL의 Container�
 
 ## Instance Connect
 
-Docker Container가 실행중인지 확인하고 Container 밖에서도 접근이 가능한지 확인하자.
+Docker Container가 실행 중인지 확인하고, Container 밖에서도 접근이 가능한지 확인하자.
 
-먼저 `docker ps`로 실행중인 인스턴스가 어떻게 라우팅 되고 있는지 확인한다.
+먼저 `docker ps`로 실행 중인 인스턴스가 어떻게 라우팅 되고 있는지 확인한다.
 
 ``` shell
 jaehoonman@jaehoonman-2 ~ % docker ps
@@ -41,9 +41,9 @@ CONTAINER ID   IMAGE         COMMAND                   CREATED  �
 
 ```
 
-필자는 별다른 설정 없이 5432 포트로 맵핑 했기에 `0.0.0.0:5432->5432/tcp(localhost:5432)` 로 라우팅 중이다.
+필자는 별다른 설정 없이 5432 포트로 맵핑했기에 `0.0.0.0:5432->5432/tcp(localhost:5432)` 로 라우팅 중이다.
 
-확실히 연동이 되는지 확인하기 위해서 psql, DBeaver 등과 같은 DB 클라이언트 툴을 통해 연결을 확인하는 방법을 사용해도된다.
+확실히 연동이 되는지 확인하기 위해서 psql, DBeaver 등과 같은 DB 클라이언트 툴을 통해 연결을 확인하는 방법을 사용해도 된다.
 
 필자는 IntelliJ의 기능을 이용하여 연동을 해봤다.
 
@@ -131,18 +131,18 @@ hibernate는 JPA를 구현한 구현체이며, `ddl-auto`는 등록된 Entity를
 
 가 있다.
 
-현재는 개발 과정이기에 `update`로 설정하여 엔티티 클래스와 DB의 스키마를 자동으로 동기화 시킨다.
+현재는 개발 과정이기에 `update`로 설정하여 엔티티 클래스와 DB의 스키마를 자동으로 동기화시킨다.
 
 사용 시기에 나와있듯이 운영 환경에서는 `none`과 `validate` 옵션만 사용하자.
 
-다른 옵션들은 내부 데이터 손실의 위험성이 있으니 실무에서는 절대로 설정하지말자.
+다른 옵션들은 내부 데이터 손실의 위험성이 있으니 실무에서는 절대로 설정하지 말자.
 
 위와 같이 Properties로 설정하는 것 외에도 `@Configuration`를 활용하여 class로 설정을 구현할 수도 있다.
 
 
 ## Entity
 
-JPA는 ORM(Object Relational Mapping)의 개념을 차용하여 데이터베이스의 테이블을 Java 객체로 매핑하여 인식하는데 Entity를 사용한다.
+JPA는 ORM(Object Relational Mapping)의 개념을 차용하여 데이터베이스의 테이블을 Java 객체로 매핑하는데, 이때 Entity를 사용한다.
 
 이에 따른 Entity class를 만들자.
 
@@ -227,7 +227,7 @@ public class Users {
 }
 ```
 
-등 사용자가 직접 메서드를 만들어야한다.(Boilerplate Code)
+등 사용자가 직접 메서드를 만들어야 한다.(Boilerplate Code)
 
 다시 돌아와서 클래스 단위에
 - `@Entity` : Spring Boot의 Bean이 Entity라는 것을 인식할 수 있도록 명시.
@@ -242,7 +242,7 @@ public class Users {
 @CreationTimestamp  
 @Temporal(TemporalType.TIMESTAMP)
 ```
-를 선언하여 `POST` 로 새로운 데이터를 create / insert 시 생성 된 시간을 자동으로 `TIMESTAMP`로 들어가게 설정해주었다.
+를 선언하여 `POST` 로 새로운 데이터를 create / insert 할 때 생성된 시간이 자동으로 `TIMESTAMP`로 들어가게 설정해주었다.
 
 `@AllArgsConstructor`와 `@NoArgsConstructor` 를 조금 더 설명하자면
 
@@ -298,13 +298,13 @@ Users user = Users.builder()
 
 데이터베이스와 상호작용 하기 위한 레이어다.
 
-데이터베이스와의 상호 작용이라함은 CRUD(Create, Read, Update, Delete) 일 것이고, Repository는 저장소를 뜻한다.
+데이터베이스와의 상호 작용이라 함은 CRUD(Create, Read, Update, Delete) 일 것이고, Repository는 저장소를 뜻한다.
 
-Repository는 객체와 DB 사이에 존재하는 중간 계층으로 데이터베이스 작업을 캡슐화 하여 애플리케이션 코드와 데이터 Access 로직을 분리하는 역할을 한다.
+Repository는 객체와 DB 사이에 존재하는 중간 계층으로, 데이터베이스 작업을 캡슐화하여 애플리케이션 코드와 데이터 Access 로직을 분리하는 역할을 한다.
 
-Spring Boot JPA는 위에서 작성한 Entity를 기반으로 `JpaRepository` 인터페이스를 extends 한다면 비지니스 로직에서 (~~간단한~~)SQL을 작성할 필요 없이 기본적으로 제공하는 메서드롤 통해 간단히 처리할 수 있다.
+Spring Boot JPA는 위에서 작성한 Entity를 기반으로 `JpaRepository` 인터페이스를 extends 한다면, 비즈니스 로직에서 (~~간단한~~)SQL을 작성할 필요 없이 기본적으로 제공하는 메서드를 통해 간단히 처리할 수 있다.
 
-`entity`에서 했던 것과 같이 `src/main/java/[프로젝트]` 경로에 `repositoy` 디렉토리 생성 후 `UsersRepository.java`를 생성하자.
+`entity`에서 했던 것과 같이 `src/main/java/[프로젝트]` 경로에 `repository` 디렉토리 생성 후 `UsersRepository.java`를 생성하자.
 
 ``` java
 @Repository
@@ -323,15 +323,15 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
 와 같은 메서드를 제공한다.
 
-그렇다면 `JpaRepository`는 interface일 뿐이고 실제로 구현되지 않을텐데 어떻게 메서드를 제공하는 것일까?
+그렇다면 `JpaRepository`는 interface일 뿐이고 실제로 구현되지 않을 텐데, 어떻게 메서드를 제공하는 것일까?
 
-이는 Spring boot 애플리케이션이 실행 될 때 `JpaRepository`를 상속 받는 인터페이스를 확인하고 Proxy 객체를 생성한다.
+이는 Spring boot 애플리케이션이 실행될 때 `JpaRepository`를 상속받는 인터페이스를 확인하고 Proxy 객체를 생성하기 때문이다.
 
 해당 과정에서 Hibernate 등과 같은 JPA의 구현체를 통해 쿼리를 생성하고 실행하는 부분을 자동으로 구현해준다.
 
-더 세세한 사항은 다루지 않도록하겠다.
+더 세세한 사항은 다루지 않도록 하겠다.
 
-기본적으로 제공하는 메서드 이외에도 사용자는 JPA는 메서드명으로 쿼리문을 자동으로 작성하는 Query Method 방식을 활용하여 메서드를 생성 혹은 사용할 수 있다.
+기본적으로 제공하는 메서드 이외에도, 메서드명으로 쿼리문을 자동으로 작성하는 Query Method 방식을 활용하여 메서드를 생성해 사용할 수 있다.
 
 예시로 쿼리의 `WHERE`과 같이 해당되는 데이터를 찾는 메서드를 하나 만들어보겠다.
 
@@ -344,27 +344,27 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
 `findByName(String name)`은 메서드명만 봐도 무엇을 수행할지 감이 오지 않는가?
 
-이름으로 `Users` 테이블에서 해당되는 튜플을 읽어오는데 `name`의 경우에는 값이 유일하지 않기 때문에 여러개가 나올 수 있다는 가정하에 return type을 `List<T>`로 잡았다.
+이름으로 `Users` 테이블에서 해당되는 튜플을 읽어오는데, `name`의 경우에는 값이 유일하지 않기 때문에 여러 개가 나올 수 있다는 가정하에 return type을 `List<T>`로 잡았다.
 
 이외에도 복잡한 쿼리문을 직접 작성할 수 있는 `@Query`도 있지만 다루진 않겠다.
 
 
 ## Service
 
-비지니스 로직을 처리하는 레이어다.
+비즈니스 로직을 처리하는 레이어다.
 
 Controller에서 클라이언트의 요청을 받아서 DB의 데이터를 읽어온다 했을 때 Controller와 Repository를 잇는 일종의 다리 역할이다.
 
-Controller, Service, Repository의 레이어를 나누는 아키텍쳐를 사용하는 이유는 간단하게
-- 역할 분리 : 각각의 책임을 명확히하고 유지보수성과 확장성을 높인다.
-- 비지니스 로직 캡슐화 : 민감한 정보를 다룬다거나, 복잡한 로직을 다루는 등 캡슐화를 통해 은폐, 재사용성 증대 등의 장점을 가지게 된다.
-- 테스트 용이성 : 분리된 레이어에서 테스트하고 싶은 영역을 단독으로 수행할 수 있게된다.
+Controller, Service, Repository의 레이어를 나누는 아키텍처를 사용하는 이유는 간단하게
+- 역할 분리 : 각각의 책임을 명확히 하고 유지보수성과 확장성을 높인다.
+- 비즈니스 로직 캡슐화 : 민감한 정보를 다룬다거나, 복잡한 로직을 다루는 등 캡슐화를 통해 은폐, 재사용성 증대 등의 장점을 가지게 된다.
+- 테스트 용이성 : 분리된 레이어에서 테스트하고 싶은 영역을 단독으로 수행할 수 있게 된다.
 
 정도가 있다.
 
-Service 레이어를 위주로 간단하게 설명하면서 제대로된 내용이 아닐 순 있다.
+Service 레이어를 위주로 간단하게 설명하다 보니 충분하지 않은 내용일 수 있다.
 
-이는 나중에 더 자세히 다루기로하고 일단은 Service는 비지니스 로직을 처리한다 정도만 알고 있자.
+이는 나중에 더 자세히 다루기로 하고, 일단은 Service는 비즈니스 로직을 처리한다 정도만 알고 있자.
 
 자 이번에도 디렉터리와 클래스를 만들자.
 
@@ -448,7 +448,7 @@ Users user = usersService.findUserById(1L).orElse(new Users("default", "default@
 Users user = usersService.findUserById(1L).orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없음"));
 
 ```
-와 같은 방법도 사용가능하다.
+와 같은 방법도 사용 가능하다.
 
 또한 메서드 참조자를 사용하여 특정 값을 구하는 방법과 조건에 맞는 값만 유지하는 방법도 있다.
 
@@ -527,7 +527,7 @@ Test하는 방법으로는 JUnit을 사용하는 방법도 있지만 볼륨이 �
 
 먼저 Docker PostgreSQL Container와 Spring boot 서비스를 실행시키자.
 
-이후 HTTP 요청을 보내야하는데, 해당 포스트에서는 IntelliJ의 `.http`의 기능을 활용 할 것이다.
+이후 HTTP 요청을 보내야 하는데, 해당 포스트에서는 IntelliJ의 `.http` 기능을 활용할 것이다.
 
 물론 Postman을 사용해도 된다.
 
@@ -654,9 +654,9 @@ DELETE http://localhost:8080/users/4
 
 연동된 Spring Boot와 PostgreSQL는 사실 각각의 Image, Container로 구성된다.
 
-즉, docker build, run 을 각각 진행 해야한다는 것이다.
+즉, docker build, run 을 각각 진행해야 한다는 것이다.
 
-당장은 2개만 다루면 되기에 큰 무리가 없어보이지만 서비스가 확장되면서 다뤄야할 Container가 많아진다면 곤란할 것이다.
+당장은 2개만 다루면 되기에 큰 무리가 없어 보이지만, 서비스가 확장되면서 다뤄야 할 Container가 많아진다면 곤란할 것이다.
 
 이때 Docker Compose를 사용해 이를 통합하여 관리할 수 있다.
 
@@ -724,8 +724,8 @@ networks:
 - `container_name`
   - docker compose를 통해 생성될 서비스 컨테이너의 이름을 설정한다.
   - 다른 컨테이너와 중복되는 이름을 사용할 수 없다.
-- `depondes_on`
-  - 서비스를 실행하기 전에 먼저 수행되어야하는 서비스명.
+- `depends_on`
+  - 서비스를 실행하기 전에 먼저 수행되어야 하는 서비스명.
   - 즉, db의 서비스가 먼저 실행된 뒤 Spring Boot 서비스가 실행된다.
 - `networks:app-network`
   - 동일한 컨테이너에서 서비스끼리 통신을 할 수 있도록 설정해준다.
@@ -735,21 +735,21 @@ networks:
   - Docker에서 설정한 Volume 설정을 보기 위해서는 `docker volume ls` 로 Volume의 목록을 볼 수 있다.
 - `volumes.my_pgdata.external = true`
   - 기존에 있는 volume를 사용하도록 설정.
-  - 기본적으로 Root 디렉토리 이름을 기준 자동으로 볼륨을 네임스페이스화하여 생성하지만 이전에 지정한 volume 이름과 다르기에 이를 강제하기 위해 사용했다.
+  - 기본적으로 Root 디렉토리 이름을 기준으로 볼륨을 네임스페이스화하여 자동 생성하지만, 이전에 지정한 volume 이름과 다르기에 이를 강제하기 위해 사용했다.
 
 ### DB 경로
 
-이 때 주의할 점은 DB의 호스트는 더 이상 Localhost가 아니다.
+이때 주의할 점은 DB의 호스트가 더 이상 localhost가 아니라는 것이다.
 
-이전에는 Docker Container로 실행시킨 인스턴스를 Container 외부에서 접근했기 때문에 외부로 open 해둔 host와 port로 접근 했다.
+이전에는 Docker Container로 실행시킨 인스턴스를 Container 외부에서 접근했기 때문에 외부로 open 해둔 host와 port로 접근했다.
 
-하지만 Docker-compose를 통해 하나의 컨테이너로 관리하면서, 서비스들은 컨테이너 내부에서 서로 통신을 해야하는 환경이 주어진 것이다.
+하지만 Docker Compose를 통해 하나의 네트워크로 관리하면서, 서비스들은 컨테이너 네트워크 내부에서 서로 통신을 해야 하는 환경이 주어진 것이다.
 
 그러므로 호스트는 서비스명인 `db`가 된다.
 
 ### `application.yml`
 
-위에서 언급 하였듯이 Spring Boot 서비스 입장에서 DB의 호스트는 더 이상 localhost가 아니다.
+위에서 언급하였듯이 Spring Boot 서비스 입장에서 DB의 호스트는 더 이상 localhost가 아니다.
 
 `application.yml`의 설정에서 DB URL 부분을 변경해주자.
 ``` yml
@@ -766,9 +766,9 @@ spring:
 
 ## docker-compose up
 
-파일 작성을 완료 했다면 설정 했던대로 컨테이너를 만들어야한다.
+파일 작성을 완료했다면 설정했던 대로 컨테이너를 만들어야 한다.
 
-커맨드는 `docker-compose.yml`이 있는 경로에서 실행해야한다.
+커맨드는 `docker-compose.yml`이 있는 경로에서 실행해야 한다.
 
 ### up
 기본 명령어는
@@ -785,7 +785,7 @@ docker compose up --build
 
 ![Docker Compose project]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/2/docker-compose-project.png)
 
-커맨드를 입력한 터미널은 서비스를 실행하는 커멘드가 되기에 다른 작업을 할 수가 없다.
+커맨드를 입력한 터미널은 서비스를 실행하는 터미널이 되기에 다른 작업을 할 수가 없다.
 
 백그라운드에서 실행하고 싶으면
 
@@ -809,9 +809,9 @@ jaehoonman_jenkins    jaehoonman_jenkins   "java -jar /app.jar"     app       19
 jaehoonman_postgres   postgres:14          "docker-entrypoint.s…"   db        19 minutes ago   Up 19 minutes   0.0.0.0:5432->5432/tcp
 ```
 
-이후 실행중인 인스턴스를 이전에 HTTP Test 했던 것 처럼 테스트하면 동일한 데이터를 얻을 수 있을 것이다.
+이후 실행 중인 인스턴스를 이전에 HTTP Test 했던 것처럼 테스트하면 동일한 데이터를 얻을 수 있을 것이다.
 
-서비스를 정지하고 싶다면 실행중인 터미널에서 `control + c` 혹은 `docker compose stop`의 커맨드를 입력하자.
+서비스를 정지하고 싶다면 실행 중인 터미널에서 `control + c` 혹은 `docker compose stop`의 커맨드를 입력하자.
 
 ### down
 
@@ -819,11 +819,11 @@ jaehoonman_postgres   postgres:14          "docker-entrypoint.s…"   db        
 docker compose down
 ```
 
-실행중인 서비스를 정지하고 해당 서비스와 관련된 컨테이너를 삭제한다.
+실행 중인 서비스를 정지하고 해당 서비스와 관련된 컨테이너를 삭제한다.
 
 프로젝트가 이미 생성되어 있고, 이를 `up`, `build`와 같은 커맨드로 다시 프로젝트를 생성하면 중복되는 프로젝트가 있기에 해당 커맨드는 실행되지 않을 것이다.
 
-그러므로 실행중인 인스턴스를 다시 배포하기 위해서는 docker compose 파일이 있는 경로에서 해당 커맨드를 입력하여 정지, 삭제하길 바란다.
+그러므로 실행 중인 인스턴스를 다시 배포하기 위해서는 docker compose 파일이 있는 경로에서 해당 커맨드를 입력하여 정지, 삭제하길 바란다.
 
 관련된 볼륨도 함께 삭제하려면
 ``` sh
@@ -841,7 +841,7 @@ docker compose down -v
 docker compose -p [생성될 프로젝트명] up
 ```
 
-의 커맨드를 사용하면된다.
+의 커맨드를 사용하면 된다.
 
 ### ETC
 - `docker compose stop` : 정지

@@ -12,7 +12,7 @@ tags:
 comment: true
 #published: false 
 ---
-Spring Boot를 통해 Web Socket을 이용한 채팅 시스템을 구축해보겠다
+Spring Boot를 통해 Web Socket을 이용한 채팅 시스템을 구축해보겠다.
 
 여기서 왜 채팅 시스템은 유독 Web Socket을 이용하여 구현하는지 궁금할 수도 있다.
 
@@ -20,37 +20,39 @@ Spring Boot를 통해 Web Socket을 이용한 채팅 시스템을 구축해보�
 
 간단히 말하자면 반응성이 좋은 실시간 서비스에 적합하기 때문이다.
 
-기존에 HTTP 통신은 요청이 있을 때마다 연결을 열고 메시지 교환을하고 바로 닫는 Connectionless와 클라이언트의 상태를 보존하지 않는 Stateless의 특징을 가지고 있다.
+기존에 HTTP 통신은 요청이 있을 때마다 연결을 열고 메시지 교환을 한 뒤 바로 닫는 Connectionless와, 클라이언트의 상태를 보존하지 않는 Stateless의 특징을 가지고 있다.
 
-일단 Connectionless 의 특징으로 클라이언트는 매번 hand-shake 과정을 겪으면서 자원 낭비로인한 성능 저하 문제가 있었으며,
-Stateless로 인해 클라이언트의 상태가 항상 유지 되지 않았기에 핸들링에 불편함을 겪어야했다.
+일단 Connectionless 의 특징으로 클라이언트는 매번 hand-shake 과정을 겪으면서 자원 낭비로 인한 성능 저하 문제가 있었으며,
+Stateless로 인해 클라이언트의 상태가 항상 유지되지 않았기에 핸들링에 불편함을 겪어야 했다.
 
-이로인해 HTTP 기반의 메시지 교환은
+이로 인해 HTTP 기반의 메시지 교환은
 - 주기적으로 요청을 보내는 Polling.
-- 연결 세션을 오래동안 유지하면서 빠르게 인입을 핸들링할 수 있는 Long-Polling.
+- 연결 세션을 오랫동안 유지하면서 빠르게 인입을 핸들링할 수 있는 Long-Polling.
 - Web Socket과 비슷하게 연결을 유지하는 Streaming
 
-의 기법도 생기긴했지만 HTTP의 특성 상
+의 기법도 생기긴 했지만, HTTP의 특성상
 - Header가 불필요하게 큼.
 - Long Polling, Streaming은 클라이언트에서 서버로 메시지를 보내는 것이 어렵다.
-  등의 단점은 여전히 존재했다.
+
+등의 단점은 여전히 존재했다.
 
 여기서 TCP/IP 기반의 Web Socket이 등장하는데 이는
 - 연결 지향 프로토콜이기에 한 번 연결을 생성하면 유지된다.
-- 지연 시간을 최소화 할 수 있다.
-- 연속적으로 데이터를 처리하기에 처리량을 향상 시킨다.
-  등의 장점을 가지고 있다.
+- 지연 시간을 최소화할 수 있다.
+- 연속적으로 데이터를 처리하기에 처리량을 향상시킨다.
 
-그럼 이를 구현하는데 필요한 기술들을 뭐가 있을까?
+등의 장점을 가지고 있다.
+
+그럼 이를 구현하는 데 필요한 기술들은 뭐가 있을까?
 
 ## 구현을 위해서
 위에서만 보면 장점만 있는 것 같지만 역시 아니다.
 
 Web Socket은 기본적으로 페이로드를 Plain text로 교환한다.
 
-이 뜻은 데이터를 가공하는데 있어 공수가 필요하다는 뜻.
+이 뜻은 데이터를 가공하는 데 있어 공수가 필요하다는 뜻.
 
-또한 요즘은 뭐 그럴일이 상당히 드물겠지만 Web Socket을 지원하지 않는 브라우저라던가 버전이 있을 수도 있다.
+또한 요즘은 뭐 그럴 일이 상당히 드물겠지만, Web Socket을 지원하지 않는 브라우저라든가 버전이 있을 수도 있다.
 
 이를 위해서 SockJS와 STOMP.js(Simple Text Oriented Messaging Protocol)를 사용한다.
 
@@ -69,20 +71,20 @@ Web Socket은 기본적으로 페이로드를 Plain text로 교환한다.
 
 # 메시지 브로커
 
-Web Socket에서 메시지 브로커는 클라이언트 - 서버간의 메시지 교환을 중간에서 관리하는 시스템이다.
+Web Socket에서 메시지 브로커는 클라이언트 - 서버 간의 메시지 교환을 중간에서 관리하는 시스템이다.
 
-Publish  / Subscribe 의 패턴이 활용될 것이다.
+Publish / Subscribe 의 패턴이 활용될 것이다.
 
-다수의 클라이언트가 특정 주제(topic)에 대해 구독하고 해당 주제로 메시지를 주고 받는 개념이다.
+다수의 클라이언트가 특정 주제(topic)를 구독하고 해당 주제로 메시지를 주고받는 개념이다.
 
-좀 어려울 수 있는데 Publish는 주제(topic)를 나누기 위해 마련된 방이고, 그 방안에 들어가기 위해 Subscribe를 한다 생각해보자.
+좀 어려울 수 있는데, Publish는 주제(topic)별로 마련된 방에 메시지를 보내는 것이고 그 방에 들어가기 위해 Subscribe를 한다고 생각해보자.
 
-클라이언트는 주제(topic)를 가지고 방(Publish)안에서 대화를 나눈다.
-방(Publish) 안에 있는 사람은 해당 주제(topic)로 대화(message)를 나누기 위해 모였기에 방안에 들어와있는 사람들은 누군가 대화를하면 이 내용이 방안에서 다른 사람들에게 전달될 것이다.(subscribe)
+클라이언트는 주제(topic)를 가지고 방 안에서 대화를 나눈다.
+방 안에 있는 사람들은 해당 주제(topic)로 대화(message)를 나누기 위해 모였기에, 누군가 대화를 하면 이 내용이 방 안의 다른 사람들에게 전달될 것이다.(subscribe)
 
 여기서 대화(message)를 중간에서 관리해주는 역할이 Broker이다.
 
-Sprint Boot에서는 내부 메모리를 사용하는 내부 브로커와 DB와 같은 저장 공간에 메시지를 저장하는 외부 브로커가 있다.
+Spring Boot에서는 내부 메모리를 사용하는 내부 브로커와, DB와 같은 저장 공간에 메시지를 저장하는 외부 브로커가 있다.
 
 ![내부 브로커]({{ site.baseurl }}/assets/images/posts/2024/spring-boot/web-socket-chat/inner_broker.png)  
 
@@ -91,7 +93,7 @@ Sprint Boot에서는 내부 메모리를 사용하는 내부 브로커와 DB와 
 
 
 
-우리는 내부 브로커로 웹 소켓의 개념을 채팅 시스템을 구현하며 알아보자.
+우리는 내부 브로커를 이용해 채팅 시스템을 구현하며 웹 소켓의 개념을 알아보자.
 
 샘플 코드는 [웹 소켓 채팅 샘플](https://github.com/jaehoonmandev/WSChatDemo) 에 올려두었다.
 
@@ -119,13 +121,13 @@ dependencies {
 
 Web Socket 서버를 열어주는 역할을 수행할 것이다.
 
-`@EnableWebSocketMessageBroker` 을 통해 STOMP 기반 Web Socket 통신을 활성화 시켜준다.
+`@EnableWebSocketMessageBroker` 을 통해 STOMP 기반 Web Socket 통신을 활성화시켜 준다.
 
 이후 `WebSocketMessageBrokerConfigurer`의 interface를 통해 Endpoint, CORS, SockJS를 설정해준다.
 
-여기서 `WebSocketConfigurer`을 implements 하여 구현하는 경우도 있는데 이는 엔드포인트를 설정하고, Broker 역할을 하는 핸들러는 직접 구성하여 등록 시켜야한다.
+여기서 `WebSocketConfigurer`을 implements 하여 구현하는 경우도 있는데, 이는 엔드포인트를 설정하고 Broker 역할을 하는 핸들러를 직접 구성하여 등록시켜야 한다.
 
-`WebSocketMessageBrokerConfigurer`는 STOMP와 함께 메시지 브로커를 구성하는데 사용한다.
+`WebSocketMessageBrokerConfigurer`는 STOMP와 함께 메시지 브로커를 구성하는 데 사용한다.
 
 `configureMessageBroker` 에서는 Server -> Client / Client -> Server의 메시지 교환 Broker 경로를 설정해준다.
 
@@ -154,22 +156,22 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {  
         /** Server -> Client | 해당 경로를 Subscribe 하는 Client들에게 메시지 보낸다.  
          * 서버에서 Client로 Message를 보내는 경로이기 때문에 사용자가 실시간으로 Message를 receive하기 위해서는  
-         * '/topic' 으로 시작하는 WS 경로를 subscribe 해야한다.  
+         * '/topic' 으로 시작하는 WS 경로를 subscribe 해야 한다.  
          */        
          registry.enableSimpleBroker("/topic");  
   
         /** Client -> Server | Client가 보낸 메시지를 Broking 하는 경로를 설정.  
          *  Client가 Server로 Message를 보내는 경로이기에 sendMessage의 경로는  
-         *  '/app'를 포함하는 경로에 send 해야한다.  
+         *  '/app'를 포함하는 경로로 send 해야 한다.  
          */  
         registry.setApplicationDestinationPrefixes("/app");  
     }  
 }
 ```
 
-`configureMessageBroker` 에서 `/ws/chat`, `/app`, `/topic`과 의 경로를 설정했는데 위에서 설명했던 Publish / Subscribe / Broker 의 개념이 각각 적용된다.
+`configureMessageBroker` 에서 `/ws/chat`, `/app`, `/topic` 의 경로를 설정했는데, 위에서 설명했던 Publish / Subscribe / Broker 의 개념이 각각 적용된다.
 
-웹 소켓 메시지 교환을 위해 `/ws/chat`으로 Publicsh를 하고, 클라이언트는 서버에서 메시지를 듣기 위해 `/topic`의 경로를 Subscribe하고 메시지를 보내기 위해 `/topic`의 경로로 메시지 브로커를 통해 메시지를 전송한다.
+웹 소켓 연결을 위해 `/ws/chat` 엔드포인트를 열고, 클라이언트는 서버에서 오는 메시지를 받기 위해 `/topic` 경로를 Subscribe하며, 메시지를 보낼 때는 `/app` 경로로 전송하여 메시지 브로커를 거치게 된다.
 
 ### Model
 
@@ -230,7 +232,7 @@ public class ChatRoom {
 
 채팅방을 저장하는 객체이다.
 
-ID와 이름을 저장하고 생성 시 초기화하는 생성자외에는 별거 없다.
+ID와 이름을 저장하고 생성 시 초기화하는 생성자 외에는 별거 없다.
 
 
 ### Service
@@ -276,10 +278,10 @@ public class ChatRoomService {
 }
 ```
 
-### Contoller
+### Controller
 컨트롤러도 Model과 같이 두 가지로 나눌 것이다.
 
-채팅방을 관리하는 `ChatRoomController`와 Message Broker의 역할을 수행할 `StompChatController`다
+채팅방을 관리하는 `ChatRoomController`와 Message Broker의 역할을 수행할 `StompChatController`다.
 
 ``` java
 @Controller  
@@ -296,7 +298,7 @@ public class ChatRoomController {
     /**  
      * 채팅 메인 화면 렌더링
      * '@RequestMapping("/chat")'를 설정했기에 이를 호출하기 위해
-     * '/chat/room' 의 경로로 호출해야한다.
+     * '/chat/room' 의 경로로 호출해야 한다.
      * @param model  
      * @return  
      */  
@@ -368,7 +370,7 @@ public class StompChatController {
     /**  
      * Client가 메시지를 보내는 경로와 메시지를 처리하는 로직  
      * config 에서 setApplicationDestinationPrefixes("/app")를 설정했기에  
-     * 클라이언트는 `/app`을 포하한 경로로 메시지를 전송해야한다.  
+     * 클라이언트는 `/app`을 포함한 경로로 메시지를 전송해야 한다.  
      * @param message  
      */  
     @MessageMapping("/chat/sendMessage")  
@@ -402,7 +404,7 @@ public class StompChatController {
 }
 ```
 
-`StompChatController`의 컨트롤러는 View의 코드 일부와 함께 설명하는게 이해하기 쉬울 듯하다.
+`StompChatController`는 View의 코드 일부와 함께 설명하는 게 이해하기 쉬울 듯하다.
 
 client가 채팅방에 입장 시
 ``` javascript
@@ -416,7 +418,7 @@ ws.send("/app/chat/sendMessage"...)
 ```
 의 경로로 메시지를 보내게 될 것이다.
 
-메시지를 보내게되면 `StompChatController`의
+메시지를 보내게 되면 `StompChatController`의
 ```java
 @MessageMapping("/chat/sendMessage") public void sendMessage(ChatMessage message)
 ```
@@ -450,7 +452,7 @@ ws.subscribe('/topic/chat/room/' + roomId ...)
 
 ### View
 
-채팅방에 접근하기전에 렌더링하는 `room-list.html`와 채팅방에 접속하여 채팅을하는 `room-detail.html`으로 구성하였다.
+채팅방에 접근하기 전에 렌더링하는 `room-list.html` 과, 채팅방에 접속하여 채팅을 하는 `room-detail.html` 으로 구성하였다.
 
 ``` html
 <!DOCTYPE html>  
@@ -534,7 +536,7 @@ ws.subscribe('/topic/chat/room/' + roomId ...)
 
 처음 렌더링 시 채팅방에서 사용될 전송자명을 설정하고, 채팅방 생성을 하는 영역이다.
 
-방생성 시 이름을 설정하고 생성하기를 클릭하면 생성된 채팅방 리스트가 렌더링된다.
+방 생성 시 이름을 설정하고 생성하기를 클릭하면 생성된 채팅방 리스트가 렌더링된다.
 
 
 ``` html
@@ -660,7 +662,7 @@ ws.send("/app/chat/sendMessage", {}, JSON.stringify({
 
 위에서 설명한 것과 같이
 subscribe는 `/topic/chat/room/' + roomId`의 경로를,
-메시지 전송은 `/app/chat/sendMessage`을 통해한다.
+메시지 전송은 `/app/chat/sendMessage` 를 통해 한다.
 
 ![채팅방 상세]({{ site.baseurl }}/assets/images/posts/2024/spring-boot/web-socket-chat/room-detail.png)
 

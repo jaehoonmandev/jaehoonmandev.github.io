@@ -20,13 +20,13 @@ Spring Boot 를 젠킨스를 통해 Docker Build 하는 방법에 대해 알아�
 
 ![structure_before]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/4/structure_before.png)
 
-현재까지 위와 같은 구조가 완성 되었다.
+현재까지 위와 같은 구조가 완성되었다.
 
-유저는 프로젝트 소스를 GitHub Repository 에 PUSH하게 되고, GitHub는 PUSH 이벤트를 WEBHOOK 설정을 토대로 로컬 Jenkins Docker Container 로 전달하게된다.
+유저는 프로젝트 소스를 GitHub Repository 에 PUSH하게 되고, GitHub는 PUSH 이벤트를 WEBHOOK 설정을 토대로 로컬 Jenkins Docker Container 로 전달하게 된다.
 
 이번 포스트에서는 Push 했던 소스를 젠킨스에서 PULL 하여 빌드 및 필요 시 테스트하여 Spring Boot 애플리케이션 컨테이너를 최신 버전으로 교체하여 실행하는 과정을 진행하겠다.
 
-유저가 코드를 반영하고, 해당 코드를 인식하고 추가 작업을 진행하는 CI, 빌드 및 테스트,  배포, 실행 까지 진행하는 CD의 CI/CD 를 구현하게되는 것이다.
+유저가 코드를 반영하고 해당 코드를 인식하여 추가 작업을 진행하는 CI, 빌드 및 테스트, 배포, 실행까지 진행하는 CD로 이루어진 CI/CD 를 구현하게 되는 것이다.
 
 # Jenkins Build
 
@@ -46,20 +46,20 @@ Freestyle은 보통 Push webhook 이벤트를 받았을 때 명령어를 실행�
 
 와 같다.
 
-해당 과정을 입력하기 전에 Docker CLI가 젠킨스 컨테이너 내부에서 실행되는지 부터 확인해봐야한다.
+해당 과정을 입력하기 전에 Docker CLI가 젠킨스 컨테이너 내부에서 실행되는지부터 확인해봐야 한다.
 
 ### Jenkins에서 Docker 명령어 실행하기.
 
 젠킨스에서 Execute shell에 Docker의 명령어를 입력하면 `docker: not found`와 같은 에러와 함께 빌드에 실패하는 경우가 있다.
 
-이는 젠킨스가 도커 명령어를 사용하기 위해서는 젠킨스 컨테이너 내부에 Docker CLI 설치를 하는 `Docker-in-Docker(DID)` 방식을 사용할 것이다.
+젠킨스가 도커 명령어를 사용할 수 있도록, 젠킨스 컨테이너 내부에 Docker CLI를 설치하는 `Docker-in-Docker(DinD)` 방식을 사용할 것이다.
 
-먼저 실행중인 컨테이너 내부로 접근하자.
+먼저 실행 중인 컨테이너 내부로 접근하자.
 ``` sh
 docker exec -it -u root [젠킨스 컨테이너 이름] /bin/bash
 ```
 
-이후 `# docker` 를 실행하게되면 `bash: docker: command not found`의 에러가 뜰 경우가 있다.
+이후 `# docker` 를 실행하게 되면 `bash: docker: command not found`의 에러가 뜰 경우가 있다.
 
 이는
 
@@ -76,22 +76,22 @@ docker exec -it -u root [젠킨스 컨테이너 이름] /bin/bash
 dpkg -l | grep docker
 ```
 
-의 명령어를 통해 현재 Docker 관련 패키지가 설치 되어 있는지 확인하자.
+의 명령어를 통해 현재 Docker 관련 패키지가 설치되어 있는지 확인하자.
 
 ![check_dockerCLI]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/4/check_dockerCLI.png)
 
-필자는 설치를 마쳤기에 패키지 목록과 `docker` 명령어가 실행되는 것을 확인할 수 있으며, 만약 위와 같이 노출되지 않는다면
+필자는 설치를 마쳤기에 패키지 목록과 `docker` 명령어가 실행되는 것을 확인할 수 있는데, 만약 위와 같이 노출되지 않는다면
 
 ``` sh 
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
-의 명령어를 통해 패키지를 다운 받자.
+의 명령어를 통해 패키지를 다운받자.
 
-설치가 완료되었다면  터미널에 `docker --version`을 입력해보고 위에 올려둔 이미지 처럼 버전이 제대로 출력 되는지 확인하자.
+설치가 완료되었다면 터미널에 `docker --version`을 입력해보고, 위에 올려둔 이미지처럼 버전이 제대로 출력되는지 확인하자.
 
-정상 출력이 완료 되었다면 젠킨스 아이템 빌드 시에도 docker 명령어가 제대로 수행되는지 한 번 더 확인해보자.
+정상 출력이 완료되었다면 젠킨스 아이템 빌드 시에도 docker 명령어가 제대로 수행되는지 한 번 더 확인해보자.
 
 `아이템 - 구성 - Build Steps - Add build step - Execute shell` 을 추가하고,
 
@@ -103,7 +103,7 @@ docker --version
 
 ![execute_shell]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/4/execute_shell.png)
 
-이후 `지금 빌드` 를 수행하여  빌드가 제대로 이루어지는지 확인해보자.
+이후 `지금 빌드` 를 수행하여 빌드가 제대로 이루어지는지 확인해보자.
 
 ![console_output]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/4/console_output.png)
 
@@ -157,7 +157,7 @@ docker build -t [Spring Boot 이미지 이름] .
 docker compose up -d --build
 ```
 
-해당 내용을 작성 후 Save를 하면된다.
+해당 내용을 작성 후 Save를 하면 된다.
 
 과정에 대한 설명은 주석으로 대체하겠다.
 
@@ -165,12 +165,12 @@ docker compose up -d --build
 
 Build Steps 가 성공 혹은 실패한 후 즉, 빌드 과정을 마친 후 실행되는 과정을 정의한다.
 
-빌드 결과를 확인하거나 배포, 알림 등의 빌드가 끝난 후 추가적인 작업을 정의하는데 사용한다.
+빌드 결과 확인이나 배포, 알림 등 빌드가 끝난 후의 추가적인 작업을 정의하는 데 사용한다.
 
 - **테스트 리포트 생성**: 테스트 결과를 기반으로 리포트를 생성하거나, 테스트 커버리지 보고서를 출력한다.
 - **알림 전송**: 이메일, Slack, SMS 등으로 빌드 결과(성공/실패)를 팀원에게 알린다.
 - **배포 작업**: 빌드된 아티팩트를 서버에 배포하거나, Docker 컨테이너를 배포하는 작업을 수행한다.
-- **아티팩트 보관**: 빌드된 파일(JAR, WAR, ZIP 등)을 보관하거나, 다른 서버에 업로드한다
+- **아티팩트 보관**: 빌드된 파일(JAR, WAR, ZIP 등)을 보관하거나, 다른 서버에 업로드한다.
 - **클린업 작업**: 이전에 생성된 아티팩트를 삭제하여 디스크 공간을 확보한다.
 
 등의 작업을 할 수 있다.
@@ -236,9 +236,10 @@ pipeline {
 ```
 
 와 같이 구성할 수 있을 것 같다.
+
 ## PUSH
 
-이제 Repository에 올려둔 Spring Boot  소스를 변경할 것이다.
+이제 Repository에 올려둔 Spring Boot 소스를 변경할 것이다.
 
 ### Controller
 
@@ -290,7 +291,7 @@ home.html
 </html>
 ```
 
-Controller를 통해 전달 받은 값을 렌더링한다.
+Controller를 통해 전달받은 값을 렌더링한다.
 
 ### Push and result
 
@@ -300,7 +301,7 @@ Push를 정상적으로 마쳤다면 GitHub에서는 Webhook Delivery를 진행�
 
 ![webhook_deliveries]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/4/webhook_deliveries.png)
 
-그리고 Jenkins에서는 해당 이벤트를 전달 받고
+그리고 Jenkins에서는 해당 이벤트를 전달받고
 
 ![console_output_2]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/4/console_output_2.png)
 
@@ -338,7 +339,7 @@ Push를 정상적으로 마쳤다면 GitHub에서는 Webhook Delivery를 진행�
 
 와 같은 구조를 가지게 될 것이다.
 
-지금까지의 시리즈는 Docker, Jenkins, Github의 DevOps 구조를 가진 엄청 간단한 구조의 CI/CD를 구성해봤다.
+지금까지의 시리즈에서는 Docker, Jenkins, GitHub를 활용한 아주 간단한 구조의 CI/CD를 구성해봤다.
 
 앞으로도 더 큰 서비스를 운영할 것이라면 테스트, SSL 설정, k8s 등 추가적인 설정은 필요할 것이다.
 

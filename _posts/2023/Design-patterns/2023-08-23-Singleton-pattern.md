@@ -1,6 +1,6 @@
 ---
 #layout: single
-title:	"[Design patterns] Creation pattrens - Singleton pattern"
+title:	"[Design patterns] Creational patterns - Singleton pattern"
 date:	2023-08-23 12:00:00
 categories:
 - Design patterns
@@ -11,11 +11,11 @@ tags:
 
 # Singleton pattern
 
-클래스의 인스턴스를 단일 인스턴스로 제한하여  전체적인 시스템에서 공통적으로 수행해야하는 동작을 위한 객체를 생성하는데 사용된다.
+클래스의 인스턴스를 단일 인스턴스로 제한하여 전체적인 시스템에서 공통적으로 수행해야 하는 동작을 위한 객체를 생성하는 데 사용된다.
 
 즉, 글로벌 변수로 활용할 객체의 인스턴스를 한 개만 생성하여 사용하는 식으로 활용되는 객체이다.
 
-싱글톤 패턴을 사용하게되면 아래와 같은 특징을 가지게 된다.
+싱글톤 패턴을 사용하게 되면 아래와 같은 특징을 가지게 된다.
 
 - 하나의 인스턴스를 가지도록 보장해준다.
 - 인스턴스에 접근하기 쉬워진다.
@@ -38,7 +38,7 @@ tags:
 
 이전에 존재하지 않는 단일한 글로벌 액세스를 위한 인스턴스를 만들기 위해서는
 
-- 다른 객체에 의해서 새롭게 인스턴스화 되지 않도록 객체는 private로 이루어져야한다.
+- 다른 객체에 의해서 새롭게 인스턴스화 되지 않도록 생성자는 private로 선언해야 한다.
 - 어느 위치에서든 인스턴스를 참조할 수 있도록 메서드 접근 제한자는 static 으로 지정한다.
 
 
@@ -51,7 +51,7 @@ tags:
 - Lazy Initialization with Double check locking
 - Bill Pugh Singleton Implementation
 
-가 있으며 하나씩알아보도록하자.
+가 있으며 하나씩 알아보도록 하자.
 
 
 
@@ -59,10 +59,10 @@ tags:
 
 가장 간단하게 구현할 수 있는 방법이다.
 
-인스턴스가 메모리에 적재 될 때 초기화 하는 방법이며, 객체가 인스턴스로 참조되면서 메모리에 적재되는 방법이다.
+인스턴스가 메모리에 적재될 때 초기화하는 방법이며, 클래스가 로딩되는 시점에 인스턴스가 함께 생성된다.
 
 ```java
-//Eager Initialization 으로 호출 시에 초기화된다.
+//Eager Initialization 으로 클래스가 로딩될 때 초기화된다.
 public class Singleton_Eager {
 
     //어디서 사용하더라도 동일한 인스턴스를 넘겨주기 위해 private static final 로 메모리에 상주시킨다.
@@ -71,7 +71,7 @@ public class Singleton_Eager {
     //Private 생성자.
     private Singleton_Eager(){}
 
-    //단일 인스턴스를 호출하기 위해 public static 으로 외부에서 참조할 수 있도록한다.
+    //단일 인스턴스를 호출하기 위해 public static 으로 외부에서 참조할 수 있도록 한다.
     public static Singleton_Eager getInstance(){
         return instance; // 클래스 자체에서 접근하기에 this 는 붙지 않는다.
     }
@@ -83,24 +83,24 @@ public class Singleton_Eager {
 
 - 간단한 구현 방법.
 - 필요하든, 필요하지 않든 항상 메모리에 상주 되어있어 자원 손실 가능성이 있다.
-- 초기화가 무조건 일어나다 보니 CPU 타임 또한 손실이있다.
+- 초기화가 무조건 일어나다 보니 CPU 타임 또한 손실이 있다.
 - 예외 처리가 불가능하다.
 
 
 
 ### Using static block
 
-Eager initialization와 크게 다르지 않지만 static block 안에 생성되어 예외 처리와 같이 생성에 대한 권한을 가질 수 있게된다.
+Eager initialization과 크게 다르지 않지만 static block 안에서 생성되어 예외 처리와 같이 생성에 대한 권한을 가질 수 있게 된다.
 
 ```java
-//statick block을 이용하여 인스턴스 생성의 제어를 가질 수 있는 초기화 방법.
+//static block을 이용하여 인스턴스 생성의 제어를 가질 수 있는 초기화 방법.
 public class Static_block {
     //getInstance() 와 같은 인스턴스 제공 메서드가 없기에 public 지정
     public static Static_block instance;
     
     private Static_block(){}
     
-    //static 블럭안에서 초기화되기에 예외 처리와 같은 제어권을 가질 수 있게된다.
+    //static 블럭 안에서 초기화되기에 예외 처리와 같은 제어권을 가질 수 있게 된다.
     static {
         instance = new Static_block();
     }
@@ -111,7 +111,7 @@ public class Static_block {
 #### 특징
 
 - 간단한 구현 방법.
-- 인스턴스를 직접 액세스하기 때문에 getInstance() 와 같은 메서드를 구현하지 않아도된다.
+- 인스턴스를 직접 액세스하기 때문에 getInstance() 와 같은 메서드를 구현하지 않아도 된다.
 - static block 안에서 예외처리가 가능하다.
 - Eager initialization 과 같이 메모리 낭비의 우려가 있다.
 
@@ -119,11 +119,11 @@ public class Static_block {
 
 ### Lazy initialization
 
-위의 구현 방법에서 공통적으로 생기는 메모리 낭비의 우려를 보완하여 필요 시에만 생성되도록하는 방법이다.
+위의 구현 방법에서 공통적으로 생기는 메모리 낭비의 우려를 보완하여 필요 시에만 생성되도록 하는 방법이다.
 
 인스턴스를 return 시켜줄 때 null-check 를 통하여 기존에 생성된 인스턴스가 없으면 생성하여주고, 이미 생성되어 있다면 기존의 값을 넘겨주는 방식으로 호출 시점에서 핸들링이 가능하다.
 
-시스템 초기화 시 인스턴스가 생성되지 않고, 객체가 필요에 의해 호출될 때 객체를 생성할 때 일부러 딜레이를 주는 기술이다.
+시스템 초기화 시점에는 인스턴스를 생성하지 않고, 객체가 실제로 필요해서 호출되는 시점까지 생성을 미루는 기술이다.
 
 ```java
 //필요시에만 인스턴스를 할당하여 메모리 효율적이며, 생성 시점에서 예외처리를 할 수 있다.
@@ -155,13 +155,13 @@ public class Lazy {
 
 
 
-## Thread Safe Singleton
+### Thread Safe Singleton
 
 단순 Lazy initialization 은 각자 다른 위치에서 동시에 싱글톤 인스턴스에 접근하는 경우가 생기면 예상하지 못한 동작이 수행될 수 있는 Race Condition이 발생할 수 있다.
 
-멀티쓰레드 환경에서 이를 방지하기 위해서 요청을 동기적으로 처리하는 방법을 사용해야한다.
+멀티쓰레드 환경에서 이를 방지하기 위해서 요청을 동기적으로 처리하는 방법을 사용해야 한다.
 
-인스턴스를 참조할 수 있게 하는 getInstance() 메서드에 synchronized 속성을 부여하면된다.
+인스턴스를 참조할 수 있게 하는 getInstance() 메서드에 synchronized 속성을 부여하면 된다.
 
 ```java
 public class SingletonThreadSafe {
@@ -187,17 +187,17 @@ public class SingletonThreadSafe {
 
 - Lazy initialization 기능 유지.
 - Thread Safe
-- synchronized 로 수행되기 때문에 여러 쓰레드가 동시에 액세스 할 수 없어 성능 저하의 원인이 된다.
+- synchronized 로 수행되기 때문에 여러 쓰레드가 동시에 액세스할 수 없어 성능 저하의 원인이 된다.
 
 
 
-## Lazy initialization with Double check locking
+### Lazy initialization with Double check locking
 
 Thread safe singleton 에서 발생할 수 있는 동기 처리로 인한 성능 저하를 개선할 수 있는 방법이다.
 
 메서드 자체에 synchronized를 부여하지 않고 인스턴스를 생성하는 부분에서 **synchronized** 속성을 부여하는 방법이다.
 
-이로인해 최초 인스턴스 생성 때에만 **synchronized** 처리를 하게된다.
+이로 인해 최초 인스턴스 생성 때에만 **synchronized** 처리를 하게 된다.
 
 ```java
 public class Singleton_Lazy {
@@ -236,19 +236,19 @@ public class Singleton_Lazy {
 
 추가로 객체 선언 시 “volatile” 이라는 속성을 부여할 수 있는데, 이는 모든 쓰레드에서 해당 객체를 메인 메모리에서만 로드할 수 있도록 강제하는 것을 의미한다.
 
-volatile을 사용하지 않을경우 쓰레드는 메인 메모리에서 가져온 객체를 CPU 캐시에 저장하는데, CPU 캐시는 쓰레드마다 부여가 되기에 서로 불일치할 가능성이 있기에 이를 메인 메모리에서만 즉시 읽어 오도록 강제하여 위와 같은 위험성을 회피할 수 있다.
+volatile을 사용하지 않을 경우 쓰레드는 메인 메모리에서 가져온 객체를 CPU 캐시에 저장하는데, CPU 캐시는 쓰레드마다 부여되기에 값이 서로 불일치할 가능성이 있다. 이를 메인 메모리에서만 즉시 읽어오도록 강제하여 위와 같은 위험성을 회피할 수 있다.
 
 ```java
-private static volatile Singleton_Lazy instance = new Lazy();
+private static volatile Singleton_Lazy instance = new Singleton_Lazy();
 ```
 
 
 
-## Bill Pugh Singleton Implementation
+### Bill Pugh Singleton Implementation
 
 Java5 이전에는 메모리 모델에 이슈가 빈번하였기에 멀티쓰레드 환경에서 또한 이슈가 생길 가능성이 있었다.
 
-이에 Bill Pugh는 Inner Class 를 이용한 생성방법을 제안하였다.
+이에 Bill Pugh는 Inner Class 를 이용한 생성 방법을 제안하였다.
 
 ```java
 public class Bill_Pugh {
@@ -267,7 +267,7 @@ public class Bill_Pugh {
 
 싱글톤 클래스가 로드되어도 클래스 내부의 클래스는 로드되지 않는다.
 
-getInstance() 가 호출 될때만 생성되기 때문에 Lazy initialization을 구현하며, 성능저하에 영향을 주는 synchronized 또한 사용하지 않는다.
+getInstance() 가 호출될 때만 생성되기 때문에 Lazy initialization을 구현하며, 성능 저하에 영향을 주는 synchronized 또한 사용하지 않는다.
 
 
 
@@ -275,4 +275,5 @@ Ref.
 
 https://en.wikipedia.org/wiki/Singleton_pattern  
 https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/  
-https://m.blog.naver.com/sun_zero2/222080290099  
+https://m.blog.naver.com/sun_zero2/222080290099
+  

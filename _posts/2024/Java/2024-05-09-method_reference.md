@@ -11,24 +11,24 @@ tags:
 comment: true
 #published: false 
 ---
-메서드 참조라고 불리우는 기능으로 이전에 포스트 하였던 람다식을 이해했다면 이보다 더 간편하고 가독성 좋게 코드를 작성하게 해준다.
+메서드 참조라고 불리는 기능으로, 이전에 포스팅했던 람다식을 이해했다면 이보다 더 간편하고 가독성 좋게 코드를 작성하게 해준다.
 
-`::` 로 이를 표현하며 PostgreSQL등과 같은 DB를 사용할 시 형변환의 용도로 사용해보았을 수도 있다.
+`::` 로 이를 표현하며, PostgreSQL 등과 같은 DB를 사용할 시 형변환의 용도로 사용해보았을 수도 있다.
 
 기존에 있는 메서드를 참조하여 간단한 람다식을 만든다.
 
-람다식을 기반으로하는 특수한 타입이기 때문에 람다식의 기반 지식이 있어야하고, 추가로 익명 클래스의 내용도 이해하면 좋을 것 같다.
+람다식을 기반으로 하는 특수한 타입이기 때문에 람다식의 기반 지식이 있어야 하고, 추가로 익명 클래스의 내용도 이해하면 좋을 것 같다.
 
 이전 포스트는
 - [람다](/java/lambda/)
 - [익명 클래스](/java/Anonymous-class/)
 
-를 보면된다.
+를 보면 된다.
 
 메서드 참조는 4가지 종류가 있다.
 - Static methods
 - Instance methods of particular objects
-- Instance methods of an arbitrary object of a paticular type
+- Instance methods of an arbitrary object of a particular type
 - Constructor
 
 ## Reference to a Static Method
@@ -79,7 +79,10 @@ ClassName::methodName
 ```
 라 했었는데
 
-`println`의 메서드는 `System.out` 클래스에 있는 메서드이기에 `System.out::println` 로 표현할 수 있다.
+`println`은 `System.out` 객체(PrintStream 인스턴스)가 가진 메서드이기에 `System.out::println` 로 표현할 수 있다.
+
+(엄밀히 따지면 이 예시는 정적 메서드가 아니라 특정 객체의 인스턴스 메서드를 참조하는 형태에 가깝다.)
+
 ## Reference to an Instance Method of a Particular Object
 
 특정 객체를 인스턴스 메서드 참조로 사용하는 방법이다.
@@ -140,7 +143,7 @@ public static void main(String[] args) {
             //람다식을 사용.  
             //.sorted((a, b) -> a.compareTo(b))            
             //메서드 참조  
-            .sorted(Integer::compareTo)  a
+            .sorted(Integer::compareTo)  
             .forEach(System.out::println);  
 }
 
@@ -175,7 +178,7 @@ public static void main(String[] args) {
 
 `ArrayList::new`는 `Supplier` 에게 기본 생성자를 제공하고, `Supplier<List<String>>`에 제네릭 타입을 설정하여 객체를 제공한다.
 
-즉 `<List<String>>`는 `ArrayList`의 인스턴스가 되고 `Supplier.get`으로 해당 인스턴스를 가져와 add를 한다.
+즉, `listSupplier.get()`을 호출하면 `ArrayList` 인스턴스가 생성되어 반환되고, 이를 통해 add를 한다.
 
 <br/>
 

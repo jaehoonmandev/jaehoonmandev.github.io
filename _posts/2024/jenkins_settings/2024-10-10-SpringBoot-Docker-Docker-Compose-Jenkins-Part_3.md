@@ -15,11 +15,11 @@ comment: true
 #published: false 
 ---
 
-[Spring Boot + Docker + JPA + Docker Compose + Jenkins -Part.2-](/settings/SpringBoot-Docker-Docker-Compose-Jenkins-Part_2/) 포스트에 이어서 이번엔 GihHub와 Jenkins의 Webhook 연동 방법에 대해 알아보겠다.
+[Spring Boot + Docker + JPA + Docker Compose + Jenkins -Part.2-](/settings/SpringBoot-Docker-Docker-Compose-Jenkins-Part_2/) 포스트에 이어서 이번엔 GitHub와 Jenkins의 Webhook 연동 방법에 대해 알아보겠다.
 
 ![structure]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/structure.png)
 
-지금까지 위와 같은 구조를 구성 해보았다.
+지금까지 위와 같은 구조를 구성해보았다.
 
 Docker Container로 구성한 Spring Boot와 PostgreSQL을 Docker Compose로 네트워크 및 통합 컨테이너 구성하여 상호 작용할 수 있도록 구성하였다.
 
@@ -35,7 +35,7 @@ CI/CD에 관해 간단히 설명할 것이다.
 
 서비스를 운영하는 입장에서 유저가 관심을 가질만한, 필요할만할 기능을 신속하게 제공하면서 만족도를 높이는 것이 중요할 것이다.
 
-CI/CD는 각각 협업, 배포에 대한 효율성을 높힐 수 있기에 위와 같은 유저 만족성을 높이기 위한 수단으로 쓰일 수 있을 것이다.
+CI/CD는 각각 협업, 배포에 대한 효율성을 높일 수 있기에 위와 같은 유저 만족도를 높이기 위한 수단으로 쓰일 수 있을 것이다.
 
 ## Continuous Integration, CI - 지속적인 통합
 
@@ -45,7 +45,7 @@ CI/CD는 각각 협업, 배포에 대한 효율성을 높힐 수 있기에 위�
 
 Git, Github, GitLab 등과 같은 버전 관리 시스템에 개발한 내용들을 짧은 주기를 가지며 통합하는 것을 의미한다.
 
-협업에 있어서 팀원들과 내용을 공유할 수 있음은 물론, 효율적인 구조 개선, 문제 파악으로 내구성 높은 서비스 개발 등을 목표로한다.
+협업에 있어서 팀원들과 내용을 공유할 수 있음은 물론, 효율적인 구조 개선과 문제 파악으로 내구성 높은 서비스 개발 등을 목표로 한다.
 
 ### 핵심
 - 병합 : 변경 사항들을 다른 코드들과 자주 병합하여 충돌의 피로를 줄인다.
@@ -56,9 +56,9 @@ Git, Github, GitLab 등과 같은 버전 관리 시스템에 개발한 내용들
 
 CI를 통해 안정성과 품질이 보장된 상태의 코드를 자동으로 배포 가능한 상태로 만드는 과정을 의미한다.
 
-즉, 코드를 항상 운영 환경에 배포할 수 있는 상태로 유지 하는 것을 의미한다.
+즉, 코드를 항상 운영 환경에 배포할 수 있는 상태로 유지하는 것을 의미한다.
 
-여기서 D에 해당 되는 개념은 2가지로 해석될 수 있는데,
+여기서 D에 해당되는 개념은 2가지로 해석될 수 있는데,
 - Delivery, 제공 : 자동으로 테스트, 빌드를 완료한 후에 수동으로 운영 환경에 배포.
 - Deployment, 배포 : 변경 사항이 CI를 통해 통합되면 자동으로 운영 환경에 배포하는 과정.
 
@@ -73,7 +73,7 @@ CI를 통해 안정성과 품질이 보장된 상태의 코드를 자동으로 �
 3. CI 단계에서 자동으로 빌드, 테스트를 실행하여 코드 통합에 있어 문제점을 미리 파악한다.
 4. CI 단계에서 소스에 문제가 없다고 판단되면 CD 단계에서 배포가 가능한 상태로 유지하거나(Delivery), 운영 환경에 배포한다.(Deployment)
 
-이 때, Git을 기반으로한 플랫폼은 각자의 Branch 전략에 따라 master, main 브랜치에 push 를 하거나 Merge를 할 때만 CD의 파이프라인 트리거를 실행 시키는 방법이 있다.
+이때, Git을 기반으로 한 플랫폼은 각자의 Branch 전략에 따라 master, main 브랜치에 push 를 하거나 Merge를 할 때만 CD의 파이프라인 트리거를 실행시키는 방법이 있다.
 
 ## CI/CD Tools
 
@@ -98,7 +98,7 @@ CI를 통해 안정성과 품질이 보장된 상태의 코드를 자동으로 �
 
 코드를 관리할 버전 관리 플랫폼으로 GitHub를 활용할 것이다.
 
-Git을 기반으로 한 플랫폼인 만큼 Git이 디바이스에 설치 되어 있어야한다. [Git의 기본 개념 및 활용](/git/git-basic/)
+Git을 기반으로 한 플랫폼인 만큼 Git이 디바이스에 설치되어 있어야 한다. [Git의 기본 개념 및 활용](/git/git-basic/)
 
 GitHub의 Repository를 만들고, commit, push 하자.
 
@@ -114,9 +114,9 @@ GitHub의 Repository를 만들고, commit, push 하자.
 
 위에서 소개했던 CI/CD의 개념을 지원하는 툴이다.
 
-소스의 변경 사항을 push 할 때마다 이를 webhook 이벤트로 받고 해당 소스를 빌드, 테스트, 배포의 과정을 수행 해준다.a
+소스의 변경 사항을 push 할 때마다 이를 webhook 이벤트로 받고, 해당 소스를 빌드, 테스트, 배포하는 과정을 수행해준다.
 
-이 또한 필요성에 대한 의문성을 가질 수도 있다.
+이 또한 필요성에 대한 의문을 가질 수도 있다.
 
 CI/CD의, Jenkins의 도움을 받지 않고 직접 배포와 버전 관리를 수행하는 이전 배포 방식은 직접
 - 소스 통합과 프로젝트의 오류 검증.
@@ -125,11 +125,11 @@ CI/CD의, Jenkins의 도움을 받지 않고 직접 배포와 버전 관리를 �
 - 배포 시 로그 확인.
 - 서버 재시작.
 
-등의 과정을 거쳐야한다.
+등의 과정을 거쳐야 한다.
 
-뭐 저 과정을 매 번할 수도 있겠지만 그 뭐시기냐 "재테크를 올바르게 '자동화'한다면, 모든 일이 술술 풀린답니다." 라는 데이비드 바크씨의 말을 빌려올 수 있겠다.(큰 관계 없음)
+뭐 저 과정을 매번 할 수도 있겠지만 그 뭐시기냐 "재테크를 올바르게 '자동화'한다면, 모든 일이 술술 풀린답니다." 라는 데이비드 바크씨의 말을 빌려올 수 있겠다.(큰 관계 없음)
 
-암튼 자동화하는 과정을 귀찮고 왜 하냐 싶겠지만 해두면 확실한 이점은 생기기 마련이다.
+암튼 자동화하는 과정이 귀찮고 왜 하냐 싶겠지만, 해두면 확실한 이점이 생기기 마련이다.
 
 이제 활용해 보자.
 
@@ -152,7 +152,7 @@ docker image pull jenkins/jenkins:jdk17
 
 기존에는 pull 먼저, run을 나중에 수행 했다면 이번에는 run과 동시에 pull 하는 방법을 사용하겠다.
 
-Docker는 run 시에 기반이 되는 이미지가 없다면 이를 Docker Hub에서 검색하여 해당 되는 이미지를 자동으로 pull 해온다.
+Docker는 run 시에 기반이 되는 이미지가 없다면 이를 Docker Hub에서 검색하여 해당되는 이미지를 자동으로 pull 해온다.
 
 현재 포스트는 java 17을 기반으로 작성하고  있으니 해당 버전을 지원하는 jenkins:jdk17 버전으로 pull 해오자.
 
@@ -176,7 +176,7 @@ docker run \
   - `root` : 초기 계정 설정 및 모든 관리 권한을 얻기 위해서.
 - `--privileged` : 권한 모드.
 
-포트의 경우에는 기존에 Spring Boot를 `8080:8080`로 설정 해놨기에 호스트 머신 내에서 충돌이 나지 않게 `18080:8080`으로 설정했다.
+포트의 경우에는 기존에 Spring Boot를 `8080:8080`로 설정해 놨기에, 호스트 머신 내에서 충돌이 나지 않게 `18080:8080`으로 설정했다.
 
 추가로 `50000:50000`의 포트 설정도 확인할 수 있는데, 이는 Jenkins의 Master와 Agent(Slave) 간의 통신을 위한 포트이다.
 
@@ -188,7 +188,7 @@ Jenkins 환경 설정을 계속 진행해 보자.
 
 ### Initialization
 
-run을 통해 인스턴스를 실행하면 [http://localhost:18080](http://localhost:18080)를 브라우저를 통해 접근할 수 있게된다.
+run을 통해 인스턴스를 실행하면 브라우저를 통해 [http://localhost:18080](http://localhost:18080) 로 접근할 수 있게 된다.
 
 
 ![jenkins_init]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/jenkins_init.png)
@@ -199,11 +199,11 @@ run을 통해 인스턴스를 실행하면 [http://localhost:18080](http://local
 
 #### 로그에서 구하기
 
-`docker run` 시 백그라운드로 실행하지 않고 터미널에서 로그를 볼 수 있게 실행하면 로그 내용 중에 해당 값이 노출 된다.
+`docker run` 시 백그라운드로 실행하지 않고 터미널에서 로그를 볼 수 있게 실행하면, 로그 내용 중에 해당 값이 노출된다.
 
 ![init_log]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/init_log.png)
 
-저 값을 바로 넣어주면된다.
+저 값을 바로 넣어주면 된다.
 
 #### 파일에서 구하기
 
@@ -213,7 +213,7 @@ run을 통해 인스턴스를 실행하면 [http://localhost:18080](http://local
 
 하지만 Docker는 Docker 내부 가상 환경(Linux Vm) 에서 실행되기에 디바이스 디렉터리를 따라가도 해당 파일이 없을 것이다.
 
-이를 위해서는 docker 컨테이너 내부로 접근해야 한다.\
+이를 위해서는 docker 컨테이너 내부로 접근해야 한다.
 
 ``` sh
 docker exec -it <container_name> /bin/bash
@@ -238,7 +238,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 ![create_user]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/create_user.png)
 
-플러그인 설치가 완료되면 계정을 생성하고 진행하면 URL 관련 페이지가 뜨고 그대로 진행하자.
+플러그인 설치가 완료되면 계정을 생성하고, 이후 URL 관련 페이지가 뜨면 그대로 진행하자.
 
 ![jenkins_main]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/jenkins_main.png)
 
@@ -271,12 +271,12 @@ Jenkins에서 관리하는 일종의 프로젝트, 작업을 의미하는 Item�
 - **Pipeline**
   - 코드 기반의 파이프라인을 정의할 수 있음.
   - Jenkinsfile을 사용하여 빌드, 테스트 배포 등의 모든 단계를 코드로 정의할 수 있음.
-  - 복잡한 워크플로우를 관리하는데 적합.
+  - 복잡한 워크플로우를 관리하는 데 적합.
 - **Multi-configuration project(Matrix Project)**
   - 다양한 OS, JDK 버전, 브라우저 등을 조합하여 테스트나 빌드를 실행할 수 있음.
 - **Folder**
   - 여러 프로젝트를 한 폴더에 그룹화하여 관리할 수 있음.
-  - 대규모 프로젝트를 관리할 때 관련 프로젝트끼리 분려하여 유지보수 및 일관성 유지 가능.
+  - 대규모 프로젝트를 관리할 때 관련 프로젝트끼리 분류하여 유지보수 및 일관성 유지 가능.
   - 폴더 내부에는 Freestyle Project, Pipeline 등 다른 프로젝트 타입을 포함시킬 수 있음.
 - **Multibranch Pipeline**
   - Git과 같은 VCS에서 여러 브랜치에 대해 자동으로 파이프라인을 생성할 수 있음.
@@ -288,7 +288,7 @@ Jenkins에서 관리하는 일종의 프로젝트, 작업을 의미하는 Item�
 
 #### Configure
 
-아무쪼록 아이템 이름과 Freestyle project 를 선택하여 아이템을 생성했다면 GitHub Repository 연동되게 설정하자.
+아무쪼록 아이템 이름과 Freestyle project 를 선택하여 아이템을 생성했다면, GitHub Repository와 연동되게 설정하자.
 
 ![item_config]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/item_config.png)
 
@@ -302,7 +302,7 @@ Repository에 접근하기 위한 Credentials는 `+ Add`를 통해 본인의 Git
 
 필자는 Kind를 "Username with password"로 설정하여 Username엔 아이디, Password엔 패스워드를 기입하여 Credentials 를 설정하였다.
 
-ID 필드에는 여러개의 Credential를 관리할 때 구분하기 위한 닉네임이다.
+ID 필드는 여러 개의 Credential을 관리할 때 구분하기 위한 닉네임이다.
 
 Branch는 main만 활용할 것이기에 `*/main`으로 설정했다.
 
@@ -314,19 +314,19 @@ Branch는 main만 활용할 것이기에 `*/main`으로 설정했다.
 
 #### Strict Crumb Issuer
 
-GitHub webhook을 통해 이벤트를 보낼 때 젠킨스에서 보안 설정을 따로 해두지 않으면  403 에러가 발생할 수 있다.
+GitHub webhook을 통해 이벤트를 보낼 때 젠킨스에서 보안 설정을 따로 해두지 않으면 403 에러가 발생할 수 있다.
 
-이를 사전에 방지 하기 위한 설정을 수행하겠다.
+이를 사전에 방지하기 위한 설정을 수행하겠다.
 
-이전에 GitHub Integration Plugin 와 같은 플러그인을 설치 했던 Jenkins 관리 - plugins 로 접근하여 "Strict Crumb Issuer Plugin" 을 설치해주자.
+이전에 GitHub Integration Plugin 과 같은 플러그인을 설치했던 Jenkins 관리 - plugins 로 접근하여 "Strict Crumb Issuer Plugin" 을 설치해주자.
 
-이후 Jenkins 관리 - Security 에 접근하여 CSRF Protection의  Crumb Issuer를 String Crumb Issure로 변경하고, 아래 고급에서 Check the session ID의 체크를 해제해주자.
+이후 Jenkins 관리 - Security 에 접근하여 CSRF Protection의 Crumb Issuer를 Strict Crumb Issuer로 변경하고, 아래 고급에서 Check the session ID의 체크를 해제해주자.
 
 ![strict_crumb]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/strict_crumb.png)
 
 ### GitHub Webhook
 
-젠킨스에서 설정을 완료했다면 GitHub Repository에 접근하여 GitHub의 Webhook을 설정해야한다.
+젠킨스에서 설정을 완료했다면 GitHub Repository에 접근하여 GitHub의 Webhook을 설정해야 한다.
 
 Repository에 접근하여 Settings - Webhooks - Add webhook을 클릭하자.
 
@@ -335,9 +335,9 @@ Repository에 접근하여 Settings - Webhooks - Add webhook을 클릭하자.
 
 ![github_add_webhook_2]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/github_add_webhook_2.png)
 
-Payload URL에 젠킨스가 실행되고 있는 서버의 경로를 입력해야한다.
+Payload URL에 젠킨스가 실행되고 있는 서버의 경로를 입력해야 한다.
 
-클라우드 서버라던가 리버스 프록시를 통해 외부로 라우팅 되는 환경에서 실행하고 있다면 해당 경로를 입력하면 된다.
+클라우드 서버라든가 리버스 프록시를 통해 외부로 라우팅 되는 환경에서 실행하고 있다면 해당 경로를 입력하면 된다.
 
 하지만 현재 포스트는 로컬호스트에서 환경을 구성했기 때문에 필요 시 아래의 과정을 따라오길 바란다.
 
@@ -348,9 +348,9 @@ Payload URL에 젠킨스가 실행되고 있는 서버의 경로를 입력해야
 이를 활용하여 로컬호스트에서 실행 중인 젠킨스를 GitHub Webhook으로 바라볼 수 있게 설정할 것이다.
 
 ##### 설치
-설치는 mac을 기준으로 포스트 할 것 이기에 자세한 사항이나 타 OS 설치 방법은 [링크](https://ngrok.com/docs/getting-started/) 를 참고해주길 바란다.
+설치는 mac을 기준으로 포스팅할 것이기에, 자세한 사항이나 타 OS 설치 방법은 [링크](https://ngrok.com/docs/getting-started/) 를 참고해주길 바란다.
 
-brew가 설치 되었다는 가정하에 아래의 커맨드를 입력하여 ngrok를 설치해주자
+brew가 설치되었다는 가정하에 아래의 커맨드를 입력하여 ngrok를 설치해주자.
 
 
 ``` sh
@@ -358,33 +358,33 @@ brew install ngrok/ngrok/ngrok
 ```
 
 ##### 실행
-설치가 완료 되었다면 젠킨스 컨테이너의 컨테이너 포트를  18080에서 8080의 호스트 포트로 연결했기에
+설치가 완료되었다면 젠킨스 컨테이너의 8080 포트를 호스트의 18080 포트로 연결했기에
 
 ``` sh
 ngrok http 18080
 ```
 
-을 실행 해준다.
+을 실행해 준다.
 
-하지만 실행 했을 때
+하지만 실행했을 때
 
 ``` sh
-**ERROR:  authentication failed: Usage of ngrok requires a verified account and authtoken.**
+**ERROR: authentication failed: Usage of ngrok requires a verified account and authtoken.**
 
-**ERROR:**  
+**ERROR:** 
 
-**ERROR:  Sign up for an account: https://dashboard.ngrok.com/signup**
+**ERROR: Sign up for an account: https://dashboard.ngrok.com/signup**
 ```
 
 와 같은 인증 관련 에러가 뜰 것이다.
 
-원하는대로 [https://dashboard.ngrok.com/signup](https://dashboard.ngrok.com/signup) 에 접속하여 가입해주자.
+안내하는 대로 [https://dashboard.ngrok.com/signup](https://dashboard.ngrok.com/signup) 에 접속하여 가입해주자.
 
 가입을 완료하면 Welcome 페이지와 함께 실행 스텝을 알려줄 것이다.
 
 ![ngrok_welcome]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/ngrok_welcome.png)
 
-설치는 완료 되었으니 아래의 add-authtoken을 복사하여 authtoken을 설정해주자.
+설치는 완료되었으니 아래의 add-authtoken을 복사하여 authtoken을 설정해주자.
 
 이후 다시
 
@@ -395,9 +395,9 @@ ngrok http 18080
 
 ![ngrok_start]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/ngrok_start.png)
 
-와 같이 ngrok이 실행되고 임시로 발급 받은 Forwading 경로로 접속해보면 Jenkins 페이지에 접속되는 것을 확인할 수 있다.
+와 같이 ngrok이 실행되고, 임시로 발급받은 Forwarding 경로로 접속해보면 Jenkins 페이지에 접속되는 것을 확인할 수 있다.
 
-확인 차 로그인 하면 로그인 및 저장한 item이 있는 것을 정상적으로 확인할 수 있다.
+확인 차 로그인 하면 저장한 item이 있는 것도 정상적으로 확인할 수 있다.
 
 #### Add webhook
 
@@ -407,9 +407,9 @@ ngrok http 18080
 - Content type : application/json
 - Which event would... : Just the push event.
 
-로 설정하여 push 하는 이벤트에 대해서만 webhook 이벤트를 송신 하도록 설정하자.
+로 설정하여 push 하는 이벤트에 대해서만 webhook 이벤트를 송신하도록 설정하자.
 
-이후 add를 했을 때 정상적으로 설정 되었다면 `ping` 이벤트가 성공적으로 실행 됐을 것이다.
+이후 add를 했을 때 정상적으로 설정되었다면 `ping` 이벤트가 성공적으로 실행됐을 것이다.
 
 ![webhook_result]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/webhook_result.png)
 
@@ -417,19 +417,19 @@ ngrok http 18080
 
 #### Push
 
-이제 연동한  GitHub Repository의 코드를 변경하여  Push 해보자.
+이제 연동한 GitHub Repository의 코드를 변경하여 Push 해보자.
 
 필자는 `/src/main/resource/templates/home.html` 을 변경하여 Push 해보았다.
 
-이후 위에서 보았던 Recent Deliveries 에서도 이벤트가 정상적으로 전송 되었는지 확인 가능하며,
-Jenkins Item - GitHib Hook Log에서도 어떤 이벤트가 왔는지 확인 가능하다.
+이후 위에서 보았던 Recent Deliveries 에서도 이벤트가 정상적으로 전송되었는지 확인 가능하며,
+Jenkins Item - GitHub Hook Log에서도 어떤 이벤트가 왔는지 확인 가능하다.
 
 ![webhook_log]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/3/webhook_log.png)
 
 
 # 마무리
 
-지금까지 Docker Container로 실행시킨 Jenkins를 GitHub webhook 과 연동하여 Push 이벤트를 Jenkins에서 핸들링 할 수 있는 과정까지 설정을 마쳐봤다.
+지금까지 Docker Container로 실행시킨 Jenkins를 GitHub webhook 과 연동하여, Push 이벤트를 Jenkins에서 핸들링할 수 있는 과정까지 설정을 마쳐봤다.
 
 다음 포스팅에서는 이전까지 해왔던 작업들을 모두 연동하여 Spring Boot 애플리케이션을 GitHub로 Push 했을 시 Gradle으로 이를 빌드하고 Docker Compose 서비스를 실행하는 과정까지 진행해보겠다.
 

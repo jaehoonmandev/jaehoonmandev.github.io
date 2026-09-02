@@ -12,7 +12,7 @@ tags:
 - Index Scan
 ---
 
-데이터가 주력이 된 현대에와서 데이터베이스의 역할이 상당히 중요해졌다.
+데이터가 주력이 된 현대에 와서 데이터베이스의 역할이 상당히 중요해졌다.
 
 영속성 데이터를 조회하여 업무를 처리하고, 우리의 일상에서도 활용하게 된다.
 
@@ -20,13 +20,13 @@ tags:
 
 하루에 수천, 수만, 그 이상의 건을 처리하는 데이터베이스는 사용 기간이 길어지는 만큼 데이터가 쌓이게 될 것이고, 조회 성능에 악영향을 끼치게 될 것이다.
 
-이전에 우리가 보았던 내용 처럼 인덱스와 같은 기법을 적용하여 조회 성능을 올린다면 서비스를 안정적이고 효율적으로 운영할 수 있을 것이다.
+이전에 우리가 보았던 내용처럼 인덱스와 같은 기법을 적용하여 조회 성능을 올린다면 서비스를 안정적이고 효율적으로 운영할 수 있을 것이다.
 
 그렇다면 데이터베이스는 어떻게 데이터를 읽어오는지 알아보는 시간을 가져보자.
 
 # DBMS의 데이터 구조
 
-먼저 데이터베이스에서 데이터가 어떻게 저장 되는지 알고 가는 게 좋을 것 같다.
+먼저 데이터베이스에서 데이터가 어떻게 저장되는지 알고 가는 게 좋을 것 같다.
 
 데이터베이스에서 데이터는 단순히 우리가 보는 테이블 형태로 저장되지 않는다.
 
@@ -42,11 +42,11 @@ tags:
 ![database-store-structure]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-store-structure.png)  
 *https://www.linkedin.com/pulse/how-data-organized-disk-database-systems-manish-pokhriyal-2rpwc*
 
-와 같이 여러 개의 요소로 나뉘어져 관리된다.
+와 같이 여러 개의 요소로 나뉘어 관리된다.
 
 ### 데이터의 구성 요소
 
-저장 되는 데이터를 효율적으로 관리하기 위해 **File -> Page -> Block -> Row(Record) 의 계층적인 저장 단위**를 사용한다.
+저장되는 데이터를 효율적으로 관리하기 위해 **File -> Page -> Block -> Row(Record) 의 계층적인 저장 단위**를 사용한다.
 
 ![database-storage]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/database-storage.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
@@ -72,13 +72,14 @@ tags:
 - **Tuple(Row Data)** : 실제 저장된 데이터
 - **Free Space** : 새로운 데이터 삽입을 위한 여유 공간
 
+으로 구성되어 있다.
+
 #### Block
 - 디스크의 **물리적 최소 저장 단위.**
 - OS에서 데이터를 관리하는 단위.
 - 일반적으로 512B~8KB의 용량을 가진다.
 - 즉, **하나의 Page는 여러 개의 Block**에 걸쳐 저장될 수 있다.
 
-으로 구성되어 있다.
 #### Row (Record, Tuple)
 - 테이블의 한 행, 실제 데이터가 저장되는 단위.
 - Page 내부에 저장되며, 각 Row는 Slot(Offset) 테이블을 통해 관리된다.
@@ -106,7 +107,7 @@ DBMS마다 차이점이 있을 수 있지만 보통은 Heap Table, Clustered Ind
 #### 특징 
 - **데이터를 정렬하지 않고 삽입되는 순서대로 저장**하는 방식.
 - 별도의 인덱스가 없다면 **Full Table Scan(전체 데이터 조회)이 발생할 가능성이 높음.**
-- **PostgreSQL, MySQL의 기본 테이블 저장 방식**
+- **PostgreSQL, Oracle의 기본 테이블 저장 방식**
 
 #### 장점
 - 빠른 데이터 삽입이 가능하다.
@@ -128,7 +129,7 @@ Heap Table을 사용하면 **주로 WHERE 조건이 없는 대량 삽입, 임시
 - **Primary Key를 기준으로 데이터가 정렬된 상태로 저장**하는 방식.
 - 데이터 자체가 B+Tree 구조의 **리프 노드(Leaf Node)에 저장.**
 - 인덱스를 검색하면 **데이터를 빠르게 찾을 수 있음.**
-- **MySQL InnoDB, SQL Server의 기본 저장 방식**
+- **MySQL InnoDB의 기본 저장 방식** (SQL Server도 PK를 만들면 기본적으로 Clustered Index로 구성된다.)
 
 #### 장점
 - **PK 기반 검색 속도가 빠름.** (B+Tree 구조를 이용) 
@@ -147,7 +148,7 @@ Clustered Index를 사용하면 **WHERE 조건이 Primary Key 또는 범위 조�
 | -------------------- | ------------------------ | ------------------------------- |
 | **저장 방식**            | 실제 데이터가 정렬된 형태로 저장됨      | 데이터는 별도로 저장되고 인덱스만 정렬됨          |
 | **생성 개수**            | 1개                       | 여러 개                            |
-| **데이터 접근 방식**        | 인덱스 탐색 시 바로 데이터 접근 가능.   | 인덱스 탐색 후 추가적인 데이터 조회 필요(Filter) |
+| **데이터 접근 방식**        | 인덱스 탐색 시 바로 데이터 접근 가능.   | 인덱스 탐색 후 추가적인 데이터 조회 필요(Lookup) |
 | **검색 속도**            | 빠름(정렬 상태)                | 상대적으로 느림(LOOKUP 비용 발생)          |
 | **INSERT/UPDATE 성능** | 값 변경 시 데이터 재정렬이 발생할 수 있음 | 인덱스만 갱신하므로 영향 적음                |
 | **스토리지 공간**          | 데이터 자체에 포함되어 추가 공간 불필요   | 인덱스 테이블이 별도로 존재하여 추가 공간 필요      |
@@ -165,17 +166,13 @@ Clustered Index를 사용하면 **WHERE 조건이 Primary Key 또는 범위 조�
 
 **인덱스를 따로 처리하지 않았을 때** 찾으려는 데이터를 **처음부터 끝까지 하나씩 비교**한다.
 
-데이터가 **정렬 되지 않아도 사용 가능**하지만 이 때문에 **O(n) 의 시간복잡도**를 가진다.
+데이터가 **정렬되지 않아도 사용 가능**하지만, 대신 **O(n)의 시간 복잡도**를 가진다.
 
 즉, **데이터가 많아질수록 조회 성능이 떨어진다.**
 
-Heat Table에서 발생하는 Full Table Scan을 Heap Scan이라고도 한다.
+Heap Table에서 발생하는 Full Table Scan을 Heap Scan이라고도 한다.
 
-## Linear Search
-
-Full Table Scan은 일반적으로 Linear Search 즉, **선형 검색 방식으로 조회**를 수행한다.
-
-하지만 여러 스레드가 동시에 검색을 수행하는 **Parallel Scan(병렬 스캔)을 지원하는 DB도 있기에** 항상 Linear Search로 수행 된다고 보긴 어렵다.
+하지만 여러 스레드가 동시에 검색을 수행하는 **Parallel Scan(병렬 스캔)을 지원하는 DB도 있기에** 항상 Linear Search로 수행된다고 보긴 어렵다.
 
 책을 예시로 들자면 첫 번째 페이지에서부터 목차를 참고하지 않고 찾고 싶은 페이지까지 찾아 가는 과정에 해당된다.
 
@@ -204,7 +201,7 @@ VALUES ('인사팀1', '인사팀', 5000),
 의 데이터를 활용하여
 
 ``` sql
-SELECT * FROM employees WHERE name = '재무팀3';
+SELECT * FROM 직원 WHERE 이름 = '재무팀3';
 ```
 의 쿼리를 실행한다면
 
@@ -235,17 +232,17 @@ SELECT * FROM 직원 WHERE 이름 = '재무팀3';
 와 같이 **순차적으로 조회(Seq Scan)** 하여 **9개의 행을 제거(Rows Removed)** 하여 "재무팀3"
 을 찾았고, **총 실행 시간은 0.066ms가 소모**됐다.
 
-당장은 10개의 Rows만 가지고 있기에 0.066ms가 소모 됐지만 100,000,000 개의 Rows가 있을 때 단순 O(n)의 계산으로 최대 660,000ms(660' == 11'') 가 소모될 것이다.
+당장은 10개의 Rows만 가지고 있기에 0.066ms가 소모됐지만, 100,000,000개의 Rows가 있다면 단순 O(n)의 계산으로 최대 660,000ms(약 660초, 11분)가 소모될 것이다.
 
 # Parallel Scan
 
 일부 DB는 데이터를 병렬로 읽어들이는 **Parallel Scan**을 지원한다.
 
-Parallel Scan은 **테이블을 여러 개의 블록(스트라이드)로 나누어 병렬로 조회**하는 방식이다.
+Parallel Scan은 **테이블을 여러 개의 블록(스트라이드) 단위로 나누어 병렬로 조회**하는 방식이다.
 
 하지만 Parallel Scan이 항상 빠른 것은 아니기에 별도 튜닝이 필요할 수 있다.
 
-자세히는 알아보지 않고 이런 게 있다~
+자세히는 다루지 않고, 이런 방식도 있다는 정도만 알아두자.
 
 # Index Scan
 
@@ -263,7 +260,7 @@ Index Scan을 수행하는 자료구조로는 B-Tree / B+Tree, Hash, Bitmap 등�
 
 Index Scan이 빠른 이유는 대부분의 RDBMS에서 **B-Tree(B+Tree) 인덱스 구조**를 사용하기 때문이다.
 
-B-Tree 등과 같은 자세한 인덱스 종류에 대해서는 해당 포스트에서 다루진 않겠다..
+B-Tree 등과 같은 자세한 인덱스 종류에 대해서는 해당 포스트에서 다루지 않겠다.
 
 ## Full table scan이 수행될 수 있는 경우와 개선
 
@@ -303,7 +300,7 @@ SELECT * FROM 직원 WHERE 이름 LIKE '%재무팀%';
 Condition에 해당하는 텍스트를 앞에서부터 와일드카드로 지정한다면 정렬 했던 게 무용지물이 된다.
 
 #### > 개선
-앞이 아닌 뒤에 와일드 카드를 사용하자
+앞이 아닌 뒤에 와일드카드를 사용하자
 
 ``` sql
 SELECT * FROM 직원 WHERE 이름 LIKE '재무팀%';
@@ -311,7 +308,7 @@ SELECT * FROM 직원 WHERE 이름 LIKE '재무팀%';
 
 ### 4. OR 조건이 인덱스를 사용할 수 없는 경우
 
-`WHERE 이름 = '재무팀%' OR 부서 = '재무팀'` 과 같은 경우에서 이름이나, 부서 한 곳에만 인덱스가 적용 되었다면 인덱스 스캔이 이루어지지 않을 수 있다.
+`WHERE 이름 = '재무팀3' OR 부서 = '재무팀'` 과 같은 경우에서 이름이나 부서 중 한 곳에만 인덱스가 적용되었다면 인덱스 스캔이 이루어지지 않을 수 있다.
 
 #### > 개선
 `OR` 을 사용하는 컬럼들을 복합 인덱스로 지정하자
@@ -322,8 +319,8 @@ CREATE INDEX idx_직원_이름_부서 ON 직원 (이름, 부서);
 
 ### 5. CAST, FUNCTION을 사용하는 경우
 
-`SELECT * from 직원 WHERE id::TEXT = 1::TEXT;` 와 같이 casting을 수행하거나,
-`SELECT * from 직원 WHERE UPPER(이름) = '재무팀%'; 과 같이 조건에 function을 사용하는 경우 인덱스 스캔이 수행되지 않을 수 있다.
+`SELECT * FROM 직원 WHERE id::TEXT = '1';` 과 같이 casting을 수행하거나,
+`SELECT * FROM 직원 WHERE UPPER(이름) = '재무팀3';` 과 같이 조건에 function을 사용하는 경우 인덱스 스캔이 수행되지 않을 수 있다.
 
 #### > 개선
 `UPPER`와 같은 함수를 사용하는 컬럼은 함수를 기반으로 인덱스를 생성하자
@@ -342,10 +339,13 @@ IN의 경우에도 IN에 포함되는 데이터가 많다면 Optimizer에서 Ful
 범위 조건 혹은 EXISTS 사용
 
 ``` sql
-SELECT * FROM 직원 WHERE 이름 IN ('재무팀1', '개발팀1');
+-- NOT IN, != 대신 인덱스를 탈 수 있는 범위 조건으로 대체
+SELECT * FROM 직원 WHERE 연봉 BETWEEN 5000 AND 6000;
 
-SELECT * FROM 직원 WHERE NOT EXISTS (
-    SELECT 1 FROM 직원 WHERE 이름 = '재무팀3'
+-- 다른 테이블과 비교하는 NOT IN은 NOT EXISTS로 대체
+SELECT * FROM 직원 e
+WHERE NOT EXISTS (
+    SELECT 1 FROM 퇴사자 r WHERE r.직원_id = e.id
 );
 ```
 
@@ -354,7 +354,7 @@ SELECT * FROM 직원 WHERE NOT EXISTS (
 
 최적화를 위해서는 실행 계획을 참고하는 습관을 들이고 필요 시 인덱스 재설계를 고려하는 것이 좋을 것이다.
 
-참고로 PostgreSQL을 기준으로는 주기적으로 ANALYZE, AutoVacuum 등이 실행되면서 자동으로 인덱스를 적용시키는 경우도 있다.
+참고로 PostgreSQL은 AutoVacuum이 주기적으로 ANALYZE를 실행해 통계 정보를 갱신하는데, 이때 갱신된 통계를 바탕으로 기존에는 사용하지 않던 인덱스를 사용하도록 실행 계획이 바뀌는 경우도 있다.
 
 ### Full table scan 방지 요약
 
@@ -369,11 +369,11 @@ SELECT * FROM 직원 WHERE NOT EXISTS (
 
 ## Index Scan Methods
 
-인덱스가 적용된 자료구조에서 **데이터를 검색하는 방법은 검색 조건, 인덱스 구조, 최적화 방식 등에 따라 여러가지**가 있다.
+인덱스가 적용된 자료구조에서 **데이터를 검색하는 방법은 검색 조건, 인덱스 구조, 최적화 방식 등에 따라 여러 가지**가 있다.
 
 B-Tree의 구조를 통해 간단하게 스캔의 예시를 들어보겠다.
 
-일단은 B-Tree 라는 것은 Balanced Binary Tree의 한 종류로 트리 구조를 가지지만 **트리의 균형을 유지하도록 설계된 탐색 트리** 라는 정도만 알아두자.
+일단은 B-Tree가 이름과 달리 이진 트리(Binary Tree)가 아니라, **하나의 노드가 여러 개의 자식을 가질 수 있으면서 트리의 균형을 유지하도록 설계된 탐색 트리(Balanced Tree)** 라는 정도만 알아두자.
 
 ![index-scan]({{ site.baseurl }}/assets/images/posts/2025/database/search-techniques/1/index-scan.png)  
 *https://medium.com/@yasin162001/database-storage-methods-6abe4f8d8508*
@@ -399,18 +399,17 @@ SELECT * FROM 직원 WHERE 부서 = '개발팀';
 - **반환되는 Row 개수가 많으면 다른 조회 방식이 유리**할 수 있음.
 
 ``` 
-        [10, 20, 30]   <- Root Node
-         /   |    \
-       /     |     \
-  [5,10]  [15,20] [25,30]  <- Branch Nodes
-    |         |       |
- [5, 10]  [15, 20]  [25, 30]  <- Leaf Nodes
+              [20]                   <- Root Node
+            /      \
+        [10]        [30]             <- Branch Nodes
+       /    \      /    \
+ [5, 10] [15, 20] [25, 30] [35, 40]  <- Leaf Nodes
 ```
 
 의 데이터가 있다면,
-1. **Root Node 탐색** -> 10은 `[10, 20, 30]` 중 10 <= 10 < 20 이므로 `[5, 10]` Branch Node로 이동.
-2. **Branch Node 탐색** ->  10이 포함된 `[5,10]` Leaf Node로 이동.
-3. **Leaf Node 탐색** -> 10을 찾고 반환, 탐색 종료
+1. **Root Node 탐색** -> 10 <= 20 이므로 왼쪽 Branch Node `[10]`으로 이동.
+2. **Branch Node 탐색** -> 10 <= 10 이므로 왼쪽 Leaf Node `[5, 10]`으로 이동.
+3. **Leaf Node 탐색** -> 10을 찾고 반환, 탐색 종료.
 4. 최종적으로 10을 반환.
 
 
@@ -430,19 +429,18 @@ SELECT * FROM 직원 WHERE id BETWEEN 5 AND 15;
 - 반환되는 데이터 개수가 많으면 **Full Table Scan보다 느릴 수도 있음**.
 
 ``` 
-        [10, 20, 30]   <- Root Node
-         /   |    \
-       /     |     \
-  [5,10]  [15,20] [25,30]  <- Branch Nodes
-    |         |       |
- [5, 10]  [15, 20]  [25, 30]  <- Leaf Nodes
+              [20]                   <- Root Node
+            /      \
+        [10]        [30]             <- Branch Nodes
+       /    \      /    \
+ [5, 10] [15, 20] [25, 30] [35, 40]  <- Leaf Nodes
 ```
 
-1. **Root Node 탐색** -> 5 < 10 이므로 첫 번째 Branch 노드 `[5, 10]`로 이동
-2. **Branch Node 탐색** -> 5가 포함된 첫 번째 Leaf Node `[5, 10]`으로 이동
-3. **Leaf Node에서 데이터 찾기** -> 5부터 10까지 데이터를 찾음
-4. **다음 Leaf Node로 이동** -> 15는 다음 Branch Node인 `[15, 20]`에 포함되므로 이동
-5. **새로운 Leaf Node에서 데이터 찾기** -> 15를 찾고 반환 (탐색 종료)
+1. **Root Node 탐색** -> 5 <= 20 이므로 왼쪽 Branch Node `[10]`으로 이동
+2. **Branch Node 탐색** -> 5 <= 10 이므로 첫 번째 Leaf Node `[5, 10]`으로 이동
+3. **Leaf Node에서 데이터 찾기** -> 5, 10을 수집
+4. **다음 Leaf Node로 이동** -> B+Tree의 Leaf Node는 서로 연결되어 있으므로 다음 Leaf Node `[15, 20]`으로 이동
+5. **새로운 Leaf Node에서 데이터 찾기** -> 15를 수집, 20은 범위를 벗어나므로 탐색 종료
 6. 최종적으로 5, 10, 15를 반환.
 
 ### 3. Index Unique Scan
@@ -481,7 +479,7 @@ SELECT id FROM 직원 ORDER BY id;
 #### 특징
 - ORDER BY, WHERE 등이 없어도 테이블을 모두 읽을 필요가 없다면 Index Full Scan이 수행될 수도 있다.(`SELECT id FROM 직원` )
 - 정렬이 필요한 경우, 추가 정렬 비용 없이 빠르게 조회 가능.
-- 인덱스만으로 데이터를 찾을 수 없다면 추가적인 비용이든다.
+- 인덱스만으로 데이터를 찾을 수 없다면 추가적인 비용이 든다.
 
 ### 5. Index Skip Scan
 

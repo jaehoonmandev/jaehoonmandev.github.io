@@ -13,7 +13,6 @@ tags:
 
 [[Database] Database Index - 적용 part 1.](/database/DB-index_apply_1/)에 이어서 이번 포스트는 Composite Index와 Full-Text Index를 적용해보자.
 
-추가적으로 인덱스를
 ## Composite Index
 
 두 개 이상의 컬럼을 조합하여 생성하는 인덱스다.
@@ -23,48 +22,48 @@ WHERE절이나 ORDER BY절로 필터링을 수행할 때 AND를 이용하여 2�
 복잡한 조건이 포함된 쿼리에서 효율적인 검색을 지원한다.
 
 ### The Leftmost Prefix Rule
-인덱스 생성 시 순서에 따라 최적화 되는 쿼리가 달라질 수 있으니 적용하는 컬럼의 순서가 중요하다.
+인덱스 생성 시 순서에 따라 최적화되는 쿼리가 달라질 수 있으니 적용하는 컬럼의 순서가 중요하다.
 
-이 규칙은 "다중 컬럼 인덱스 적용 시 인덱스의 가장 왼쪽 필드부터 순차적으로 사용" 해야한다는 룰인데, Composite Index의 동작 방식과 효율성을 이해하는데 도움이 될 것 같아서 작성했다.
+이 규칙은 "다중 컬럼 인덱스 적용 시 인덱스의 가장 왼쪽 필드부터 순차적으로 사용해야 한다"는 룰인데, Composite Index의 동작 방식과 효율성을 이해하는 데 도움이 될 것 같아서 작성했다.
 
 먼저 위에서 설명하였듯이, 컴포지트 인덱스는 두 개 이상의 컬럼을 조합하여 만드는 인덱스다.
 
-밑에서 작성할 게시글 DDL을 기반으로 설명하자면.
-적용할 컬럼이 `[작성자, 작성일, 카테고리]`이며, 이를 순서대로 적용한다 했을 때
+밑에서 작성할 게시글 DDL을 기반으로 설명하자면,
+적용할 컬럼이 `[작성자, 작성일, 카테고리]`이며 이를 순서대로 적용한다 했을 때
 - 작성자만 검색 : 인덱스 사용 **가능**
 - 작성자, 작성일 검색 : 인덱스 사용 **가능**
-- 작성일 카테고리 검색 : 인덱스 사용 **불가**
+- 작성일, 카테고리 검색 : 인덱스 사용 **불가**
 
-의 룰을 지켜야하는 것을 의미한다.
+의 룰을 지켜야 하는 것을 의미한다.
 
 이 룰을 어길 시에는 Full-scan이 이루어진다.
 
 #### 동작 방식
 인덱스는 적용한 컬럼을 기준으로 정렬된 데이터 혹은 위치를 가지게 된다고 했다.
 
-Composite Index 또한 `작성자`를 기준으로 인덱스를 적용한다면 작성자를 기준으로 정렬된 데이터의 인덱스 테이블(Clustered) 혹은 위치 값을 포인터를 저장(Non-Clustered)하고 이를 블록을 그룹화한다.
+Composite Index 또한 `작성자`를 기준으로 인덱스를 적용한다면, 작성자를 기준으로 정렬된 데이터의 인덱스 테이블(Clustered) 혹은 위치 값을 포인터로 저장(Non-Clustered)하고 이를 블록으로 그룹화한다.
 
-이 때 가장 왼쪽에 있는 컬럼을 **Leading Column** 이라 한다.
+이때 가장 왼쪽에 있는 컬럼을 **Leading Column** 이라 한다.
 
 여기서 또 `작성일`을 기준으로 정렬하게 되면 `작성자`를 기준으로 정렬된 인덱스 테이블에서 추가로 `작성일`을 기준으로 정렬하게 된다.
 
 `카테고리` 는 마지막으로 정렬될 것이다.
 
-이렇게 `작성자`를 기준으로 정렬된 그룹에서 인덱스의 기본적으로 **사전 순서**로 정렬을 수행하게 된다.
+이렇게 `작성자`를 기준으로 정렬된 그룹에서, 인덱스는 기본적으로 **사전 순서**로 정렬을 수행하게 된다.
 
 사전 순서(Lexicographical Order)는 간단하게 알파벳 순으로 이해하면 될 듯하다.
 
 아무튼, 룰을 어길 시에는 `작성자`를 기준으로 정렬된 인덱스 테이블은 블록으로 그룹화가 된다.
 
-이때, `작성자`를 제외하고 조회하게 되면 해당 인덱스 테이블은 `작성자`와 일치하는 값을 기반으로 `작성일, 카테고리`를 찾아야하는데 일치하는 `작성자` 가 없으니 결국 Full-Scan을 돌려서 인덱스를 활용하지 못하게 된다.
+이때 `작성자`를 제외하고 조회하게 되면, 해당 인덱스 테이블은 `작성자`와 일치하는 값을 기반으로 `작성일, 카테고리`를 찾아야 하는데 기준이 되는 `작성자` 조건이 없으니 결국 Full-Scan을 돌려서 인덱스를 활용하지 못하게 된다.
 
-The Leftmost Prefix Rule와 Lexicographical Order를 깊게 이해하지 못하더라도 **Composite Index에서는 왼쪽에서 오른쪽의 방향으로 인덱스 적용 순서가 중요하다** 라는 것만 알고가면 될 것 같다.
+The Leftmost Prefix Rule과 Lexicographical Order를 깊게 이해하지 못하더라도 **Composite Index에서는 왼쪽에서 오른쪽의 방향으로 인덱스 적용 순서가 중요하다** 라는 것만 알고 가면 될 것 같다.
 
-그러니 가장 많이 검색 되는 컬럼을 가장 왼쪽에 위치시키고 우선순위별로 나열하면 된다.
+그러니 가장 많이 검색되는 컬럼을 가장 왼쪽에 위치시키고 우선순위별로 나열하면 된다.
 
 ### 테이블 생성
 
-이전 포스트와 다르게 Full-Text Index 에도 활용할 새로운 테이블을 생성해보자
+이전 포스트와 다르게 Full-Text Index 에도 활용할 새로운 테이블을 생성해보자.
 ``` sql
 CREATE TABLE 게시글
 (
@@ -109,7 +108,7 @@ DO $$
                ELSE '기타'
                END,
              (i * 3) % 1000,
-             _NOW_() - (i || ' minutes')::INTERVAL
+             NOW() - (i || ' minutes')::INTERVAL
            );
       END LOOP;
   END $$;
@@ -163,7 +162,7 @@ SELECT * from 게시글 WHERE 카테고리='뉴스' AND 작성자='작성자1' A
 | Planning Time: 0.095 ms |
 | Execution Time: 13.372 ms |
 
-당연하게 **순차 조회(Seq Scan)** 을 한 뒤, 조건절 필터링으로 전체 row에서 필요하지 않은 부분은 삭제한다.
+당연하게 **순차 조회(Seq Scan)** 를 한 뒤, 조건절 필터링으로 전체 row에서 필요하지 않은 부분을 제거한다.
 
 AND 를 사용하지 않고 각각 조회해도 Execution Time 8~13ms 의 범위를 가진다.
 
@@ -225,7 +224,7 @@ Index Scan을 수행한다.
 | Planning Time: 0.124 ms                                                                                                                         |
 | Execution Time: 4.264 ms                                                                                                                        |
 
-###### **WHERE 카테고리 = '뉴스' AND 작성자 = '홍길동'**
+###### **WHERE 카테고리 = '뉴스' AND 작성자 = '작성자1'**
 
 | QUERY PLAN |
 | :--- |
@@ -236,7 +235,7 @@ Index Scan을 수행한다.
 | Planning Time: 0.085 ms |
 | Execution Time: 0.062 ms |
 
-###### **WHERE 카테고리 = '뉴스' AND 작성자 = '홍길동' AND 작성일 >= '2024-01-01'**
+###### **WHERE 카테고리 = '뉴스' AND 작성자 = '작성자1' AND 작성일 >= '2024-11-01'**
 
 | QUERY PLAN |
 | :--- |
@@ -247,7 +246,7 @@ Index Scan을 수행한다.
 | Planning Time: 0.624 ms |
 | Execution Time: 0.179 ms |
 
-######  **WHERE 카테고리='뉴스' AND 작성일 >= '2024-11-01'**
+###### **WHERE 카테고리='뉴스' AND 작성일 >= '2024-11-01'**
 
 원칙적으로는 안 되지만 PostgreSQL은 중간에 작성자가 없어도 '부분적으로' 동작하는 듯하다.
 
@@ -267,7 +266,7 @@ Index Scan을 수행한다.
 
 Index Scan을 수행하지 못한다.
 
-###### **WHERE 작성자 = '홍길동'**
+###### **WHERE 작성자 = '작성자1'**
 
 | QUERY PLAN                                                                                                     |
 | :------------------------------------------------------------------------------------------------------------- |
@@ -277,7 +276,7 @@ Index Scan을 수행하지 못한다.
 | Planning Time: 0.343 ms                                                                                        |
 | Execution Time: 24.855 ms                                                                                      |
 
-###### **WHERE 작성일 >= '2024-01-01'**
+###### **WHERE 작성일 >= '2024-11-01'**
 
 | QUERY PLAN |
 | :--- |
@@ -286,7 +285,7 @@ Index Scan을 수행하지 못한다.
 | Planning Time: 0.264 ms |
 | Execution Time: 21.208 ms |
 
-###### **WHERE  작성자 = '작성자1'  AND 작성일 >= '2024-11-01'**
+###### **WHERE 작성자 = '작성자1' AND 작성일 >= '2024-11-01'**
 
 | QUERY PLAN |
 | :--- |
@@ -302,17 +301,17 @@ Index Scan을 수행하지 못한다.
 
 대량의 텍스트 데이터를 검색할 때, 특정 단어나 구문을 빠르게 찾을 수 있게 설계된 인덱스다.
 
-`WHERE TextColumn LIKE '%searchstring%'` 와 같이 검색하는 방식은 전체 텍스트에서 정규식을 활용하여 검색하기에 느리지만 Full-Text Index를 적용하게되면 단어 단위로 검색을 하기에 텍스트 기반 필터링에 유리하다.
+`WHERE TextColumn LIKE '%searchstring%'` 와 같이 검색하는 방식은 전체 텍스트에서 패턴 매칭을 활용하여 검색하기에 느리지만, Full-Text Index를 적용하게 되면 단어 단위로 검색을 하기에 텍스트 기반 필터링에 유리하다.
 
 하지만 Full-Text Index를 적용했다고 `WHERE TextColumn LIKE '%searchstring%'` 의 성능이 좋아지는 것은 아니다.
 
-`LIKE '%searchstring%`와 같은 부분 문자열 검색은 단어의 내부나 끝에서 부터 검색을 할 때 발생한다.
+`LIKE '%searchstring%'` 와 같은 부분 문자열 검색은 단어의 내부나 끝에서부터 검색을 할 때 발생한다.
 
 PostgreSQL 에서 gres를 찾을 때를 생각하면 되겠다.
 
-Full-Text Index는 단어 기준으로 인덱스를 생성하고, 부분 문자열 검색을 지원하기 위해서는 내부의 모든 가능한 조합을 인덱싱 해야하기에 인덱스의 크기를 크게 증가시키는 비효율적인 과정을 거쳐야한다.
+Full-Text Index는 단어 기준으로 인덱스를 생성하고, 부분 문자열 검색을 지원하기 위해서는 내부의 모든 가능한 조합을 인덱싱해야 하기에 인덱스의 크기를 크게 증가시키는 비효율적인 과정을 거쳐야 한다.
 
-즉, Full-Text Index는 문자 내 단어 검색 및 관련성 계산에 최적화 되었고,
+즉, Full-Text Index는 문자 내 단어 검색 및 관련성 계산에 최적화되었고,
 부분 문자열 검색은 단순히 텍스트 내에 특정 문자열이 포함되었는지 확인하는 작업이다.
 
 이런 한계점은 GIN 인덱스, N-gram 기반 인덱싱, Elasticsearch 엔진 활용 등의 방식으로 극복할 수도 있다.
@@ -321,7 +320,7 @@ Full-Text Index는 단어 기준으로 인덱스를 생성하고, 부분 문자�
 
 텍스트를 아래와 같은 과정을 통해 전처리한다.
 
-텍스트를 **단어 단위(토큰) 으로 나누어 저장**한다.(Tokenization)
+텍스트를 **단어 단위(토큰)로 나누어 저장**한다.(Tokenization)
 
 예를 들어 
 
@@ -331,9 +330,9 @@ Full-Text Index는 단어 기준으로 인덱스를 생성하고, 부분 문자�
 
 "SpaceX", "executes", "‘chopsticks’", "booster", "catch", "but", "Starship", "spacecraft", "explosion", "temporarily", "diverts", "flights" 
 
-으로 나뉘어진다.
+으로 나뉜다.
 
-또한 The, is, and 등과 같은 **Stop Words(불용어)는 인덱스 생성 과정에서 제외**하여 인덱스의 크기를 줄이고 검색 성능을 최적화 한다.
+또한 The, is, and 등과 같은 **Stop Words(불용어)는 인덱스 생성 과정에서 제외**하여 인덱스의 크기를 줄이고 검색 성능을 최적화한다.
 
 예시에선 “but” 이 빠지면서
 
@@ -357,15 +356,15 @@ Full-Text Index는 단어 기준으로 인덱스를 생성하고, 부분 문자�
 
 인덱스에 저장될 때는 단어가 몇 번째에 위치하는지, 어떤 row에 있는지 등에 대한 위치 기록도 한다.(Inverted Index)
 
-이제 사용자가 "Spacex" 혹은 "Catch STARSHIP" 와 같은 형태로 검색하게 되면 이또한 전처리를 거쳐
+이제 사용자가 "Spacex" 혹은 "Catch STARSHIP" 와 같은 형태로 검색하게 되면 이 또한 전처리를 거쳐
 
 "spacex", "catch", "starship" 으로 구분되어 이를 가지고 있는 텍스트의 위치를 index를 통해 파악하여 해당 전문을 검색한다.
 
-추가적으로 관련성 점수(Relevance Score)를 통한 관련성이 높은 텍스트를 찾는 등의 작업을 수행할 수 있다.
+추가적으로 관련성 점수(Relevance Score)를 통해 관련성이 높은 텍스트를 찾는 등의 작업을 수행할 수 있다.
 
 ## Lexicographical Order 와의 차이
 
-Composite Index 처럼 사전 순서를 기준으로 저장하는 인덱스와는 다르게 Full-Text Index는 역색인(Inverted Index)를 적용하여 토큰화된 단어와 그 위치를 기록하여 이를 토대로 빠르게 검색하여 반환할 수 있다.
+Composite Index 처럼 사전 순서를 기준으로 저장하는 인덱스와는 다르게, Full-Text Index는 역색인(Inverted Index)을 적용하여 토큰화된 단어와 그 위치를 기록하여 이를 토대로 빠르게 검색하여 반환할 수 있다.
 
 ## 조회
 
@@ -390,7 +389,7 @@ WHERE 제목 LIKE '%튜닝%';
 
 ### CREATE TABLE
 
-테이블 생성 때 부터 적용하고 싶다면
+테이블 생성 때부터 적용하고 싶다면
 
 ``` sql
 CREATE TABLE 게시글
@@ -410,13 +409,13 @@ CREATE TABLE 게시글
 
 **`tsvector`는 텍스트 데이터를 분석하여 단어 및 위치를 저장하는 데이터 타입**이다.
 
-postgreSQL 에서 `GENERATED ALWAYS AS ... STORED`는 Computed(Generated) Column 라고 불리며, 컬럼 값을 기반으로 자동으로 계산된 값을 저장하는 기능을 제공한다.
+PostgreSQL 에서 `GENERATED ALWAYS AS ... STORED`는 Computed(Generated) Column 이라고 불리며, 컬럼 값을 기반으로 자동으로 계산된 값을 저장하는 기능을 제공한다.
 
 - **검색_vector** : 생성된 컬럼, 데이터 삽입, 갱신 시 자동으로 계산.
-- **GENERATED ALWAYS AS** : 생성된 컬럼으로 직접 값을 삽입하거나 업데이트 할 수 없다.
+- **GENERATED ALWAYS AS** : 생성된 컬럼으로 직접 값을 삽입하거나 업데이트할 수 없다.
 - **`to_tsvector('english', 제목 || ' ' || 내용)`**
   - **to_tsvector**: 텍스트 필드를 분석하여 Full-Text Search에 사용되는 tsvector 형태로 변환.
-  - **'english'**: 텍스트 분석 언어를 영어로 지정한다. / 한국어로 설정하기 위해서는 tsvector 대신 pgroonga 등과 같은 분석기를 추가로 설치하여 설정해줘야한다.
+  - **'english'**: 텍스트 분석 언어를 영어로 지정한다. / 한국어로 설정하기 위해서는 pgroonga 등과 같은 한국어 분석기를 추가로 설치하여 설정해줘야 한다.
   - **`제목 || ' ' || 내용`**: 제목과 내용 컬럼을 결합하여 하나의 텍스트로 처리.
 - **STORED** : 계산된 결과를 테이블에 실제 값으로 저장하도록 지원해준다.
 
@@ -452,12 +451,12 @@ SET 검색_vector = to_tsvector('english', 제목 || ' ' || 내용);
   - 중복 시 `,` 로 구분하여 표현
   - `제목` 컬럼 값의 5번째 단어에 위치
   - `내용` 컬럼 값의 22번째 단어에 위치
-- '같은':17 : `내용` 컬럼 값의 17번째 단어에 위치
-- '개발자':1 : `내용` 컬럼 값의 17번째 단어에 위치
+- '같은':17 : 결합된 텍스트의 17번째 단어에 위치
+- '개발자':1 : 결합된 텍스트의 1번째 단어에 위치
 
 와 같이 구성된다.
 
-tsvector를 설정한 뒤 Full-Text Search를 최적화 하기 위해 **GIN**을 적용할 수 있다.(postgreSQL 기준)
+tsvector를 설정한 뒤 Full-Text Search를 최적화하기 위해 **GIN**을 적용할 수 있다.(PostgreSQL 기준)
 
 ``` sql 
 CREATE INDEX idx_게시글_검색_vector ON 게시글 USING GIN (검색_vector);
@@ -467,7 +466,7 @@ GIN(Generalized Inverted Index) 인덱스는 tsvector 타입으로 저장된 데
 
 즉, `tsvector`로 단어를 나누고, GIN으로 인덱싱한다.
 
-이제 다시 "튜닝"을 검색해보자
+이제 다시 "튜닝"을 검색해보자.
 
 ``` sql
 EXPLAIN ANALYZE
@@ -519,7 +518,7 @@ WHERE 검색_vector @@ phraseto_tsquery('PostgreSQL 튜닝');
 
 # 마무리
 
-DB 조회 성능을 향상 시키기 위한 Index 기법들을 살펴 보았다.
+DB 조회 성능을 향상시키기 위한 Index 기법들을 살펴보았다.
 
 필자도 간단한 예시를 통해서만 학습하고, 기록한 것이기에 얼마나 오랫동안 기억에 남을지 모르겠지만...
 
@@ -528,5 +527,5 @@ DB 조회 성능을 향상 시키기 위한 Index 기법들을 살펴 보았다.
 
 Ref.
 
-[https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/](https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/)
+[https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/](https://orangematter.solarwinds.com/2019/02/05/the-left-prefix-index-rule/)  
 [https://stackoverflow.com/questions/3645746/what-is-a-fulltext-index-and-when-should-i-use-it](https://stackoverflow.com/questions/3645746/what-is-a-fulltext-index-and-when-should-i-use-it)

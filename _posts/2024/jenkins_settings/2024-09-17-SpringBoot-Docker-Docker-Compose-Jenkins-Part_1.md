@@ -19,7 +19,7 @@ comment: true
 
 레거시한 회사 프로젝트 고도화를 위해 새로운 구조로 서비스를 운영할 계획이다.
 
-# AS-IT / TO-BE
+# AS-IS / TO-BE
 
 |               | AS-IT                | TO-BE                                      |
 | ------------- | -------------------- | ------------------------------------------ |
@@ -44,13 +44,13 @@ comment: true
 - 비동기 메시지 처리를 위한 RabbitMQ.
 - 차후 MSA, 무중단 배포 환경 구축을 위한 Build up.
 
-고도화를 위한 환경을 구축하는데 확실한 이유처럼 보이지 않을 수 있지만, 양질의 서비스를 운영하는데 가장 필요하다고 생각하는 것은 배포에 대한 두려움이 없어야한다고 생각한다.
+고도화를 위한 환경을 구축하는 데 확실한 이유처럼 보이지 않을 수 있지만, 양질의 서비스를 운영하는 데 가장 필요한 것은 배포에 대한 두려움이 없어야 한다는 것이라 생각한다.
 
 해당 구조들을 모두 구축하지 않고, 일부만 구축해도 현재보다는 도움 될 것이라고 생각한다.
 
 이런 환경을 구축하기 위해서 간단한 학습용 프로젝트를 통해 학습하고 익혀보겠다.
 
-(Redis와 nginx, RabbitMQ는 다른 포스트에서 따로 다루도록하겠다.)
+(Redis와 nginx, RabbitMQ는 다른 포스트에서 따로 다루도록 하겠다.)
 
 # Skill Spec
 - Java 17
@@ -79,11 +79,11 @@ Next를 진행한 뒤 기초가 되는 Dependency를 설정해주자.
 
 를 기초로 두었다.
 
-JPA, Dockert Compose Support 등 다른 Depnedency는 간단한 세팅 후 나중에 진행해도 된다.
+JPA, Docker Compose Support 등 다른 Dependency는 간단한 세팅 후 나중에 진행해도 된다.
 
 설정이 완료되었다면 Create로 프로젝트를 생성해주자.
 
-이후 build.gradle의 설정을 통해 Java, Spring Boot, Dependency 등이 잘 설정되었는지 확인하자
+이후 build.gradle의 설정을 통해 Java, Spring Boot, Dependency 등이 잘 설정되었는지 확인하자.
 
 ``` yaml
 plugins {  
@@ -120,7 +120,7 @@ tasks.named('test') {
 
 ## Home
 
-Spring boot web을 통해 인스턴스를 실행 시켰을 시`'/'` 의 경로로 접근했을 시 `Welcome!` 이라는 텍스트가 노출되는 웹 페이지가 뜨도록 소스를 작성해보자.
+Spring boot web을 통해 인스턴스를 실행시킨 뒤 `'/'` 의 경로로 접근했을 때 `Welcome!` 이라는 텍스트가 노출되는 웹 페이지가 뜨도록 소스를 작성해보자.
 
 ### Controller
 
@@ -128,7 +128,7 @@ Spring boot web을 통해 인스턴스를 실행 시켰을 시`'/'` 의 경로�
 
 ![make controller]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/controller.png)
 
-이후 클래스에 `@Controller`를 통해 Controller Baen에 등록하고, `@GetMapping("/")` 을 통해 Request 시 Response할 메서드를 작성하자.
+이후 클래스에 `@Controller`를 통해 Controller Bean에 등록하고, `@GetMapping("/")` 을 통해 Request 시 Response할 메서드를 작성하자.
 
 ``` java
 @Controller  
@@ -147,11 +147,11 @@ Thymeleaf의 경우에는 return type을 String으로 지정하여 렌더링하�
 
 ### View, Thymeleaf
 
-Thymeleaf는 JSP 등과 같은 템플릿 엔진으로써 Spring 군에서 View를 구성하는데 자주 사용하는 플랫폼이다.
+Thymeleaf는 JSP 등과 같은 템플릿 엔진으로, Spring 진영에서 View를 구성하는 데 자주 사용하는 플랫폼이다.
 
 Mapping 되는 경로는 `src/main/resources/templates`와 같다.
 
-그렇다면 해당 경로에 `home.html` 을 생성하고 작성해보자.
+그렇다면 해당 경로에 `home.html` 을 생성하여 작성해보자.
 
 ``` html 
 <!DOCTYPE html>  
@@ -178,17 +178,17 @@ Mapping 되는 경로는 `src/main/resources/templates`와 같다.
 
 위에서 간단하게 작성한 Spring Boot Web Application 을 Docker Container화를 시킬 것이다.
 
-그러기 위해서는 Gradel을 통해 JAR 파일을 생성해야한다.
+그러기 위해서는 Gradle을 통해 JAR 파일을 생성해야 한다.
 
-Gradle을 실행 시키기 위해서는 당연히 설치가 되어있어야한다.
+Gradle을 실행시키기 위해서는 당연히 설치가 되어 있어야 한다.
 
-IntelliJ를 쓴다면 `Gradle Tool Window - Tasas - build - build` 를 통해 간단히 생성할 수 있다.
+IntelliJ를 쓴다면 `Gradle Tool Window - Tasks - build - build` 를 통해 간단히 생성할 수 있다.
 
-이번에는 설치 됐다는 가정하에 커멘드를 통해 JAR 파일을 만들어보자.
+이번에는 설치됐다는 가정하에 커맨드를 통해 JAR 파일을 만들어보자.
 
 ### JAR 파일 생성.
 
-터미널을 통해 프로젝트의 Root 디렉토리로 접근한 뒤 커멘드를 입력하자
+터미널을 통해 프로젝트의 Root 디렉토리로 접근한 뒤 커맨드를 입력하자.
 
 ``` shell
 ./gradlew clean build
@@ -196,11 +196,11 @@ IntelliJ를 쓴다면 `Gradle Tool Window - Tasas - build - build` 를 통해 �
 
 ![gradle-build]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/gradle-build.png)
 
-위의 커멘드는
+위의 커맨드는
 - 이전에 빌드된 파일을 모두 삭제(clean)하고
 - 애플리케이션을 빌드하여 JAR 파일을 생성(build)
 
-하는 과정을 수행하는 커멘드다.
+하는 과정을 수행하는 커맨드다.
 
 그렇다면 생성된 JAR는 어디 있을까?
 
@@ -208,7 +208,7 @@ out 되는 위치를 따로 지정하지 않았다면 `build/libs/`의 경로에
 
 ![jar-file]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/jar-file.png)
 
-기본적으로 `[프로젝트명]-[version].jar` 형태로 생성이되며, 이를 변경하고 싶으면 `build.gradle`의
+기본적으로 `[프로젝트명]-[version].jar` 형태로 생성되며, 이를 변경하고 싶으면 `build.gradle`의
 ``` gradle
 version = '0.0.1-SNAPSHOT'
 ```
@@ -223,11 +223,11 @@ bootJar {
 
 참고로 `-plain.jar` 혹은 `-original.jar`의 파일이 함께 생성되는 경우가 있는데 이는 의존성을 포함하지 않고 단순히 애플리케이션 코드가 포함되는 jar 파일이다.
 
-즉, Spring Boot에 의해 생성된 jar로 단독적으로 실행될 수 없는 jar 파일이다
+즉, 단독으로는 실행될 수 없는 jar 파일이다.
 
-우리는 해당 jar를 사용하지 않고 단독적으로 실행가능한 bootJar(Fat JAR)를 활용할 것이다.
+우리는 해당 jar를 사용하지 않고 단독으로 실행 가능한 bootJar(Fat JAR)를 활용할 것이다.
 
-`-plain.jar`의 생성을 막고싶다면 `build.gradle`에
+`-plain.jar`의 생성을 막고 싶다면 `build.gradle`에
 ``` gradle
 tasks.named('jar') {
     enabled = false
@@ -238,7 +238,7 @@ tasks.named('jar') {
 
 ### 실행
 
-Spring Boot + Gardle을 통해 생성된 JAR는 단독으로 실행 가능하다고 설명했다.
+Spring Boot + Gradle을 통해 생성된 JAR는 단독으로 실행 가능하다고 설명했다.
 
 확인해보자.
 
@@ -248,9 +248,9 @@ java -jar build/libs/[파일 이름].jar
 
 ![jar-boot]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/jar-boot.png)
 
-위의 커멘드를 실행하면 IDE에서 실행하는 것과 같이 단독적으로 실행되는 것을 확인할 수 있다.
+위의 커맨드를 실행하면 IDE에서 실행하는 것과 같이 단독으로 실행되는 것을 확인할 수 있다.
 
-bootJar가 단독으로 실행 가능 한 것은 Spring Boot가 Tomcat과 같은 웹 서버를 내장하고 있으며, Auto-Configuration, class 파일 포함 등과 같은 특징 때문이다.
+bootJar가 단독으로 실행 가능한 것은 Spring Boot가 Tomcat과 같은 웹 서버를 내장하고 있으며, Auto-Configuration, class 파일 포함 등과 같은 특징 때문이다.
 
 이전과 같이 브라우저를 통해 인스턴스에 접근하면 똑같이 동작할 것이다.
 
@@ -266,7 +266,7 @@ Docker가 설치되어 있지 않다면 역시 설치를 마친 뒤 진행하길
 
 `Root` 경로에 `Dockerfile` 이라는 파일을 생성하자.
 
-주의할 점은 파일 이름은 `dockerFile`, `dockerfile`과 같이 다른 이름으로 생성하면 안된다.
+주의할 점은, 파일 이름을 `dockerFile`, `dockerfile`과 같이 다른 이름으로 생성하면 안 된다는 것이다.
 
 ``` Dockerfile
 # 1. 베이스 이미지 설정  
@@ -293,14 +293,14 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 - **ENV**: 컨테이너 내부에서 사용할 환경 변수를 설정한다.(`ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk`)
 - **EXPOSE**: 컨테이너 외부에 노출할 포트를 설정한다.(`EXPOSE 8080`)
 - **VOLUME**: 호스트와 컨테이너 간에 공유할 디렉토리를 설정해 데이터 영속성을 보장한다.(`VOLUME /data`)
-- **WORKDIR**:이후의 명령들이 실행될 작업 디렉토리를 설정한다.(`WORKDIR /app`)
+- **WORKDIR**: 이후의 명령들이 실행될 작업 디렉토리를 설정한다.(`WORKDIR /app`)
 - **USER**: 명령을 실행할 유저를 설정한다.(`USER appuser`)
 - **RUN**: 이미지를 빌드할 때 실행할 명령을 설정한다.(`RUN apt-get update && apt-get install -y curl`)
 - **SHELL**: RUN 명령을 실행할 때 사용할 셸을 설정한다.(`SHELL ["/bin/bash", "-c"]`)
 
 의 예약어들이 있다.
 
-`Dockerfile`을 빌드하는 시점에 JAR 파일이 있어야하니
+`Dockerfile`을 빌드하는 시점에 JAR 파일이 있어야 하니
 
 ``` bash
 ./gradlew clean bootJar
@@ -317,7 +317,7 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 
 ### build
 
-이제 작성 된 `Dockerfile`을 통해 이미지를 생성해보자.
+이제 작성된 `Dockerfile`을 통해 이미지를 생성해보자.
 
 먼저 Dockerfile 이 있는 경로까지 이동 후 터미널에 아래의 명령어를 입력하자.
 
@@ -325,7 +325,7 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 docker build -t [원하는 이미지 이름]:[태그명] .
 ```
 
-`-t`의 옵션은 tag 개념으로 `이미지명:` 뒤에 나오는 태크명으로 명명된다.
+`-t`의 옵션은 tag 개념으로 `이미지명:` 뒤에 나오는 태그명으로 명명된다.
 
 보통은 버전을 나타낼 때 사용하며 생략 시에는 자동으로 `latest` 태그명이 붙는다.
 
@@ -335,7 +335,8 @@ docker build -t [원하는 이미지 이름]:[태그명] .
 
 ![docker-build]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/docker-build.png)
 
-와 같이 docker image에 방금 빌드한 이미지가 나타나게된다.
+와 같이 docker image에 방금 빌드한 이미지가 나타나게 된다.
+
 ### run
 
 생성된 이미지를 기반으로 컨테이너를 실행해보자.
@@ -346,11 +347,11 @@ docker run -p 8080:8080 [이미지명]:[태그명]
 
 다양한 옵션들이 있지만 간단하게 `-p`를 통해 포트만 매핑하여 실행하자.
 
-앞에 있는 `8080`은 호스트의 포트 번호 즉, 접속하기 위한 포트 번호이며, 뒤에있는 `8080`은 컨테이너에 매핑되는 포트 번호이다.
+앞에 있는 `8080`은 호스트의 포트 번호 즉, 접속하기 위한 포트 번호이며, 뒤에 있는 `8080`은 컨테이너에 매핑되는 포트 번호이다.
 
-만약 호스트 포트 번호를  `9090`으로 주었다면 클라이언트는 `9090`을 통해 컨테이너에 접속하며, 도커에서 주고 받는 동작은 `8080`을 통해 이루어질 것이다.
+만약 호스트 포트 번호를 `9090`으로 주었다면 클라이언트는 `9090`을 통해 컨테이너에 접속하며, 컨테이너 내부에서 주고받는 동작은 `8080`을 통해 이루어질 것이다.
 
-컨테이너가 실행되면 Spring Boot 인스턴스가 실행되며 이전과 같이 브라우저를 통해 접근할 수 있게된다.
+컨테이너가 실행되면 Spring Boot 인스턴스가 실행되며, 이전과 같이 브라우저를 통해 접근할 수 있게 된다.
 
 ![docker-run]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/docker-run.png)
 
@@ -364,7 +365,7 @@ docker ps
 docker stop [컨테이너 ID or 이름]
 ```
 
-의 커멘드를 통해 종료할 수 있다.
+의 커맨드를 통해 종료할 수 있다.
 
 컨테이너가 필요 없다면,
 
@@ -400,7 +401,7 @@ docker pull postgres:14
 
 해당 커맨드로 PostgreSQL 를 pull해올 수 있다.
 
-14버전을 특정하였지만 가장 최신 버전을 pull 하고 싶다면 14대신 latest를 기입하면된다.
+14 버전을 특정하였지만, 가장 최신 버전을 pull 하고 싶다면 14 대신 latest를 기입하면 된다.
 
 ### run
 
@@ -414,7 +415,7 @@ docker run -p 5432:5432 --name [생성할 컨테이너명] \
 ```
 
 - **`--name`** : 생성할 컨테이너명.
-- `-d` : 실행할 이미지.
+- `-d` : 백그라운드(디태치드) 실행.
 - `port` : 포트 설정.
 - `-e` :  실행될 컨테이너의 환경 변수.
   - 접속 계정.
@@ -440,7 +441,7 @@ docker run -p 5432:5432 --name [생성할 컨테이너명] \
 등의 옵션들이 있다.
 
 참고로 `-v` 옵션은 경로 설정에 따라
-- **Volume** : Docker가 관리하면서 Container에 쌓인 데이터를 로컬에 저장한다.
+- **Volume** : Docker가 관리하면서 Container에 쌓인 데이터를 로컬에 저장한다.
 - **Bind/Mount** : 로컬 데이터를 컨테이너에 직접 마운트한다.
 
 로 구분된다.
@@ -450,13 +451,13 @@ docker run -p 5432:5432 --name [생성할 컨테이너명] \
 
 의 순서로 run 하니 정상 동작한다.
 
-자 이제 해당 커멘드로 실행을 해보자.
+자 이제 해당 커맨드로 실행을 해보자.
 
 ![docker-run-db]({{ site.baseurl }}/assets/images/posts/2024/jenkins_settings/1/docker-run-db.png)
 
 ### exec
 
-`docker ps`의 커멘드 확인 후, 정상적으로 실행이 되었다면 이제 컨테이너 내부로 진입해보자.
+`docker ps` 커맨드로 확인 후, 정상적으로 실행이 되었다면 이제 컨테이너 내부로 진입해보자.
 
 ```
 docker exec -it [컨테이너 ID or 이름] psql -U postgres
@@ -473,7 +474,7 @@ docker exec -it [컨테이너 ID or 이름] psql -U postgres
 create database [생성할 DB명];
 ```
 
-커멘드 입력 후 `\l`을 통해 정상적으로 데이터베이스가 생성되었는지 확인하자.
+커맨드 입력 후 `\l`을 통해 정상적으로 데이터베이스가 생성되었는지 확인하자.
 
 ```
      **Name      |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges**   
@@ -496,7 +497,7 @@ create database [생성할 DB명];
 ```
 
 #### 계정 생성 및 권한 설정
-이후 `q`로 빠져나온 뒤 계정 생성과 권한 설정을 해보자.
+이후 `\q`로 빠져나온 뒤 계정 생성과 권한 설정을 해보자.
 
 계정을 생성할 때는
 - `USER` : 로그인 권한이 부여된 계정 생성.
@@ -504,7 +505,7 @@ create database [생성할 DB명];
 
 의 두 가지 생성 방법이 있는데, 보통은 세세하고 유연한 계정 설정을 위해서 `ROLE`을 활용한다.
 
-기본 커멘드는
+기본 커맨드는
 ```
 CREATE ROLE [계정명] WITH [권한 및 옵션] PASSWORD '[비밀번호]';
 ```
@@ -528,7 +529,7 @@ ALTER ROLE [계정명] WITH [권한];
 
 으로 변경 가능하다.
 
-참고로 여러개의 권한 및 옵션을 적용할 때는 ' '의 공백으로 delimiter를 제공하면된다.
+참고로 여러 개의 권한 및 옵션을 적용할 때는 ' ' 공백을 delimiter로 제공하면 된다.
 
 그럼 계정을 생성하고 필요 시 수정을 진행하자.
 
@@ -549,7 +550,7 @@ ALTER ROLE [계정명] WITH CREATEDB SUPERUSER;
 
  **jaehoonman | Superuser, Create DB                                       | {}**
 
- **postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS | {}**
+ **postgres | Superuser, Create role, Create DB, Replication, Bypass RLS | {}**
 ```
 
 권한이 부여된 계정을 생성한 DB에 접근 가능하도록 `GRANT` 를 수행하자.
@@ -598,7 +599,7 @@ DB 접근 권한을 부여한 뒤 다시 `\l`을 수행해보면
 **(4 rows)**
 ```
 
-에서 `jaehoonman=CTc/postgres**` 가 추가 된 것을 확인할 수 있다.
+에서 `jaehoonman=CTc/postgres**` 가 추가된 것을 확인할 수 있다.
 
 이제 생성과 설정이 완료된 계정으로 다시 로그인해보자.
 
@@ -608,11 +609,11 @@ postgres=# \q
 $ docker exec -it [컨테이너명] psql -U [생성한 유저명] -d [생성한 DB명]
 ```
 
-이후 psql의 커멘드 수행자가 생성한 DB명으로 변경 되었는지 확인한다.
+이후 psql의 커맨드 수행자가 생성한 DB명으로 변경되었는지 확인한다.
 
 #### 테이블.
 
-위의 과정을 무난히 따라 왔다면 생성한 계정으로 생성한 DB의 테이블을 만들 수 있을 것이다.
+위의 과정을 무난히 따라왔다면 생성한 계정으로 DB에 테이블을 만들 수 있을 것이다.
 
 ``` sql
 CREATE TABLE users (
@@ -645,7 +646,7 @@ jaehoonman_db=# SELECT * FROM users;
 
 ----+------------+------------------------+----------------------------
 
-  1 | Jaehoonman | jaehoonman@example.com | 2024-09-17 20:18:43.055677
+ 1 | Jaehoonman | jaehoonman@example.com | 2024-09-17 20:18:43.055677
 
   2 | JonDoe     | jondoe@example.com     | 2024-09-17 20:18:43.062288
 ```
@@ -653,7 +654,7 @@ jaehoonman_db=# SELECT * FROM users;
 `\d [테이블명]`으로 CREATE한 스키마를 확인할 수도 있다.
 
 
-`docker run` 시 주었던 `-v`로 Volume 을 설정했기에 컨테이너를 껐다 켜도 데이터가 유지될 것이다.
+`docker run` 시 주었던 `-v`로 Volume 을 설정했기에, 컨테이너를 껐다 켜도 데이터가 유지될 것이다.
 
 이번 파트는 여기까지 설정해보고 다음 파트에서는
 - Spring Boot + JPA + PostgreSQL

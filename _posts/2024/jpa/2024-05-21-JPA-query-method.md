@@ -22,7 +22,7 @@ JPA는 크게 2가지의 조회 방법을 제공한다.
 - 메서드 이름으로 직접 쿼리를 파생.
 - 수동으로 쿼리 작성.
 
-JPA 기본적으로 메서드명에서 쿼리를 파생하지만 Method Parser 가 지원하지 않는 키워드가 있다거나, 메서드명이 너무 길어져서 못생겨지는 경우도 있을 수 있다.
+JPA는 기본적으로 메서드명에서 쿼리를 파생하지만, Method Parser 가 지원하지 않는 키워드가 있다거나 메서드명이 너무 길어져서 못생겨지는 경우도 있을 수 있다.
 
 이때는 직접 쿼리를 작성할 수도 있게 지원한다.
 
@@ -34,7 +34,7 @@ Query Method는 메서드명을 기반으로 쿼리를 생성하는 개념을 �
 
 Repository와 객체의 기준이 되는 Entity를 정의하는 것만으로 DB의 CRUD 작업이나 복잡한 쿼리를 쉽게 생성할 수 있게 도와준다.
 
-먼저 아래와 같이 Entity가 정의 되었다고 가정하자
+먼저 아래와 같이 Entity가 정의되었다고 가정하자.
 ``` java
 @Entity  
 @Data  
@@ -49,11 +49,11 @@ public class Users {
 }
 ```
 
-Query Method는 JPA의 규칙에 맞게 메서드명을 작성하면 JPA가 자동으로 이를 분석하여 JPQL(Java Persistence Query Language)의 쿼리문으로 변환 시켜 실행한다.
+Query Method는 JPA의 규칙에 맞게 메서드명을 작성하면, JPA가 자동으로 이를 분석하여 JPQL(Java Persistence Query Language)의 쿼리문으로 변환시켜 실행한다.
 
-JPQL은 SQL을 추상화 했기에 특정 DB에 의존하지 않는 장점을 가지고 있다.
+JPQL은 SQL을 추상화했기에 특정 DB에 의존하지 않는 장점을 가지고 있다.
 
-하지만 JPQL도 결국 연동한 DB에 맞게 SQL로 변환이된다.
+하지만 JPQL도 결국 연동한 DB에 맞게 SQL로 변환된다.
 
 일단 밑에서 작성하는 코드를 보자.
 ``` java
@@ -67,20 +67,21 @@ public interface UserRepository extends JpaRepository<User, Long> {
 List<Users> findFirstByUserNameLike(String userName);  
 ```
 이 부분을 요소별로 해석해보자면
-- `List<Users>` : 사용자가 정의한 User 객체를 여러개 담기 위해 List Collection 사용
+- `List<Users>` : 사용자가 정의한 Users 객체를 여러 개 담기 위해 List Collection 사용
 - `find` : 찾는다
 - `By` : ~를 이용하여
 - `UserName` : userName을 이용하여
 - `Contains` : ~를 포함했을 때
 - `(String userName)` : Parameter로 주어진 userName
-  와 같고 해석한 요소들은
-  "Parameter로 주어진 userName을 포함한 값을 가진 User의 값을 찾아서 List 자료 구조에 담는다."
+
+와 같고, 해석한 요소들을 종합하면
+"Parameter로 주어진 userName을 포함한 값을 가진 Users의 값을 찾아서 List 자료 구조에 담는다." 가 된다.
 
 쿼리문이라면
 ``` sql
 SELECT * FROM users WHERE userName LIKE '%?%'
 ```
-이정도 될 것이다.
+이 정도 될 것이다.
 
 실제로 수행되는 쿼리문은
 ``` sql
@@ -94,9 +95,9 @@ select
 ```
 와 같을 것이다.
 
-참고로 table의 alias 를 붙여 사용하는 이유는 명확성과 가독성을 향상 시키고, 특정 상황에서 쿼리 성능을 향상 시킬 수도 있는 등 여러가지 이유로 표준과 같이 사용되고 있다.
+참고로 table의 alias 를 붙여 사용하는 이유는 명확성과 가독성을 향상시키고, 특정 상황에서 쿼리 성능을 향상시킬 수도 있는 등 여러 가지 이유로 표준처럼 사용되고 있다.
 
-이처럼 정해진 키워드와 규칙 조합하여 문자로만 원하는 데이터베이스 동작을 수행하도록 변환해준다.
+이처럼 정해진 키워드와 규칙을 조합하여 문자로만 원하는 데이터베이스 동작을 수행하도록 변환해준다.
 
 그렇다면 작성하는 방법을 알아보자.
 
@@ -110,7 +111,7 @@ Spring Data JPA의 `JpaRepository<T, ID>`의 인터페이스를 extends 한다�
 - count
 - update
 
-등의 기능이 정의되어있다.
+등의 기능이 정의되어 있다.
 
 Query Method는
 
@@ -118,7 +119,7 @@ Query Method는
 
 의 형식으로 작성된다.
 
-"동작"은 필수로 포함되고 상황에 따라 옵션과 조건 등을 설정하면된다.
+"동작"은 필수로 포함되고, 상황에 따라 옵션과 조건 등을 설정하면 된다.
 
 지원하는 키워드는 아래와 같다.
 
@@ -127,7 +128,7 @@ Query Method는
 | `Distinct`             | `findDistinctByLastnameAndFirstname`                          | `select distinct …​ where x.lastname = ?1 and x.firstname = ?2`    |
 | `And`                  | `findByLastnameAndFirstname`                                  | `… where x.lastname = ?1 and x.firstname = ?2`                     |
 | `Or`                   | `findByLastnameOrFirstname`                                   | `… where x.lastname = ?1 or x.firstname = ?2`                      |
-| `Is`, `Equals`         | `findByFirstname`,`findByFirstnameIs`,`findByFirstnameEquals` | `… where x.firstname = ?1`                                         |
+| `Is`, `Equals`         | `findByFirstname`,`findByFirstnameIs`,`findByFirstnameEquals` | `… where x.firstname = ?1`                                         |
 | `Between`              | `findByStartDateBetween`                                      | `… where x.startDate between ?1 and ?2`                            |
 | `LessThan`             | `findByAgeLessThan`                                           | `… where x.age < ?1`                                               |
 | `LessThanEqual`        | `findByAgeLessThanEqual`                                      | `… where x.age <= ?1`                                              |
@@ -135,13 +136,13 @@ Query Method는
 | `GreaterThanEqual`     | `findByAgeGreaterThanEqual`                                   | `… where x.age >= ?1`                                              |
 | `After`                | `findByStartDateAfter`                                        | `… where x.startDate > ?1`                                         |
 | `Before`               | `findByStartDateBefore`                                       | `… where x.startDate < ?1`                                         |
-| `IsNull`, `Null`       | `findByAge(Is)Null`                                           | `… where x.age is null`                                            |
-| `IsNotNull`, `NotNull` | `findByAge(Is)NotNull`                                        | `… where x.age not null`                                           |
+| `IsNull`, `Null`       | `findByAge(Is)Null`                                           | `… where x.age is null`                                            |
+| `IsNotNull`, `NotNull` | `findByAge(Is)NotNull`                                        | `… where x.age not null`                                           |
 | `Like`                 | `findByFirstnameLike`                                         | `… where x.firstname like ?1`                                      |
 | `NotLike`              | `findByFirstnameNotLike`                                      | `… where x.firstname not like ?1`                                  |
-| `StartingWith`         | `findByFirstnameStartingWith`                                 | `… where x.firstname like ?1` (parameter bound with appended `%`)  |
-| `EndingWith`           | `findByFirstnameEndingWith`                                   | `… where x.firstname like ?1` (parameter bound with prepended `%`) |
-| `Containing`           | `findByFirstnameContaining`                                   | `… where x.firstname like ?1` (parameter bound wrapped in `%`)     |
+| `StartingWith`         | `findByFirstnameStartingWith`                                 | `… where x.firstname like ?1` (parameter bound with appended `%`)  |
+| `EndingWith`           | `findByFirstnameEndingWith`                                   | `… where x.firstname like ?1` (parameter bound with prepended `%`) |
+| `Containing`           | `findByFirstnameContaining`                                   | `… where x.firstname like ?1` (parameter bound wrapped in `%`)     |
 | `OrderBy`              | `findByAgeOrderByLastnameDesc`                                | `… where x.age = ?1 order by x.lastname desc`                      |
 | `Not`                  | `findByLastnameNot`                                           | `… where x.lastname <> ?1`                                         |
 | `In`                   | `findByAgeIn(Collection<Age> ages)`                           | `… where x.age in ?1`                                              |
@@ -150,24 +151,24 @@ Query Method는
 | `False`                | `findByActiveFalse()`                                         | `… where x.active = false`                                         |
 | `IgnoreCase`           | `findByFirstnameIgnoreCase`                                   | `… where UPPER(x.firstname) = UPPER(?1)`                           |
 
-https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+[https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html](https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html)
 
 에 있는 것을 그대로 가져왔다.
 
-쿼리문을 작성해본 사람이라면 키워드만 보고 어느정도 감이 잡힐 것이다.
+쿼리문을 작성해본 사람이라면 키워드만 보고 어느 정도 감이 잡힐 것이다.
 
-눈 여겨 볼 부분은
-`Is`, `Equals` 와 같이 `=` 에 대응 되는 키워드라던가,
+눈여겨볼 부분은
+`Is`, `Equals` 와 같이 `=` 에 대응되는 키워드라든가,
 `LessThan`, `LessThanEqual`, `GreaterThan`, `GreaterThanEqual`, `After`, `Before` 에 대응되는 `<, <=, >, >=` 등과 같이 기호로 된 부분과 매핑되는 키워드,
-`StartingWith`, `EndingWith`, `Containing`, `IgnoreCase` 와 같은 규칙이 있는 키워드지 않을까 싶다.
+`StartingWith`, `EndingWith`, `Containing`, `IgnoreCase` 와 같이 규칙이 있는 키워드가 아닐까 싶다.
 
 
 ## @Named Query
 name과 이에 맵핑되는 쿼리를 작성하고 name에 해당하는 Named Query를 호출하면 작성한 Query가 실행된다.
 
-설정 방법으로는 XML와 `@NamedQuery`가 있는데 Annotaion으로 작성하는 방법을 소개하겠다.
+설정 방법으로는 XML과 `@NamedQuery`가 있는데, Annotation으로 작성하는 방법을 소개하겠다.
 
-먼저 Entity 객체에 `@NamedQuery` Annotaion을 클래스 단위로 정의해주자.
+먼저 Entity 객체에 `@NamedQuery` Annotation을 클래스 단위로 정의해주자.
 ``` java
 @Entity  
 @Data  
@@ -183,11 +184,11 @@ public class Users {
 }
 ```
 
-name으로 충돌 방지를 위해 `클래스명.메서드명` 와 같은 형식으로 정의해주고 이와 맵핑되는 query를 작성해주자.
+충돌 방지를 위해 name은 `클래스명.메서드명` 과 같은 형식으로 정의해주고, 이와 맵핑되는 query를 작성해주자.
 
-기본으로 생성되는 쿼리문이 아닌 사용자 정의 쿼리라는 것을 구분하기위해 ID값만 가져오기로 한다.
+기본으로 생성되는 쿼리문이 아닌 사용자 정의 쿼리라는 것을 구분하기 위해 ID값만 가져오기로 한다.
 
-Parameter로 줄때는  `:userName`와 같이 `:`를 활용하자.
+Parameter로 줄 때는 `:userName` 과 같이 `:`를 활용하자.
 
 호출은 EntityManager를 통해 createNamedQuery 메서드를 활용한다.
 
@@ -238,9 +239,9 @@ Hibernate:
     where
         u1_0.user_name=?
 ```
-의 동작을 수행하고 `@BeforeEach`에서 첫 번쨰로 넣어준 `[1]`의 결과가 나오게된다.
+의 동작을 수행하고 `@BeforeEach`에서 첫 번째로 넣어준 `[1]`의 결과가 나오게 된다.
 
-Named Query를 여러게 넣고 싶다면
+Named Query를 여러 개 넣고 싶다면
 ``` java
 @NamedQueries(  
         @NamedQuery(name = "Users.findByUserName", query = "select u.userId from Users u where u.userName = :userName"),
@@ -248,7 +249,7 @@ Named Query를 여러게 넣고 싶다면
         @NamedQuery(...)
 )
 ```
-와 같이 `@NamedQueries`안에 `@NamedQuery`를 정의하면된다.
+와 같이 `@NamedQueries` 안에 `@NamedQuery`를 정의하면 된다.
 
 쿼리문이 짧다면 충돌 방지와 함께 사용해 볼 만하지만 복잡한 쿼리문은 부적합하다.
 
@@ -256,11 +257,11 @@ Named Query를 여러게 넣고 싶다면
 
 
 ### 기본 사용
-Repository에 정의되는 메서드에 `@Query` annotaion으로 직접 바인드되는 쿼리문을 작성할 수 있다.
+Repository에 정의되는 메서드에 `@Query` annotation으로 직접 바인드되는 쿼리문을 작성할 수 있다.
 
-`@NamedQuery`와 비슷하지만 `@Query`은 메서드에 직접 바인드된다.
+`@NamedQuery`와 비슷하지만 `@Query`는 메서드에 직접 바인드된다.
 
-Repository에 터무니 없는 메서드명으로 메서드를 선언하고 그 메서드에 `@Query("[Query]")`를 설정하자.
+Repository에 터무니없는 메서드명으로 메서드를 선언하고 그 메서드에 `@Query("[Query]")`를 설정하자.
 
 ``` java
 @Repository  
@@ -295,7 +296,7 @@ Hibernate:
 ```
 의 쿼리가 실행될 것이다.
 
-메서드마다 구분되기에 복잡한 쿼리에도 나름 적합함으로 실무에서도 자주 사용하는 방법이기도하다.
+메서드마다 구분되기에 복잡한 쿼리에도 나름 적합하므로, 실무에서도 자주 사용하는 방법이기도 하다.
 
 하지만 Paging처리에는 추가적인 설정이 필요하다.
 
@@ -326,9 +327,8 @@ public String rewrite(String query, Sort sort){
 }
 ```
 
-의 코드인데 이를  `@Component`기반의 클래스에 등록하거나 `@Configuration`로 정의된 클래스에 `@Bean` 으로 등록하거나,
+의 코드인데, 이를 `@Component` 기반의 클래스에 등록하거나 `@Configuration`으로 정의된 클래스에 `@Bean` 으로 등록하거나,
 
-``` java
 ``` java
 public interface MyRepository extends JpaRepository<User, Long>, QueryRewriter { 
 
@@ -347,9 +347,9 @@ public interface MyRepository extends JpaRepository<User, Long>, QueryRewriter {
 
 
 ### Native Queries
-`@Query` Annotation의 여러가지 옵션 중에 `nativeQuery`의 옵션이 있다.
+`@Query` Annotation의 여러 가지 옵션 중에 `nativeQuery`의 옵션이 있다.
 
-기본값은 false로 설정되어있는데 이를 true로 설정한다면 연동된 데이터베이스의 고유 기능을 직접 사용할 수 있다.
+기본값은 false로 설정되어 있는데 이를 true로 설정한다면 연동된 데이터베이스의 고유 기능을 직접 사용할 수 있다.
 
 공식 문서에는
 ``` java
@@ -366,9 +366,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 와 같이 사용하는 방법을 예시로 들었다.
 
-여기서 생소한 `countQuery`가 껴있는데, 이는 카운트 쿼리를 직접 지정하여 페이지 지정에 네이티브 쿼리로 사용할 수 있다한다.
+여기서 생소한 `countQuery`가 껴있는데, 이는 페이징에 필요한 카운트 쿼리를 네이티브 쿼리로 직접 지정하는 옵션이다.
 
-돌아와서 Native Queries를 좀 더 이해기 쉽게 `GROUP_CONCAT`, `DATE_FORMAT`, `LIMIT`, `REGEXP` 등과 와 같은 MySQL의 고유 기능을 활용할 수 있게된다.
+돌아와서, Native Queries를 사용하면 `GROUP_CONCAT`, `DATE_FORMAT`, `LIMIT`, `REGEXP` 등과 같은 MySQL의 고유 기능을 활용할 수 있게 된다.
 ``` java
 @Query(value = "SELECT DATE_FORMAT(u.created_date, '%Y-%m-%d') FROM users u WHERE u.id = :id", nativeQuery = true)
 ...
@@ -450,9 +450,9 @@ Hibernate:
 1, jaehoonman
 2, jaehoonwoman
 ```
-과 같이 나오게된다.
+과 같이 나오게 된다.
 
-만약 기본 ASC로 필드로 정렬하려면`Sort`를 인스턴스로 생성하지 않고  
+만약 기본 ASC로 필드를 정렬하려면 `Sort`를 인스턴스로 생성하지 않고  
 ``` java 
 List<Users> usersList = usersRepository.findHahaha("jaehoon", Sort.by("userName"));
 ```
@@ -462,7 +462,7 @@ List<Users> usersList = usersRepository.findHahaha("jaehoon", Sort.by("userName"
 
 
 ## Named Parameters
-기본적으로 Parameter의 위치를 기반으로 인식하는데 이를 Parameter의 이름으로 이를 인식하는 기능이다.
+기본적으로는 Parameter의 위치를 기반으로 인식하는데, 이를 Parameter의 이름으로 인식하게 하는 기능이다.
 
 ``` java
 @Query("select u from Users u where u.userName = :userName1 or u.userName = :userName2")  
@@ -471,7 +471,7 @@ List<Users> findHahaha(@Param("userName1") String userName1,
 ```
 와 같이 받아오는 `@Param`으로 값을 부여하면 Parameter는 이름을 가지고 `@Query`에 대입이 가능해진다.
 
-## SqEL Expressions
+## SpEL Expressions
 
 ### entityName
 Spring Data JPA를 통해 `@Query`를 사용할 때 자동으로 사전에 정의되는 `entityName`과 같은 변수를 `select x from #{#entityName} x`와 같이 사용할 수 있는 표현 방법이다.
@@ -499,13 +499,13 @@ User Entity의 이름이 `@Entity(name = "MyUser")` 등의 방법으로 변경�
 
 ### entityName with inheritance
 
-다른 활용 예시로는concrete domain type을 가지고 있는 특수한 repository interface를 generic repository interface와 함께 사용할 때 `#{#entityName}`를 활용할 수 있다.
+다른 활용 예시로는 concrete domain type을 가지고 있는 특수한 repository interface를 generic repository interface와 함께 사용할 때 `#{#entityName}`를 활용할 수 있다.
 
-좀 어려운 용어가 나왔을 수도 있는데 concrete domain type은 DDD(Domain-Driven Design)와 같은 설계 방법에서 특정 비지니스 영역, 애플리케이션 영역을 도메인이라 표현하고, 이 도메인에 포함된 구체적인 비지니스 영역을 concrete domain type이라 한다.
+좀 어려운 용어가 나왔을 수도 있는데, concrete domain type은 DDD(Domain-Driven Design)와 같은 설계 방법에서 특정 비즈니스 영역, 애플리케이션 영역을 도메인이라 표현하고, 이 도메인에 포함된 구체적인 비즈니스 영역을 concrete domain type이라 한다.
 
-예를 들어 은행 도메인이 있다하면 계좌, 거래, 대출, 고객 정보 등이 concrete domain type이 되는 것이다.
+예를 들어 은행 도메인이 있다고 하면 계좌, 거래, 대출, 고객 정보 등이 concrete domain type이 되는 것이다.
 
-이런 환경에서 은행 도메인을 공통 superclass로 두고 상속하는 자식 concrete domain type 즉, Entity가 받아서 활용하게 되는데, 이 때 concrete interface에서 커스텀 쿼리 메서드를 반복하여 정의하지 않기 위해 사용할 수 있게된다.
+이런 환경에서 은행 도메인을 공통 superclass로 두고 이를 상속하는 자식 concrete domain type 즉, Entity가 받아서 활용하게 되는데, 이때 concrete interface에서 커스텀 쿼리 메서드를 반복하여 정의하지 않기 위해 사용할 수 있게 된다.
 
 ``` java
 @MappedSuperclass
@@ -531,7 +531,7 @@ public interface ConcreteRepository
 
 `MappedTypeRepository<T extends AbstractMappedType>`는 `AbstractMappedType`를 extends하는 domain type들의 공통 부모 interface이다.
 
-`ConcreteRepository`와 같은 Repository는 `MappedTypeRepository`를 `<ConcreteType>`의 제네릭 타입으로 인스턴스화 시키면 `MappedTypeRepository`의 `findAllByAttribute(...)`는  `select t from ConcreteType t where t.attribute = ?1`를 수행하게 된다.
+`ConcreteRepository`와 같은 Repository가 `MappedTypeRepository`를 `<ConcreteType>`의 제네릭 타입으로 extends 하면, `MappedTypeRepository`의 `findAllByAttribute(...)`는 `select t from ConcreteType t where t.attribute = ?1`를 수행하게 된다.
 
 좀 어렵다 하하하
 
@@ -546,28 +546,28 @@ List<User> findByFirstnameAndCurrentUserWithCustomQuery(String firstname);
 
 표현 차이랄까...
 
-또한 `?#{principal.emailAddress` 는 SqEL을 통해 Spring Security에 정의된 사용자 인증 객체를 가져와 핸들링 할 수도 있다.
+또한 `?#{principal.emailAddress}` 는 SpEL을 통해 Spring Security에 정의된 사용자 인증 객체를 가져와 핸들링 할 수도 있다.
 ### wildcard shortcut
 
-LIKE 검색 조건에서 사용되는 `%`를 바인딩 하는 값에 부여할 수 있다.
+LIKE 검색 조건에서 사용되는 `%`를 바인딩하는 값에 부여할 수 있다.
 
 ``` java 
 @Query("select u from User u where u.lastname like %:#{[0]}% and u.lastname like %:lastname%")
 List<User> findByLastnameWithSpelExpression(@Param("lastname") String lastname);
 ```
-`like %:#{[0]}%` 이부분.
+`like %:#{[0]}%` 이 부분.
 
 ### sanitizing input values
 
-인자 값으로 들어오는 변수가 특수 문자 등을 포함한 Secure source가 아닐 수 있다.
-이 때 이를 처리해주는 `escape()`를 사용하여 안전하게 인자를 처리할 수 있다.
+인자 값으로 들어오는 변수가 특수 문자 등을 포함한, 안전하지 않은 값일 수 있다.
+이때 이를 처리해주는 `escape()`를 사용하여 안전하게 인자를 처리할 수 있다.
 ``` java
 @Query("select u from User u where u.firstname like %?#{escape([0])}% escape ?#{escapeCharacter()}")
 List<User> findContainingEscaped(String namePart);
 ```
-`like %?#{escape([0])}%` 이부분.
+`like %?#{escape([0])}%` 이 부분.
 
-하지만 기본적으로 `_`, `%`만 escape하기에 추가적으로 설정하기 위해서는 `@EnableJpaRepositories`의 `escapeCharacter`를 정의 해줘야한다.
+하지만 기본적으로 `_`, `%`만 escape하기에, 추가적으로 설정하기 위해서는 `@EnableJpaRepositories`의 `escapeCharacter`를 정의해줘야 한다.
 
 ## Other Methods
 
@@ -578,7 +578,7 @@ List<User> findContainingEscaped(String namePart);
 
 이전 섹션은 주어진 Entity에 어떻게 접근할 것인지를 선언하는 방법을 알아봤다.
 
-이제는 사용자가 직접 Modify 동작을 추가하는 방법을 알아보도록하자.
+이제는 사용자가 직접 Modify 동작을 추가하는 방법을 알아보도록 하자.
 
 ``` java
 @Modifying
@@ -588,13 +588,13 @@ int setFixedFirstnameFor(String firstname, String lastname);
 
 `@Modifying`을 선언하여 update 등과 같은 Modify 동작을 지정할 수 있다.
 
-이는 또한 `EntityManger`를 통해 modifying 쿼리를 실행 한 뒤에 자동으로 엔티티를 flush 하지 않기 때문에 자동으로 clear하는 동작을 지정하고 싶다면 `@Modifying(clearAutomatically = true)`와 같은 설정을 할 때 사용한다.
+또한 `EntityManager`를 통해 modifying 쿼리를 실행한 뒤에는 영속성 컨텍스트가 자동으로 반영되지 않기 때문에, 자동으로 clear하는 동작을 지정하고 싶다면 `@Modifying(clearAutomatically = true)`와 같이 설정할 수 있다.
 
-`@Modifying`는 `@Query`와 함께 사용될 때 필요하며, Query Method, 커스텀 메서드는 이 Annotaion을 요구하지 않는다.
+`@Modifying`는 `@Query`와 함께 사용될 때 필요하며, Query Method나 커스텀 메서드는 이 Annotation을 요구하지 않는다.
 
 ### Derived Delete Queries
 
-삭제 쿼리를 정의하는데 있어서
+삭제 쿼리를 정의하는 데 있어서
 ``` java
 interface UserRepository extends Repository<User, Long> {
 
@@ -605,14 +605,15 @@ interface UserRepository extends Repository<User, Long> {
   void deleteInBulkByRoleId(long roleId);
 }
 ```
-위의 두 메서드는 같은 동작을 수행하는 것 처럼 보이지만
+위의 두 메서드는 같은 동작을 수행하는 것처럼 보이지만
 
 `deleteByRoleId(long roleId)`
 
 1. `roleId`가 주어진 값과 일치하는 `User` 엔티티를 조회.
 2. 조회된 각 `User` 엔티티에 대해 `delete` 메서드를 호출.
-   의 과정을 거치기에 각 엔티티에 대해 `@PreRemove`와 같은 라이프사이클 콜백이 호출된다.
-   즉, 삭제 작업이 엔티티 단위로 이루어지기 때문에, 각 엔티티에 대한 이벤트가 발생한다.
+
+의 과정을 거치기에 각 엔티티에 대해 `@PreRemove`와 같은 라이프사이클 콜백이 호출된다.
+즉, 삭제 작업이 엔티티 단위로 이루어지기 때문에, 각 엔티티에 대한 이벤트가 발생한다.
 
 `deleteInBulkByRoleId(long roleId)`
 
@@ -623,13 +624,13 @@ interface UserRepository extends Repository<User, Long> {
 
 ## Applying Query Hints
 
-Query Hints라는건 쿼리의 성능이나 동작을 상세하게 조정할 수 있는 설정이다.
+Query Hints라는 건 쿼리의 성능이나 동작을 상세하게 조정할 수 있는 설정이다.
 
 예를 들면 쿼리 실행 시 메모리 제한, 캐시 제어, Lock, Read-only 등의 설정을 할 수 있다.
 
 이를 수행하기 위해서는 Repository interface 메서드에 `@QueryHints`를 정의하거나 `EntityManager`를 사용하면 된다.
 
-`@QueryHints`는 여러개의 `@QueryHint`들을 정의하여 사용할 수 있다.
+`@QueryHints`는 여러 개의 `@QueryHint`들을 정의하여 사용할 수 있다.
 ``` java
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -666,7 +667,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
 디버깅 시에 가독성을 높이기 위해 사용될 수 있는 기능으로 로그에 실행되는 쿼리에 comment 를 설정할 수 있다.
 
-먼저  Hibernate의 commnet 기능을 활성화 시켜야한다.
+먼저 Hibernate의 comment 기능을 활성화시켜야 한다.
 
 ``` java
 @Bean
@@ -678,7 +679,7 @@ public Properties jpaProperties() {
 }
 ```
 
-혹은 `spring.jpa.properties.hibernate.use_sql_comments=true`등의 설정이 필요하다.
+혹은 `spring.jpa.properties.hibernate.use_sql_comments=true` 등의 설정이 필요하다.
 
 보통은 두 가지 방법으로 구현하는데
 
@@ -687,7 +688,7 @@ public Properties jpaProperties() {
 
 @QueryHints({ @QueryHint(name = "org.hibernate.comment", value = "하하하 힌트") })
 ```
-의 둘 중 하나를 Repository 메서드에 정의하면된다.
+의 둘 중 하나를 Repository 메서드에 정의하면 된다.
 
 ``` 
 Hibernate: 
@@ -726,9 +727,9 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
 
 ##  Configuring Fetch- and LoadGraphs
 
-복잡한 관계를 가진 엔티티를 다룰 떄 유용한 기능이다.
+복잡한 관계를 가진 엔티티를 다룰 때 유용한 기능이다.
 
-보통 필요로하는 엔티티의 특정 속성만을 로드하여 성능을 최적화하는데 사용한다.
+보통 필요로 하는 엔티티의 특정 속성만을 로드하여 성능을 최적화하는 데 사용한다.
 
 - **FetchGraph**: 지정된 속성만 로드하고, 나머지 속성은 무시.
 - **LoadGraph**: 지정된 속성은 즉시 로드하며, 나머지는 엔티티의 페치 타입에 따라 결정.
@@ -736,7 +737,7 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
 의 특징을 가지고 있다.
 
 `@NamedEntityGraph`를 통해 Entity graph의 이름과 받아올 속성을 정의하고,
-Graph의 속성을 사용할 Repository에선 `@EntityGraph`를 통해 value와 type에 FETCH, LOAD를 설정하여 정의해준다.
+Graph의 속성을 사용할 Repository에선 `@EntityGraph`를 통해 value와 type에 FETCH, LOAD를 설정하여 정의해준다.
 
 ``` java
 @Entity
@@ -794,7 +795,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 ## Scrolling
 많은 양의 결과가 있을 때 이를 필요한 만큼만 읽어 핸들링 하기 위한 기능이다.
 
-웹 개발은 Scrolling보다는 Pageable 인터페이스를 활용한 기능을 활용하는게 효율적일 것 같아서 자세히는 안다루겠다... 하하...
+웹 개발에서는 Scrolling보다 Pageable 인터페이스를 활용하는 게 효율적일 것 같아서 자세히는 안 다루겠다... 하하...
 
 <br/>
 
