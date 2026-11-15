@@ -1,5 +1,6 @@
 # IDE
 workspace.xml
+.idea/shelf/
 
 # Vim
 *~
