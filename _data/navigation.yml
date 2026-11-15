@@ -12,7 +12,7 @@ main:
 #    url: /sitemap/
 
 post_sub:
-  - title: "년도별"
+  - title: "연도별"
     url: /posts-year/
   - title: "카테고리"
     url: /posts-category/
